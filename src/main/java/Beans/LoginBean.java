@@ -12,8 +12,8 @@ public class LoginBean {
          this.password = password;
          this.role = role;
          this.municipalityCode = municipalityCode;
+        System.out.println("");
      }
-
 
 
    public String getMunicipalityCode() {
