@@ -15,6 +15,9 @@ public class HelloApplication extends Application {
         stage.setTitle("CivisAlert");
         stage.setScene(scene);
         stage.show();
+        System.out.println("sadax");
+        System.out.println("asdetwqfrgfdgd");
+
     }
 
     public static void main(String[] args) {
