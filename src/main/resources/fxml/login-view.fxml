@@ -20,17 +20,17 @@
       </Label>
       <JFXCheckBox fx:id="txtAmIEmployee" layoutX="301.0" layoutY="349.0" prefHeight="18.0" prefWidth="182.0" text="Sono un dipendente del comune" />
       <JFXButton fx:id="loginButton" layoutX="301.0" layoutY="420.0" onAction="#handleLogin" style="-fx-background-color: #b8aa9c;" text="Log in" />
-      <JFXButton fx:id="regButton" layoutX="434.0" layoutY="420.0" style="-fx-background-color: #b8aa9c;" text="Registrati" />
+      <JFXButton fx:id="regButton" layoutX="434.0" layoutY="420.0" onAction="#register" style="-fx-background-color: #b8aa9c;" text="Registrati" />
       <Label layoutX="371.0" layoutY="199.0" text="Login" textFill="#807871">
          <font>
             <Font name="Times New Roman Bold" size="24.0" />
          </font>
       </Label>
       <PasswordField fx:id="txtPassword" layoutX="301.0" layoutY="301.0" prefHeight="25.0" prefWidth="199.0" promptText="Password" />
-      <PasswordField fx:id="txtMunipicalCode" layoutX="301.0" layoutY="376.0" prefHeight="25.0" prefWidth="199.0" promptText="Codice Comune" />
-      <ImageView fitHeight="413.0" fitWidth="282.0" layoutX="284.0" layoutY="-125.0" pickOnBounds="true" preserveRatio="true">
+      <PasswordField fx:id="txtMunicipalCode" layoutX="301.0" layoutY="376.0" prefHeight="25.0" prefWidth="199.0" promptText="Codice Comune" />
+      <ImageView fitHeight="357.0" fitWidth="204.0" layoutX="301.0" layoutY="-115.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../ViewISPW/src/main/resources/Images/Senza_titolo__1_-removebg-preview.png" />
+            <Image url="@../../java/images/Senza_titolo__1_-removebg-preview.png" />
          </image>
       </ImageView>
       <Label fx:id="lblError" layoutX="244.0" layoutY="469.0" prefHeight="17.0" prefWidth="313.0" textFill="#dd0d0d" />

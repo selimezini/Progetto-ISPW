@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GUIRegisterController">
+   <children>
+      <Label layoutX="60.0" layoutY="90.0" text="Registrazione">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
+      <Label layoutX="59.0" layoutY="173.0" text="Username">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="59.0" layoutY="272.0" text="Password">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <JFXCheckBox fx:id="regEmployeeCheck" layoutX="59.0" layoutY="347.0" text="Registrati come dipendente del comune" />
+      <TextField fx:id="regUsername" layoutX="59.0" layoutY="193.0">
+         <padding>
+            <Insets top="10.0" />
+         </padding></TextField>
+      <TextField id=" " fx:id="regPassword" layoutX="59.0" layoutY="292.0" />
+      <TextField fx:id="regMunicipalCode" layoutX="59.0" layoutY="423.0" />
+      <Label layoutX="59.0" layoutY="399.0" text="Codice Comune">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="463.0" fitWidth="327.0" layoutX="430.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../java/images/immagine-registrazione.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="542.0" layoutY="464.0" text="CivisAlert">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="49.0" fitWidth="23.0" layoutX="29.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../Downloads/frecciaBack.png" />
+         </image>
+      </ImageView>
+      <JFXButton id="backButton" fx:id="backButton" layoutX="29.0" layoutY="16.0" onAction="#handleBackToLogin" prefHeight="25.0" prefWidth="149.0" text="Torna al login">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton id="confirmRegButton" fx:id="confirmRegButton" layoutX="57.0" layoutY="476.0" onAction="#handleRegister" opacity="0.71" style="-fx-background-color: #b8aa9c;" text="Registrati" />
+      <Line endX="27.0" layoutX="94.0" layoutY="501.0" startX="-35.0" />
+      <Label id="lblRegError" layoutX="127.0" layoutY="480.0" prefHeight="17.0" prefWidth="292.0" />
+   </children>
+</AnchorPane>

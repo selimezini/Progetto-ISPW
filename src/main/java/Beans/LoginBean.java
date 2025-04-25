@@ -7,7 +7,11 @@ public class LoginBean {
    private String role;
    private String municipalityCode;
 
-     public LoginBean(String username, String password, String role, String municipalityCode) {
+   public LoginBean() {
+
+   }
+
+   public LoginBean(String username, String password, String role, String municipalityCode) {
          this.username = username;
          this.password = password;
          this.role = role;
