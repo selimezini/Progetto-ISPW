@@ -1,6 +1,7 @@
 package Model;
 
 
+import Model.users.Citizen;
 import javafx.scene.image.Image;
 
 public class Report {
@@ -13,6 +14,7 @@ public class Report {
     private Image image;
     private String description;
     private String status;
+    private Citizen author;
 
     public void setMunicipality(Municipality municipality) {
         this.municipality = municipality;
@@ -78,5 +80,10 @@ public class Report {
     }
 
     public String getStatus() {return status;}
+
+    public Citizen getAuthor() {return author;}
+    public void setAuthor(Citizen author) {
+        this.author = author;
+    }
 
 }

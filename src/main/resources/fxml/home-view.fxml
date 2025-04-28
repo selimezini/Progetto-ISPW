@@ -22,20 +22,10 @@
             <Image url="@../../java/images/Senza_titolo__1_-removebg-preview.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="631.0" fitWidth="488.0" layoutX="216.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../../Downloads/immagine-home-registrazione.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="151.0" layoutY="494.0" prefHeight="17.0" prefWidth="639.0" text=" Aiutaci a migliorare il tuo comune : segnala problemi e resta aggiornato sugli eventi!" textAlignment="CENTER">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
       <Line endX="-91.0" fill="BLACK" layoutX="169.0" layoutY="303.0" startX="-169.0" />
       <Line endX="-91.0" fill="BLACK" layoutX="169.0" layoutY="382.0" startX="-169.0" />
       <Line endX="-91.0" fill="BLACK" layoutX="169.0" layoutY="218.0" startX="-169.0" />
-      <Line endX="-89.0" fill="BLACK" layoutX="168.0" layoutY="462.0" startX="-169.0" />
+      <Line endX="-90.0" fill="BLACK" layoutX="168.0" layoutY="462.0" startX="-169.0" />
       <Label layoutX="16.0" layoutY="280.0" text="+">
          <font>
             <Font size="69.0" />
@@ -43,6 +33,20 @@
       </Label>
       <Label layoutX="23.0" layoutY="272.0" text="le mie " />
       <Label layoutX="6.0" layoutY="283.0" text="segnalazioni" />
+      <AnchorPane fx:id="contentPane" layoutX="79.0" layoutY="52.0" prefHeight="613.0" prefWidth="721.0">
+         <children>
+            <Label layoutX="77.0" layoutY="466.0" prefHeight="17.0" prefWidth="639.0" text=" Aiutaci a migliorare il tuo comune : segnala problemi e resta aggiornato sugli eventi!" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="631.0" fitWidth="488.0" layoutX="152.0" layoutY="-22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../Downloads/immagine-home-registrazione.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
       <Label layoutX="23.0" layoutY="351.0" text="nuova" />
       <Label layoutX="5.0" layoutY="362.0" text="segnalazione" />
       <ImageView fitHeight="128.0" fitWidth="122.0" layoutX="-21.0" layoutY="366.0" pickOnBounds="true" preserveRatio="true">

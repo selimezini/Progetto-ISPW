@@ -4,20 +4,34 @@ package org.example.viewprova2;
 import Controller.GraphicLoginController;
 import Controller.SceneManager;
 import Factory.GraphicalFactory;
+import exceptions.DataLoadException;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
 import java.util.Scanner;
 
 public class Main extends Application {
 
     private static String executionMode;
+    private static String storageMode = "db";
+
 
     /**
      * Punto di ingresso standard.
      * Decide CLI vs GUI: se GUI chiama launch() che scatena start().
      */
     public static void main(String[] args) {
+        try {
+            loadConfig();
+        } catch (DataLoadException ex) {
+            // ← qui dentro ci finisci solo se loadConfig() ha thrown new DataLoadException(...)
+            System.err.println(" Config persistenza: " + ex.getMessage());
+            System.err.println("Uso modalità di default: " + storageMode);
+        }
+
         System.out.println("Benvenuti in CivisAlert!");
         askExecutionMode();
 
@@ -84,6 +98,44 @@ public class Main extends Application {
         SceneManager.changeScene("/fxml/login-view.fxml", "CivisAlert – Login");
     }
 
+
+    public static void loadConfig(){
+            Properties props = new Properties();
+            try(FileInputStream in = new FileInputStream("src/main/resources/config/config.properties")){
+
+            // 1) carica tutte le coppie chiave= valore dal file in un oggetto Properties\
+            props.load(in);
+
+            // 2) legge la proprieta "mode"
+            String m = props.getProperty("mode");
+            if( m == null){
+
+                throw new DataLoadException("manca la proprieta` mode");
+
+            }
+
+            m = m.trim().toLowerCase();
+            switch (m){
+                case "demo", "fsys", "db" -> storageMode = m;
+                default -> throw new DataLoadException("mode non valido :" + m);
+
+            }
+
+            System.out.println("Persistenza dati" + storageMode);
+
+            } catch(IOException e){
+            // 5) se il file non esiste o non si riesce a leggere, allora lancio un eccezione
+                throw new DataLoadException("impossibile leggere il file");
+            }
+
+
+
+    }
+
+
+    public static String getStorageMode(){
+        return storageMode;
+    }
 
 
 

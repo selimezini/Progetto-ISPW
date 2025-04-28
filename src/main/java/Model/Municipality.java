@@ -1,19 +1,29 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Municipality {
 
     private String name;
     private String province;
-    private String sigla;
     private String codice;
-    private List<Report> reports;
+    private final List<Report> reports  = new ArrayList<>();
     private String region;
 
-    public String getSigla() {
-        return sigla;
+
+    public Municipality(String name, String province, String codice, String region) {
+
+        this.name = name;
+        this.province = province;
+
+        this.codice = codice;
+        this.region = region;
+
     }
+
+
+
 
     public String getRegion() {
 
@@ -49,9 +59,7 @@ public class Municipality {
         this.region = region;
     }
 
-    public void setSigla(String sigla) {
-        this.sigla = sigla;
-    }
+
 
     public void addReport(Report report) {
         reports.add(report);
