@@ -3,6 +3,7 @@ package Controller;
 import Beans.LoginBean;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
+import exceptions.ApplicationException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -37,13 +38,10 @@ public class GUILoginController extends GraphicLoginController  {
 
     @FXML
     void handleLogin(ActionEvent event) {
-        // Qui chiamo il controller applicativo
-          // <--- usa il tuo metodo
+
+        login();
 
 
-        // Qui invochi il controller applicativo, passando il Bean
-
-        //appLoginController.login(loginBean);
     }
 
     @FXML
@@ -74,12 +72,19 @@ public class GUILoginController extends GraphicLoginController  {
                 (isEmployee && (municipalCode == null || municipalCode.isEmpty()))) {
 
             lblError.setText("Non ci possono essere campi vuoti. Perfavore riprovare.");
-
+            return;
         }
 
         // Se è tutto ok, creo e riempio il bean
         LoginBean loginBean = new LoginBean(username,password,municipalCode,role);
+        LoginController loginController = new LoginController();
+        try{
+            loginController.authenticateUser(loginBean);
+            SceneManager.changeScene("/fxml/home-view.fxml","CivisAlert-Home");
 
+        }catch(ApplicationException e){
+            lblError.setText(e.getMessage());
+        }
 
 
     }

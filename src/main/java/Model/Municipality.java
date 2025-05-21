@@ -12,6 +12,8 @@ public class Municipality {
     private String region;
 
 
+    public Municipality() {}
+
     public Municipality(String name, String province, String codice, String region) {
 
         this.name = name;

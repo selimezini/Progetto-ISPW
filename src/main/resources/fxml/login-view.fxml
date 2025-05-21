@@ -30,7 +30,7 @@
       <PasswordField fx:id="txtMunicipalCode" layoutX="301.0" layoutY="376.0" prefHeight="25.0" prefWidth="199.0" promptText="Codice Comune" />
       <ImageView fitHeight="357.0" fitWidth="204.0" layoutX="301.0" layoutY="-115.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../java/images/Senza_titolo__1_-removebg-preview.png" />
+            <Image url="@../images/Senza_titolo__1_-removebg-preview.png" />
          </image>
       </ImageView>
       <Label fx:id="lblError" layoutX="244.0" layoutY="469.0" prefHeight="17.0" prefWidth="313.0" textFill="#dd0d0d" />

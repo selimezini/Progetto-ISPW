@@ -15,7 +15,7 @@ public class Report {
     private String description;
     private String status;
     private Citizen author;
-
+    private String imagePath;
     public void setMunicipality(Municipality municipality) {
         this.municipality = municipality;
     }
@@ -78,6 +78,15 @@ public class Report {
     public UrgencyType getUrgencyType() {
         return urgencyType;
     }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    public String  getImagePath() {
+        return imagePath;
+    }
+
 
     public String getStatus() {return status;}
 

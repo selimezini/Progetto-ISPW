@@ -42,7 +42,7 @@
       </Label>
       <ImageView fitHeight="463.0" fitWidth="327.0" layoutX="430.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../java/images/immagine-registrazione.png" />
+            <Image url="@../images/immagine-registrazione.png" />
          </image>
       </ImageView>
       <Label layoutX="542.0" layoutY="464.0" text="CivisAlert">

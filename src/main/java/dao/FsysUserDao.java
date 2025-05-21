@@ -11,12 +11,17 @@ public class FsysUserDao extends UserDao {
     }
 
     @Override
+    public User findByUsername(String username) {
+        return null;
+    }
+
+    @Override
     public Citizen authenticateCitizen(String username, String password) {
         return null;
     }
 
     @Override
-    public Employee authenticateEmployee(String username, String password, String MunicipalityName, String MunicipalityCode) {
+    public Employee authenticateEmployee(String username, String password, String MunicipalityCode) {
         return null;
     }
 }

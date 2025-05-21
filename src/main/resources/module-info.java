@@ -4,6 +4,7 @@ module org.example.viewprova2 {
     requires com.dlsc.formsfx;
     requires com.jfoenix;
     requires javafx.controls;
+    requires java.sql;
 
 
     opens org.example.viewprova2 to javafx.fxml;

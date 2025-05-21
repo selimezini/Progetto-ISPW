@@ -6,7 +6,7 @@ public class LoginBean {
    private String password;
    private String role;
    private String municipalityCode;
-
+   private String MunicipalityName;
    public LoginBean() {
 
    }
@@ -16,7 +16,7 @@ public class LoginBean {
          this.password = password;
          this.role = role;
          this.municipalityCode = municipalityCode;
-        System.out.println("");
+
      }
 
 
@@ -51,6 +51,12 @@ public class LoginBean {
     public void setRole(String role) {
         this.role = role;
     }
+
+    public String getMunicipalityName() {
+       return MunicipalityName;
+    }
+
+
 
 
 }

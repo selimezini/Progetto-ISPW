@@ -2,10 +2,11 @@ package Model;
 
 public enum UrgencyType {
 
-    LOW("Low urgency"),
-    MEDIUM("Medium urgency"),
-    HIGH("High urgency"),
-    CRITICAL("Critical urgency");
+    LOW("Bassa urgenza"),
+    MEDIUM("Media urgenza"),
+    HIGH("Alta urgenza"),
+    CRITICAL("Urgenza critica");
+
 
     private final String description;
 

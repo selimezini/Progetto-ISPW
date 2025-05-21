@@ -11,8 +11,8 @@ public abstract class UserDao {
 
     public abstract Citizen authenticateCitizen(String username, String password);
 
-    public abstract Employee authenticateEmployee(String username, String password, String MunicipalityName, String MunicipalityCode);
+    public abstract Employee authenticateEmployee(String username, String password,  String MunicipalityCode);
 
-
+    public abstract User findByUsername(String username);
 
 }

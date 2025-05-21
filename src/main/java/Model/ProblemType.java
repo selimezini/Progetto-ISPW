@@ -1,12 +1,13 @@
 package Model;
 
 public enum ProblemType {
-    URBAN_PROBLEM("Urban Problem"),
-    BUILDING_PROBLEM("Building Problem"),
-    ENVIRONMENTAL_PROBLEM("Environmental Problem"),
-    INFRASTRUCTURE_PROBLEM("Infrastructure Problem"),
-    TRAFFIC_PROBLEM("Traffic Problem"),
-    PUBLIC_SERVICES_PROBLEM("Public Services Problem");
+    URBAN_PROBLEM("Problema urbano"),
+    BUILDING_PROBLEM("Problema edilizio"),
+    ENVIRONMENTAL_PROBLEM("Problema ambientale"),
+    INFRASTRUCTURE_PROBLEM("Problema infrastrutturale"),
+    TRAFFIC_PROBLEM("Problema di traffico"),
+    PUBLIC_SERVICES_PROBLEM("Problema dei servizi pubblici");
+
 
     private final String description;
 

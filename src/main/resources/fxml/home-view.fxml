@@ -19,7 +19,7 @@
       </Label>
       <ImageView fitHeight="167.0" fitWidth="100.0" layoutX="-11.0" layoutY="-51.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../java/images/Senza_titolo__1_-removebg-preview.png" />
+            <Image url="@../images/Senza_titolo__1_-removebg-preview.png" />
          </image>
       </ImageView>
       <Line endX="-91.0" fill="BLACK" layoutX="169.0" layoutY="303.0" startX="-169.0" />
@@ -57,7 +57,7 @@
       <Label layoutX="24.0" layoutY="443.0" text="eventi" />
       <ImageView fitHeight="30.0" fitWidth="59.0" layoutX="749.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../java/images/vecteezy_user-icon-on-transparent-background_19879186-removebg-preview.png" />
+            <Image url="@../images/vecteezy_user-icon-on-transparent-background_19879186-removebg-preview.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="76.0" fitWidth="59.0" layoutX="13.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
