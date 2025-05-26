@@ -1,5 +1,6 @@
 package Controller;
 
+import Beans.MunicipalityBean;
 import Model.Municipality;
 import java.util.List;
 
@@ -10,7 +11,7 @@ public abstract class ChooseMunicipalityController {
     /**
      * @return lista oggetti di Municipality
      */
-    public abstract List<Municipality> showMunicipalityList();
+    public abstract List<MunicipalityBean> showMunicipalityList();
 
     public abstract void chooseMunicipality();
 }

@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.HomeView">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GUIHomeController">
    <children>
       <Line endX="635.0" fill="BLACK" layoutX="165.0" layoutY="53.0" startX="-165.0" />
       <Line endX="-72.5" endY="479.0" fill="BLACK" layoutX="151.0" layoutY="170.0" startX="-72.5" startY="-117.0" />
@@ -33,7 +33,7 @@
       </Label>
       <Label layoutX="23.0" layoutY="272.0" text="le mie " />
       <Label layoutX="6.0" layoutY="283.0" text="segnalazioni" />
-      <AnchorPane fx:id="contentPane" layoutX="79.0" layoutY="52.0" prefHeight="613.0" prefWidth="721.0">
+      <AnchorPane fx:id="DinamicContentPane" layoutX="79.0" layoutY="52.0" prefHeight="613.0" prefWidth="721.0">
          <children>
             <Label layoutX="77.0" layoutY="466.0" prefHeight="17.0" prefWidth="639.0" text=" Aiutaci a migliorare il tuo comune : segnala problemi e resta aggiornato sugli eventi!" textAlignment="CENTER">
                <font>
@@ -42,7 +42,7 @@
             </Label>
             <ImageView fitHeight="631.0" fitWidth="488.0" layoutX="152.0" layoutY="-22.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../Downloads/immagine-home-registrazione.png" />
+                  <Image url="@../images/immagine-home-registrazione.png" />
                </image>
             </ImageView>
          </children>
@@ -51,7 +51,7 @@
       <Label layoutX="5.0" layoutY="362.0" text="segnalazione" />
       <ImageView fitHeight="128.0" fitWidth="122.0" layoutX="-21.0" layoutY="366.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../Downloads/evento-removebg-preview.png" />
+            <Image url="@../images/evento-removebg-preview.png" />
          </image>
       </ImageView>
       <Label layoutX="24.0" layoutY="443.0" text="eventi" />
@@ -62,11 +62,12 @@
       </ImageView>
       <ImageView fitHeight="76.0" fitWidth="59.0" layoutX="13.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../Downloads/report-logo.png" />
+            <Image url="@../images/report-logo.png" />
          </image>
       </ImageView>
-      <JFXButton layoutX="-5.0" layoutY="218.0" prefHeight="84.0" prefWidth="83.0" text="." />
-      <JFXButton layoutY="304.0" prefHeight="77.0" prefWidth="79.0" text="." />
-      <JFXButton layoutY="383.0" prefHeight="78.0" prefWidth="78.0" text="." />
+      <JFXButton fx:id="myReportsButton" layoutX="-5.0" layoutY="218.0" prefHeight="84.0" prefWidth="83.0" text="." />
+      <JFXButton fx:id="newReportButton" layoutY="304.0" onAction="#onNewReport" prefHeight="77.0" prefWidth="79.0" text="." />
+      <JFXButton fx:id="EventsButton" layoutY="383.0" prefHeight="78.0" prefWidth="78.0" text="." />
+      <JFXButton layoutX="748.0" layoutY="4.0" prefHeight="49.0" prefWidth="50.0" text="." />
    </children>
 </AnchorPane>

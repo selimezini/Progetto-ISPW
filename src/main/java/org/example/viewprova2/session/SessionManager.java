@@ -1,5 +1,7 @@
 package org.example.viewprova2.session;
 
+import Beans.MunicipalityBean;
+import Model.Municipality;
 import Model.Report;
 import Model.users.User;
 
@@ -10,8 +12,8 @@ public class SessionManager {
     private static SessionManager instance = new SessionManager();
     private User currentUser;
     private List<Report> reports;
-
-
+    private List<Municipality> municipalities;
+    private MunicipalityBean currentMunicipalityReport;
 
     public static SessionManager getInstance() {
         return instance;
@@ -50,6 +52,16 @@ public class SessionManager {
     }
 
 
+    public void setMunicipalities(List<Municipality> municipalities) {
+        this.municipalities = municipalities;
+    }
 
+    public void setCurrentMunicipalityReport(MunicipalityBean municipalityReport) {
+        this.currentMunicipalityReport = municipalityReport;
+    }
+
+    public MunicipalityBean getCurrentMunicipalityReport() {
+        return currentMunicipalityReport;
+    }
 
 }

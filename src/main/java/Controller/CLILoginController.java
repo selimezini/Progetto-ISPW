@@ -1,12 +1,15 @@
 package Controller;
 
 import Beans.LoginBean;
+import exceptions.ApplicationException;
+import org.example.viewprova2.session.SessionManager;
 
 import java.util.Scanner;
 
 public class CLILoginController extends GraphicLoginController {
 
     private final Scanner scanner = new Scanner(System.in);
+    private final LoginController appController = new LoginController();
 
     @Override
     public void login() {
@@ -22,7 +25,7 @@ public class CLILoginController extends GraphicLoginController {
 
             switch (choice) {
                 case "1":
-                    accedi();
+                    attemptLogin();
                     break;
                 case "2":
                     register();
@@ -32,61 +35,68 @@ public class CLILoginController extends GraphicLoginController {
                     return;
                 default:
                     System.out.println("Scelta invalida. Riprova.");
-                    break;
             }
         }
     }
 
     private LoginBean raccogliCredenziali() {
-        System.out.print("Inserisci username: ");
+        System.out.print("Username: ");
         String username = scanner.nextLine().trim();
 
-        System.out.print("Inserisci password: ");
+        System.out.print("Password: ");
         String password = scanner.nextLine().trim();
 
         String role;
         String municipalCode = null;
-
         while (true) {
-            System.out.print("Sei un dipendente del comune? (si/no): ");
-            String response = scanner.nextLine().trim().toLowerCase();
-
-            if (response.equals("si")) {
-                role = "employee";
-                System.out.print("Inserisci codice comune: ");
+            System.out.print("Sei dipendente del comune? (si/no): ");
+            String resp = scanner.nextLine().trim().toLowerCase();
+            if (resp.equals("si")) {
+                role = "Dipendente";
+                System.out.print("Codice comune: ");
                 municipalCode = scanner.nextLine().trim();
                 break;
-            } else if (response.equals("no")) {
-                role = "citizen";
+            } else if (resp.equals("no")) {
+                role = "Citizen";
                 break;
             } else {
-                System.out.println("Risposta non valida. Inserisci 'si' o 'no'.");
+                System.out.println("Risposta non valida, inserisci 'si' o 'no'.");
             }
         }
 
         return new LoginBean(username, password, role, municipalCode);
     }
 
-    public void accedi() {
-        LoginBean credentials = raccogliCredenziali();
-
-        // TODO: Chiama il controller applicativo per l'autenticazione
-        // Esempio:
-        // ApplicationController controller = new ApplicationController();
-        // boolean success = controller.autenticaUtente(credentials);
-        // if (success) { ... } else { ... }
+    private void attemptLogin() {
+        while (true) {
+            LoginBean creds = raccogliCredenziali();
+            try {
+                appController.authenticateUser(creds);
+                String username = SessionManager.getInstance().getCurrentUser().getUsername();
+                System.out.println("Login avvenuto con successo! Benvenuto, " + username);
+                return;  // esce dal loop di login
+            } catch (ApplicationException ex) {
+                System.out.println("Errore: " + ex.getMessage());
+                System.out.print("Vuoi riprovare? (si/no): ");
+                String again = scanner.nextLine().trim().toLowerCase();
+                if (!again.equals("si")) {
+                    return;
+                }
+            }
+        }
     }
 
+    @Override
     public void register() {
-
         System.out.println("** Registrazione **");
-        LoginBean credentials = raccogliCredenziali();
-
-        // TODO: Chiama il controller applicativo per la registrazione
-        // Esempio:
-        // ApplicationController controller = new ApplicationController();
-        // boolean success = controller.registraUtente(credentials);
-        // if (success) { ... } else { ... }
+        LoginBean creds = raccogliCredenziali();
+        try {
+            appController.registerUser(creds);
+            String username = SessionManager.getInstance().getCurrentUser().getUsername();
+            System.out.println("Registrazione completata. Benvenuto, " + username);
+        } catch (ApplicationException ex) {
+            System.out.println("Errore: " + ex.getMessage());
+        }
     }
 }
 

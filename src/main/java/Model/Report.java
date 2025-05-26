@@ -4,6 +4,8 @@ package Model;
 import Model.users.Citizen;
 import javafx.scene.image.Image;
 
+import java.util.Date;
+
 public class Report {
 
     private String reportId;
@@ -16,6 +18,9 @@ public class Report {
     private String status;
     private Citizen author;
     private String imagePath;
+    private String viaDelProblema;
+    private Date date;
+
     public void setMunicipality(Municipality municipality) {
         this.municipality = municipality;
     }
@@ -93,6 +98,22 @@ public class Report {
     public Citizen getAuthor() {return author;}
     public void setAuthor(Citizen author) {
         this.author = author;
+    }
+
+    public String getViaDelProblema() {
+        return viaDelProblema;
+    }
+
+    public void setViaDelProblema(String viaDelProblema) {
+        this.viaDelProblema = viaDelProblema;
+    }
+
+    private Date getDate() {
+        return date;
+    }
+
+    private void setDate(Date date) {
+        this.date = date;
     }
 
 }

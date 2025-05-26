@@ -1,5 +1,6 @@
 package Controller;
 
+import Beans.MunicipalityBean;
 import Model.Municipality;
 import java.util.List;
 
@@ -12,7 +13,7 @@ public class CLIChooseMunicipalityController extends ChooseMunicipalityControlle
     }
 
     @Override
-    public List<Municipality> showMunicipalityList() {
+    public List<MunicipalityBean> showMunicipalityList() {
         // Restituisce una lista vuota per ora (da implementare)
         return List.of();
     }

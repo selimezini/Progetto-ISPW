@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 import java.util.Scanner;
 
@@ -99,38 +100,36 @@ public class Main extends Application {
     }
 
 
-    public static void loadConfig(){
-            Properties props = new Properties();
-            try(FileInputStream in = new FileInputStream("src/main/resources/config/config.properties")){
+    public static void loadConfig() {
+        Properties props = new Properties();
+        try (InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream("config/config.properties")) {
 
-            // 1) carica tutte le coppie chiave= valore dal file in un oggetto Properties\
+            if (in == null) {
+                throw new DataLoadException("File di configurazione non trovato nel classpath");
+            }
+
+            // 1) carica tutte le coppie chiave=valore dal file in un oggetto Properties
             props.load(in);
 
-            // 2) legge la proprieta "mode"
+            // 2) legge la proprietà "mode"
             String m = props.getProperty("mode");
-            if( m == null){
-
-                throw new DataLoadException("manca la proprieta` mode");
-
+            if (m == null) {
+                throw new DataLoadException("Manca la proprietà `mode`");
             }
 
             m = m.trim().toLowerCase();
-            switch (m){
+            switch (m) {
                 case "demo", "fsys", "db" -> storageMode = m;
-                default -> throw new DataLoadException("mode non valido :" + m);
-
+                default -> throw new DataLoadException("Mode non valido: " + m);
             }
 
-            System.out.println("Persistenza dati" + storageMode);
+            System.out.println("Persistenza dati: " + storageMode);
 
-            } catch(IOException e){
-            // 5) se il file non esiste o non si riesce a leggere, allora lancio un eccezione
-                throw new DataLoadException("impossibile leggere il file");
-            }
-
-
-
+        } catch (IOException e) {
+            throw new DataLoadException("Impossibile leggere il file di configurazione", e);
+        }
     }
+
 
 
     public static String getStorageMode(){
