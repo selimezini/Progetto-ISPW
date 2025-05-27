@@ -34,9 +34,7 @@ public class DbReportDao extends ReportDao {
             ps.setString(4, report.getProblemType().name());
             ps.setString(5, report.getUrgencyType().name());
             // se non c'è immagine, salvo NULL
-            ps.setString(6, report.getImage() != null
-                    ? report.getImage().getUrl()
-                    : null);
+            ps.setString(6, report.getImagePath());;
             ps.setString(7, report.getStatus());
             ps.setString(8, report.getAuthor().getUsername());
             ps.setString(9, report.getMunicipality().getName());
@@ -44,7 +42,9 @@ public class DbReportDao extends ReportDao {
 
             ps.executeUpdate();
         } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
             throw new DataAccessException("Errore inserendo nuovo report", ex);
+
         }
     }
 

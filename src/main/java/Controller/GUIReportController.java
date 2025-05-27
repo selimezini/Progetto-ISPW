@@ -101,6 +101,7 @@ public class GUIReportController extends DoReportController{
 
 
     /** Apre un FileChooser per selezionare un’immagine */
+    @FXML
     private void onInsertPhoto() {
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Seleziona foto del problema");
@@ -129,19 +130,23 @@ public class GUIReportController extends DoReportController{
         String title = TitleTxt.getText();
         String description = DescriptionTxt.getText();
         String via = ViaDelProblemaTxt.getText();
-        ProblemType problemType = TypeOfProblem.getValue();
-        UrgencyType urgencyType = Urgency.getValue();
-        if(title.isEmpty() || description.isEmpty() || via.isEmpty() || problemType == null || urgencyType == null) {
-            throw new ApplicationException("Perfavore inserire tutti i campi");
+        ProblemType probType = TypeOfProblem.getValue();
+        UrgencyType urgType = Urgency.getValue();
+        if(title.isEmpty() || description.isEmpty() || via.isEmpty() || probType == null || urgType == null) {
+            msgLabel.setText("Perfavore inserire tutti i campi");
+            return;
         }
 
-        SessionManager sessionManager = SessionManager.getInstance();
-        String authorUsername =  sessionManager.getCurrentUser().getUsername();
-        MunicipalityBean munBean = sessionManager.getCurrentMunicipalityReport()
+        BeanReport bean = new BeanReport(title,description,probType.getDescription(),urgType.getDescription(),"APERTO",selectedImagePath,selectedImage,via);
+        ReportController reportController = new ReportController();
 
-        BeanReport bean = new BeanRepor
+        try {
+            reportController.submitReport(bean);
+        }catch (ApplicationException e) {
+            msgLabel.setText(e.getMessage());
+        }
 
-    }
+        }
 
     @Override
     public void deleteReport() {

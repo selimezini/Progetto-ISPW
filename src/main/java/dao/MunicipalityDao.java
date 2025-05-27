@@ -10,4 +10,6 @@ public abstract List<Municipality> getMunicipalityByName(String name);
 
 public abstract Municipality getMunicipalityByCode(String code);
 
+public abstract Municipality getMunicipalityByNameAndRegion(String municipalityName, String region);
+
 }

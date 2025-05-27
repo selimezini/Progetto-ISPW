@@ -71,6 +71,7 @@ public class GUIChooseMunicipalityController extends ChooseMunicipalityControlle
         MunicipalityBean chosen = lastResults.get(idx);
 
         SessionManager.getInstance().setCurrentMunicipalityReport(chosen);
+        System.out.println("siamo su GUICHOOSECONTROLLER: ho scritto" + chosen.getName() + chosen.getRegion());
 
         try {
             FXMLLoader loader = new FXMLLoader(
@@ -86,7 +87,7 @@ public class GUIChooseMunicipalityController extends ChooseMunicipalityControlle
 
         } catch (IOException e) {
             MsgLabel.setText("Errore nel caricamento del form di segnalazione.");
-            e.printStackTrace();
+
         }
     }
 

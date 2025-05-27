@@ -1,5 +1,7 @@
 package Beans;
 
+import Model.ProblemType;
+import Model.UrgencyType;
 import javafx.scene.image.Image;
 
 import java.util.Date;
@@ -22,35 +24,23 @@ public class BeanReport {
     public  BeanReport() { }
 
     public BeanReport(
-            String reportId,
             String title,
             String description,
             String problemType,
             String urgencyType,
             String status,
             String imagePath,
-            Image  image,
-            String viaDelProblema,
-            String authorUsername,
-            String municipalityName,
-            String municipalityProvince,
-            String municipalityCode
-
-
+            Image image,
+            String viaDelProblema
     ) {
-        this.reportId             = reportId;
-        this.title                = title;
-        this.description          = description;
-        this.problemType          = problemType;
-        this.urgencyType          = urgencyType;
-        this.status               = status;
-        this.imagePath            = imagePath;
-        this.image                = image;
-        this.viaDelProblema       = viaDelProblema;
-        this.authorUsername       = authorUsername;
-        this.municipalityName     = municipalityName;
-        this.municipalityProvince = municipalityProvince;
-        this.municipalityCode     = municipalityCode;
+        this.title = title;
+        this.description = description;
+        this.problemType = problemType;
+        this.urgencyType = urgencyType;
+        this.status = status;
+        this.imagePath = imagePath;
+        this.image = image;
+        this.viaDelProblema = viaDelProblema;
     }
 
     // getters & setters per tutti i campi, incluso image
@@ -94,6 +84,12 @@ public class BeanReport {
     public String getMunicipalityCode() { return municipalityCode; }
     public void setMunicipalityCode(String municipalityCode) { this.municipalityCode = municipalityCode; }
 
+
+
+
+
+
+
     @Override
     public String toString() {
         return "ReportBean{" +
@@ -110,4 +106,42 @@ public class BeanReport {
                 ", imagePath='" + imagePath + '\'' +
                 '}';
     }
+
+
+
+
+    /**
+     * Converte la descrizione in ProblemType
+     */
+    public ProblemType getProblemTypeEnum() {
+        for (ProblemType pt : ProblemType.values()) {
+            if (pt.getDescription().equals(this.problemType)) {
+                return pt;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Converte la descrizione in UrgencyType
+     */
+    public UrgencyType getUrgencyTypeEnum() {
+        for (UrgencyType ut : UrgencyType.values()) {
+            if (ut.getDescription().equals(this.urgencyType)) {
+                return ut;
+            }
+        }
+        return null;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+

@@ -18,7 +18,9 @@ import exceptions.UserNotFoundException;
 import org.example.viewprova2.session.SessionManager;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 public class ReportController {
 
@@ -49,75 +51,49 @@ public class ReportController {
 
     public void submitReport(BeanReport bean) {
         try {
+            // 1) Recupera DAO e Sessione
             FactoryDao factory = FactoryDao.getInstance();
-
+            SessionManager session = SessionManager.getInstance();
             MunicipalityDao muniDao = factory.createMunicipalityDao();
-            ReportDao  reportDao = factory.createReportDao();
+            ReportDao reportDao = factory.createReportDao();
 
-            // 1) Autore, autore me lo prendo direttamente dal sessionManager. Non serve scomodare il db
+            // 2) Autore e Comune già selezionati in sessione
+            Citizen author = (Citizen) session.getCurrentUser();
+            MunicipalityBean munBean = session.getCurrentMunicipalityReport();
+            Municipality municipality = muniDao.getMunicipalityByNameAndRegion(munBean.getName(),munBean.getRegion() );
 
-
-            // 2) salvo il municipality e me lo prendo attraverso il Bean che ho salvato sul SessionManager
-            Municipality m = muniDao.getMunicipalityByCode(bean.getMunicipalityCode());
-            if (m == null) {
-                throw new ApplicationException("Comune non trovato: " + bean.getMunicipalityCode());
-            }
-
-            // 3) Crea il model Report
-            Report r = new Report();
-            r.setReportId(bean.getReportId());
-            r.setTitle(bean.getTitle());
-            r.setDescription(bean.getDescription());
-            r.setStatus(bean.getStatus());
-            r.setViaDelProblema(bean.getViaDelProblema());
-            r.setImagePath(bean.getImagePath());
+            // 3) Costruisce il Report
+            Report report = new Report();
+            String randomId = UUID.randomUUID().toString();
+            report.setReportId(randomId);
+            report.setTitle(bean.getTitle());
+            report.setDescription(bean.getDescription());
+            report.setStatus(bean.getStatus());
+            report.setViaDelProblema(bean.getViaDelProblema());
+            report.setImagePath(bean.getImagePath());
             if (bean.getImage() != null) {
-                r.setImage(bean.getImage());
+                report.setImage(bean.getImage());
             }
-            r.setAuthor(author);
-            r.setMunicipality(m);
+            report.setAuthor(author);
+            report.setMunicipality(municipality);
 
-            // 4) Mappa ProblemType dalla descrizione
-            ProblemType pt = null;
-            for (ProblemType p : ProblemType.values()) {
-                if (p.getDescription().equals(bean.getProblemType())) {
-                    pt = p;
-                    break;
-                }
-            }
-            if (pt == null) {
-                throw new ApplicationException("Tipo problema non valido: " + bean.getProblemType());
-            }
-            r.setProblemType(pt);
+            // 4) Assegna tipi ed data corrente
+            report.setProblemType(bean.getProblemTypeEnum());
+            report.setUrgencyType(bean.getUrgencyTypeEnum());
+            report.setDate(new Date());
+            System.out.println("Stampo il path dell'immagine: " + report.getImagePath());
+            // 5) Salva
+            reportDao.addReport(report);
+            System.out.println("Report submitted");
 
-            // 5) Mappa UrgencyType dalla descrizione
-            UrgencyType ut = null;
-            for (UrgencyType utype : UrgencyType.values()) {
-                if (utype.getDescription().equals(bean.getUrgencyType())) {
-                    ut = utype;
-                    break;
-                }
-            }
-            if (ut == null) {
-                throw new ApplicationException("Tipo urgenza non valido: " + bean.getUrgencyType());
-            }
-            r.setUrgencyType(ut);
-
-            // 6) (eventuale) data
-            if (bean.getDate() != null) {
-                r.setDate(bean.getDate());
-            }
-
-            // 7) Salva
-            reportDao.addReport(r);
-
-        } catch (UserNotFoundException | DataAccessException dae) {
-            // ereditato dal dao, riconfezioniamo un’eccezione di application
-            throw new ApplicationException("Errore durante il salvataggio del report: " + dae.getMessage(), dae);
+        } catch (DataAccessException ex) {
+            // qualunque errore (DAO, cast, null, ecc.) viene rilanciato come ApplicationException
+            throw new ApplicationException(ex.getMessage());
         }
     }
-
-
-
-
 }
+
+
+
+
+

@@ -108,11 +108,11 @@ public class Report {
         this.viaDelProblema = viaDelProblema;
     }
 
-    private Date getDate() {
+    public Date getDate() {
         return date;
     }
 
-    private void setDate(Date date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

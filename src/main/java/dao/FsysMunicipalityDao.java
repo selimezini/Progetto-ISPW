@@ -15,5 +15,10 @@ public class FsysMunicipalityDao extends MunicipalityDao {
         return null;
     }
 
+    @Override
+    public Municipality getMunicipalityByNameAndRegion(String municipalityName, String region){
+        return null;
+    }
+
 
 }

@@ -75,4 +75,33 @@ public class DbMunicipalityDao extends MunicipalityDao {
             throw new DataAccessException("Errore cercando comune per codice", ex);
         }
     }
-}
+
+    @Override
+    public Municipality getMunicipalityByNameAndRegion(String name, String region) {
+        String sql = """
+        SELECT name, province, codice, region
+          FROM municipalities
+         WHERE name = ? AND region = ?
+        """;
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, name);
+            ps.setString(2, region);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return new Municipality(
+                        rs.getString("name"),
+                        rs.getString("province"),
+                        rs.getString("codice"),
+                        rs.getString("region")
+                );
+            }
+            return null;
+        } catch (SQLException ex) {
+            throw new DataAccessException("Errore cercando comune per nome e regione", ex);
+        }
+
+    }
+
+    }
