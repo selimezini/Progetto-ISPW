@@ -3,18 +3,18 @@ package Controller;
 import Beans.BeanReport;
 import Beans.MunicipalityBean;
 import Model.Municipality;
-import Model.ProblemType;
+
 import Model.Report;
-import Model.UrgencyType;
+
 import Model.users.Citizen;
-import Model.users.User;
+
 import dao.FactoryDao;
 import dao.MunicipalityDao;
 import dao.ReportDao;
-import dao.UserDao;
+
 import exceptions.ApplicationException;
 import exceptions.DataAccessException;
-import exceptions.UserNotFoundException;
+
 import org.example.viewprova2.session.SessionManager;
 
 import java.util.ArrayList;

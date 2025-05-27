@@ -1,4 +1,4 @@
-// src/factory/GraphicalFactory.java
+
 package Factory;
 
 import Controller.ChooseMunicipalityController;
@@ -35,5 +35,6 @@ public abstract class GraphicalFactory {
     public abstract DoReportController CreateReportController();
     public abstract ChooseMunicipalityController CreateMunicipalityController();
     public abstract GraphicLoginController createLoginController();
+
 }
 
