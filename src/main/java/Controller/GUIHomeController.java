@@ -24,14 +24,34 @@ public class GUIHomeController extends  HomeController{
     private JFXButton EventsButton;
 
 
-
     @FXML
     private JFXButton myAccButton;
 
     @FXML
+    private JFXButton homeButton;
+
+    @FXML
     public void initialize() {
-        // (opzionale) carica una home iniziale
+        loadHome();
     }
+
+    @FXML
+    private void loadHome(){
+        try {
+            Parent pane = FXMLLoader
+                    .load(getClass().getResource("/fxml/homeDashboard-view.fxml"));
+            DinamicContentPane.getChildren().setAll(pane);
+            AnchorPane.setTopAnchor(pane,    0.0);
+            AnchorPane.setBottomAnchor(pane, 0.0);
+            AnchorPane.setLeftAnchor(pane,   0.0);
+            AnchorPane.setRightAnchor(pane,  0.0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
 
 
     @Override

@@ -136,7 +136,7 @@ public class ReportController {
             b.setMunicipalityCode(r.getMunicipality().getCodice());
             b.setDate(r.getDate());
             beanList.add(b);
-            System.out.println(b.toString());
+
         }
 
         return beanList;

@@ -16,8 +16,10 @@ public abstract class FactoryDao {
     if(instance == null) {
         String storageMode = Main.getStorageMode();
         if(storageMode.equals("db")) {
+            System.out.println("Istanziato il daoDB");
             instance = new DbDaoFactory();
         }else if(storageMode.equals("demo")) {
+           System.out.println("Istanziato il daoDEMO");
             instance = new DemoDaoFactory();
         }else if (storageMode.equals("file")) {
             instance = new FsysDaoFactory();
