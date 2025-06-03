@@ -1,10 +1,10 @@
 package Model;
 
 public enum ReportStatus {
-    OPEN("Open"),
-    IN_PROGRESS("In Progress"),
-    RESOLVED("Resolved"),
-    CLOSED("Closed");
+    APERTO("Aperto"),
+    IN_PROGRESS("In corso"),
+    RESOLVED("Risolto"),
+    CLOSED("Chiuso");
 
     private final String description;
 

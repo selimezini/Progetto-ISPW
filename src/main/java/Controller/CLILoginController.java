@@ -1,6 +1,7 @@
 package Controller;
 
 import Beans.LoginBean;
+import Factory.GraphicalFactory;
 import exceptions.ApplicationException;
 import org.example.viewprova2.session.SessionManager;
 
@@ -9,7 +10,7 @@ import java.util.Scanner;
 public class CLILoginController extends GraphicLoginController {
 
     private final Scanner scanner = new Scanner(System.in);
-    private final LoginController appController = new LoginController();
+
 
     @Override
     public void login() {
@@ -52,7 +53,7 @@ public class CLILoginController extends GraphicLoginController {
             System.out.print("Sei dipendente del comune? (si/no): ");
             String resp = scanner.nextLine().trim().toLowerCase();
             if (resp.equals("si")) {
-                role = "Dipendente";
+                role = "Employee";
                 System.out.print("Codice comune: ");
                 municipalCode = scanner.nextLine().trim();
                 break;
@@ -69,34 +70,36 @@ public class CLILoginController extends GraphicLoginController {
 
     private void attemptLogin() {
         while (true) {
+
             LoginBean creds = raccogliCredenziali();
+            LoginController loginController = new LoginController();
+
             try {
-                appController.authenticateUser(creds);
-                String username = SessionManager.getInstance().getCurrentUser().getUsername();
-                System.out.println("Login avvenuto con successo! Benvenuto, " + username);
-                return;  // esce dal loop di login
-            } catch (ApplicationException ex) {
-                System.out.println("Errore: " + ex.getMessage());
-                System.out.print("Vuoi riprovare? (si/no): ");
-                String again = scanner.nextLine().trim().toLowerCase();
-                if (!again.equals("si")) {
-                    return;
+                loginController.authenticateUser(creds);
+                System.out.println("Autenticazione avvenuta con successo. Bentornato " + creds.getUsername() + "!")  ;
+                SessionManager sessionManager = new SessionManager();
+                GraphicalFactory factory = GraphicalFactory.getInstance();
+                if(creds.getRole().equals("Citizen")) {
+                    HomeController homeController = factory.createHomeController();
+                }else{
+                    HomeEmployeeController homeEmployeeController = factory.createHomeEmployeeController();
+
                 }
+
+            }catch(ApplicationException e) {
+                System.out.println(e.getMessage());
             }
+
+
         }
+
     }
 
     @Override
     public void register() {
-        System.out.println("** Registrazione **");
-        LoginBean creds = raccogliCredenziali();
-        try {
-            appController.registerUser(creds);
-            String username = SessionManager.getInstance().getCurrentUser().getUsername();
-            System.out.println("Registrazione completata. Benvenuto, " + username);
-        } catch (ApplicationException ex) {
-            System.out.println("Errore: " + ex.getMessage());
-        }
+        GraphicalFactory factory = GraphicalFactory.getInstance();
+
+
     }
 }
 

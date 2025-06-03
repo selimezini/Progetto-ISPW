@@ -10,10 +10,10 @@ public abstract class ReportDao {
 
     public abstract List<Report> getReportsOfUser(String username);
 
-    public abstract List<Report> getAllReportsOfMunicipality(Municipality municipality);
+    public abstract List<Report> getAllReportsOfMunicipality(String code);
 
     public abstract void addReport(Report report);
 
-    public abstract void updateReport(Report report,String status);
+    public abstract void updateReport(String id,String newStatus);
 
 }

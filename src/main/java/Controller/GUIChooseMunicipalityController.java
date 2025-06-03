@@ -29,25 +29,20 @@ public class GUIChooseMunicipalityController extends ChooseMunicipalityControlle
     private List<MunicipalityBean> lastResults = new ArrayList<>();
     private final ReportController reportController = new ReportController();
 
-    @FXML
-    public void initialize() {
-        MunicipalitiesList.setOnMouseClicked(this::onListClicked);
-    }
+
 
     @FXML
-    private void onSearchClicked() {
+    @Override
+    public void searchMunicipality() {
         String name = MunicipalityNameTxt.getText().trim();
+
         if (name.isEmpty()) {
             MunicipalitiesList.getItems().clear();
             lastResults.clear();
-        } else {
-            searchMunicipality(name);
+            return;
         }
-    }
 
-    @Override
-    public void searchMunicipality(String municipality) {
-        MunicipalityBean request = new MunicipalityBean(municipality, null);
+        MunicipalityBean request = new MunicipalityBean(name, null);
         List<MunicipalityBean> beans = reportController.searchMunicipality(request);
 
         lastResults = beans;

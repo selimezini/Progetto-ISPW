@@ -20,21 +20,21 @@ public class LoginController {
 
         FactoryDao factoryDao = FactoryDao.getInstance();
         UserDao userDao = factoryDao.createUserDao();
-
+        System.out.println( "RUOLO" +loginBean.getRole());
         SessionManager sessionManager = SessionManager.getInstance();
 
         try {
             User authenticatedUser;
             // Confronto sul ruolo
-            if ("Dipendente".equals(loginBean.getRole())) {
-
+            if ("Employee".equals(loginBean.getRole())) {
+                System.out.println("LoginController: STO ENTRANDO NEL RAMO EMPLOYEE");
                 authenticatedUser = userDao.authenticateEmployee(
                         loginBean.getUsername(),
                         loginBean.getPassword(),
                         loginBean.getMunicipalityCode()
                 );
             } else {
-
+                System.out.println("LoginController: STO ENTRANDO NEL RAMO CITIZEN");
                 authenticatedUser = userDao.authenticateCitizen(
                         loginBean.getUsername(),
                         loginBean.getPassword()
@@ -43,10 +43,12 @@ public class LoginController {
 
 
             sessionManager.setCurrentUser(authenticatedUser);
+            if(loginBean.getMunicipalityCode() != null) {
+                sessionManager.setMunicipalityCode(loginBean.getMunicipalityCode());
+            }
+            } catch (UserNotFoundException e) {
 
-        } catch (UserNotFoundException e) {
-
-            throw new ApplicationException("Credenziali non valide. Riprova.");
+            throw new ApplicationException(e.getMessage());
         }
     }
 

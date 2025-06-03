@@ -14,6 +14,8 @@ public class SessionManager {
     private List<Report> reports;
     private List<Municipality> municipalities;
     private MunicipalityBean currentMunicipalityReport;
+    private String municipalityCode;
+
 
     public static SessionManager getInstance() {
         return instance;
@@ -63,5 +65,14 @@ public class SessionManager {
     public MunicipalityBean getCurrentMunicipalityReport() {
         return currentMunicipalityReport;
     }
+
+    public void setMunicipalityCode(String municipalityCode) {
+        this.municipalityCode = municipalityCode;
+    }
+
+    public String getMunicipalityCode() {
+        return municipalityCode;
+    }
+
 
 }

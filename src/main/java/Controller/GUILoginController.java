@@ -57,43 +57,40 @@ public class GUILoginController extends GraphicLoginController  {
 
     @Override
     public void login() {
-        String username = this.txtUsername.getText();
-        String password = this.txtPassword.getText();
-        String municipalCode = this.txtMunicipalCode.getText();
-        boolean isEmployee = this.txtAmIEmployee.isSelected();
-        String role = "";
+        String username        = txtUsername.getText();
+        String password        = txtPassword.getText();
+        String municipalCode   = txtMunicipalCode.getText();
+        boolean isEmployee     = txtAmIEmployee.isSelected();
 
-        if(isEmployee == true) {
-            role = "employee";
-        }
-        // Validazione
+        // assegno sempre role, non solo in caso di dipendente
+        String role = isEmployee ? "Employee" : "Citizen";
+
+        // validazione dei campi
         if (username == null || username.isEmpty() ||
                 password == null || password.isEmpty() ||
                 (isEmployee && (municipalCode == null || municipalCode.isEmpty()))) {
-
-            lblError.setText("Non ci possono essere campi vuoti. Perfavore riprovare.");
+            lblError.setText("Non ci possono essere campi vuoti. Per favore riprova.");
             return;
         }
 
-        // Se è tutto ok, creo e riempio il bean
-        LoginBean loginBean = new LoginBean(username,password,municipalCode,role);
+        // creo il bean e lo passo al controller
+        LoginBean loginBean = new LoginBean(username, password, role, municipalCode);
+        System.out.println( "GUILOgin:" + role);
         LoginController loginController = new LoginController();
-        try{
+        try {
             loginController.authenticateUser(loginBean);
-            SceneManager.changeScene("/fxml/home-view.fxml","CivisAlert-Home");
 
-        }catch(ApplicationException e){
+            // se è dipendente
+            if (isEmployee) {
+                SceneManager.changeScene("/fxml/homeEmployee-view.fxml", "CivisAlertStaff-Home");
+            } else {
+                SceneManager.changeScene("/fxml/home-view.fxml", "CivisAlert-Home");
+            }
+
+        } catch (ApplicationException e) {
             lblError.setText(e.getMessage());
         }
-
-
     }
-
-
-    public void setReportController(ReportController reportController) {
-        this.reportController = reportController;
-    }
-
 
 
 

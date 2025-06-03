@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="contentPane" prefHeight="543.0" prefWidth="723.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GUIReportDetailsController">
+   <children>
+      <Label layoutX="34.0" layoutY="13.0" prefHeight="30.0" prefWidth="80.0" text="Titolo:">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="76.0" layoutY="236.0" text="Descrizione:">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="37.0" layoutY="68.0" text="data : ">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="37.0" layoutY="114.0" text="Urgenza:">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="38.0" layoutY="157.0" text="Tipo di problema:">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+      <JFXComboBox fx:id="stateBox" layoutX="468.0" layoutY="396.0" prefHeight="25.0" prefWidth="143.0" promptText="stato" />
+      <ImageView fx:id="imageOfProblem" fitHeight="226.0" fitWidth="309.0" layoutX="380.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="44.0" layoutY="402.0" text="Ci sono degli sviluppi? Cambia lo stato della segnalazione!">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="dateLbl" layoutX="90.0" layoutY="70.0" prefHeight="21.0" prefWidth="225.0" text="Label" textFill="#807871">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="urgencyLbl" layoutX="109.0" layoutY="115.0" prefHeight="21.0" prefWidth="197.0" text="Label" textFill="#807871">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="problemLbl" layoutX="171.0" layoutY="157.0" prefHeight="21.0" prefWidth="165.0" text="Label" textFill="#807871">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="descrLbl" layoutX="44.0" layoutY="264.0" prefHeight="21.0" prefWidth="205.0" text="Label" textAlignment="CENTER" textFill="#807871" wrapText="true">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="confirmButton" layoutX="303.0" layoutY="464.0" onAction="#confirmChanges" style="-fx-background-color: #b8aa9c;" text="Conferma modifica" />
+      <Label fx:id="titleLbl" layoutX="105.0" layoutY="18.0" prefHeight="21.0" prefWidth="271.0" text="Label" textFill="#807871">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="38.0" layoutY="194.0" text="Via :">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="viaLbl" layoutX="79.0" layoutY="194.0" prefHeight="21.0" prefWidth="165.0" text="Label" textFill="#807871">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="errorLbl" alignment="CENTER" layoutX="221.0" layoutY="506.0" prefHeight="17.0" prefWidth="197.0" />
+   </children>
+</AnchorPane>

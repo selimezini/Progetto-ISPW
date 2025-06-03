@@ -6,11 +6,8 @@ import java.util.List;
 
 public abstract class ChooseMunicipalityController {
 
-    public abstract void searchMunicipality(String municipality);
+    public abstract void searchMunicipality();
 
-    /**
-     * @return lista oggetti di Municipality
-     */
     public abstract List<MunicipalityBean> showMunicipalityList();
 
     public abstract void chooseMunicipality();

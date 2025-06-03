@@ -12,7 +12,7 @@ public class FsysReportDao extends ReportDao {
     }
 
     @Override
-    public List<Report> getAllReportsOfMunicipality(Municipality municipality) {
+    public List<Report> getAllReportsOfMunicipality(String code) {
         return List.of();
     }
 
@@ -22,7 +22,9 @@ public class FsysReportDao extends ReportDao {
     }
 
     @Override
-    public void updateReport(Report report,String status) {
+    public void updateReport(String id, String newStatus) {
 
     }
+
+
 }

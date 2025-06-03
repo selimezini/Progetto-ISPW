@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GUIHomeEmployeeController">
+   <children>
+      <Line endX="685.0" layoutX="115.0" layoutY="59.0" startX="-115.0" />
+      <Label layoutX="66.0" layoutY="21.0" prefHeight="17.0" prefWidth="189.0" text="CivisAlert">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="167.0" fitWidth="100.0" layoutX="-12.0" layoutY="-47.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Senza_titolo__1_-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="158.0" layoutY="21.0" text="Staff" textFill="#0e649e">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Line endX="-56.0" endY="442.0" layoutX="134.0" layoutY="158.0" startX="-56.0" startY="-99.5" />
+      <ImageView fitHeight="30.0" fitWidth="59.0" layoutX="749.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/vecteezy_user-icon-on-transparent-background_19879186-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <Line endX="-94.5" fill="BLACK" layoutX="172.0" layoutY="197.0" startX="-172.0" />
+      <Line endX="-94.5" fill="BLACK" layoutX="172.0" layoutY="267.0" startX="-172.0" />
+      <ImageView fitHeight="37.0" fitWidth="46.0" layoutX="20.0" layoutY="211.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/toppng.com-home-icon-free-980x898.png" />
+         </image>
+      </ImageView>
+      <Line endX="-94.5" fill="BLACK" layoutX="172.0" layoutY="342.0" startX="-172.0" />
+      <ImageView fitHeight="76.0" fitWidth="59.0" layoutX="13.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/report-logo.png" />
+         </image>
+      </ImageView>
+      <Line endX="-94.5" fill="BLACK" layoutX="173.0" layoutY="409.0" startX="-172.0" />
+      <AnchorPane fx:id="dynamicAnchorPane" layoutX="78.0" layoutY="60.0" prefHeight="543.0" prefWidth="723.0" />
+      <Label layoutX="24.0" layoutY="249.0" text="Home" />
+      <Label layoutX="6.0" layoutY="309.0" text="segnalazioni" />
+      <Label layoutX="9.0" layoutY="322.0" text="degli utenti" />
+      <ImageView fitHeight="74.0" fitWidth="89.0" layoutX="3.0" layoutY="340.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/evento-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="52.0" layoutY="368.0" prefHeight="18.0" prefWidth="11.0" text="+">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="1.0" layoutY="386.0" text="Nuovo evento" />
+      <Line endX="-74.5" fill="BLACK" layoutX="152.0" layoutY="477.0" startX="-152.0" />
+      <ImageView fitHeight="81.0" fitWidth="74.0" layoutX="2.0" layoutY="402.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/evento-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="14.0" layoutY="446.0" text="Visualizza" />
+      <Label layoutX="23.0" layoutY="457.0" text="eventi" />
+      <JFXButton fx:id="homeButton" layoutX="-1.0" layoutY="197.0" onAction="#loadHome" prefHeight="68.0" prefWidth="79.0" text="." />
+      <JFXButton fx:id="viewReportsButton" layoutY="268.0" onAction="#showReports" prefHeight="74.0" prefWidth="79.0" text="." />
+      <JFXButton fx:id="newEventButton" layoutY="338.0" prefHeight="72.0" prefWidth="76.0" text="." />
+      <JFXButton fx:id="showEventsButton" layoutX="2.0" layoutY="410.0" prefHeight="68.0" prefWidth="74.0" text="." />
+   </children>
+</AnchorPane>

@@ -1,6 +1,6 @@
 package Controller;
 
-import Beans.LoginBean;
+
 
 public  abstract class GraphicLoginController {
 

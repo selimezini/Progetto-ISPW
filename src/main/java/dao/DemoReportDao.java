@@ -35,15 +35,9 @@ public class DemoReportDao extends ReportDao {
     }
 
     @Override
-    public List<Report> getAllReportsOfMunicipality(Municipality municipality) {
+    public List<Report> getAllReportsOfMunicipality(String code) {
         List<Report> result = new ArrayList<>();
-        for(Report r : reports) {
-            if(r.getMunicipality().equals(municipality)){
-                result.add(r);
-            }
-        }
         return result;
-
     }
 
     @Override
@@ -53,14 +47,10 @@ public class DemoReportDao extends ReportDao {
     }
 
     @Override
-    public void updateReport(Report report,String status) {
-
-        for(Report r : reports) {
-            if(r.getReportId().equals(report.getReportId())) {
-                r.setStatus(status);
-                break;
-            }
-        }
+    public void updateReport(String id, String newStatus) {
 
     }
+
+
 }
+

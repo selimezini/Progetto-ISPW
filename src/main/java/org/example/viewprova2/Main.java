@@ -7,8 +7,6 @@ import Factory.GraphicalFactory;
 import exceptions.DataLoadException;
 import javafx.application.Application;
 import javafx.stage.Stage;
-
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -20,10 +18,6 @@ public class Main extends Application {
     private static String storageMode = "db";
 
 
-    /**
-     * Punto di ingresso standard.
-     * Decide CLI vs GUI: se GUI chiama launch() che scatena start().
-     */
     public static void main(String[] args) {
         try {
             loadConfig();
@@ -37,10 +31,8 @@ public class Main extends Application {
         askExecutionMode();
 
         if ("GUI".equals(executionMode)) {
-            // Avvia il toolkit JavaFX e poi esegue start(...)
             launch(args);
         } else {
-            // Modalità CLI
             runCli();
         }
     }
@@ -139,6 +131,5 @@ public class Main extends Application {
 
 
 }
-
 
 

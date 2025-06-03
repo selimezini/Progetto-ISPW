@@ -105,35 +105,44 @@ public class DbUserDao extends UserDao {
     @Override
     public User findByUsername(String username) {
         String sql = """
-            SELECT username, password_hash, role, mun_name, mun_province
-              FROM users
-             WHERE username = ?
-            """;
+        SELECT username,
+               password_hash,
+               role,
+               mun_code
+          FROM users
+         WHERE username = ?
+        """;
+
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, username);
+            ps.setString(1, username.trim());
             try (ResultSet rs = ps.executeQuery()) {
+                // Se non esiste alcun utente con questo username, restituisco null
                 if (!rs.next()) {
                     return null;
                 }
+
                 String pwdHash = rs.getString("password_hash");
                 String role    = rs.getString("role");
-                String munProv = rs.getString("mun_province");
+                String munCode = rs.getString("mun_code"); // può essere anche NULL
 
                 if ("Citizen".equalsIgnoreCase(role)) {
+                    // Se è un cittadino, non serve mun_code
                     return new Citizen(username, pwdHash, role);
-                } else {
+                }
+                else {
+                    // Se è un dipendente, eventualmente recupero la Municipality
                     Employee emp = new Employee(username, pwdHash, role);
-                    if (munProv != null) {
+                    if (munCode != null && !munCode.isBlank()) {
                         Municipality m = FactoryDao.getInstance()
                                 .createMunicipalityDao()
-                                .getMunicipalityByCode(munProv);
+                                .getMunicipalityByCode(munCode);
                         emp.setMyMunicipality(m);
                     }
                     return emp;
                 }
             }
         } catch (SQLException ex) {
-            throw new UserNotFoundException();
+            throw new UserNotFoundException("Errore nella query di findByUsername");
         }
     }
 }

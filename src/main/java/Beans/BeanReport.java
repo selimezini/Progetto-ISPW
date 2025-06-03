@@ -10,13 +10,13 @@ public class BeanReport {
     private String reportId;
     private String title;
     private String description;
-    private String problemType;    // es. "Problema urbano"
-    private String urgencyType;    // es. "Bassa urgenza"
-    private String status;         // es. "Open"
-    private String imagePath;      // percorso o URL dell’immagine
-    private Image  image;          // l’oggetto Image vero e proprio
-    private String viaDelProblema; // la via dove si trova il problema
-    private String authorUsername; // username del cittadino
+    private String problemType;
+    private String urgencyType;
+    private String status;
+    private String imagePath;
+    private Image  image;
+    private String viaDelProblema;
+    private String authorUsername;
     private String municipalityName;
     private String municipalityProvince;
     private String municipalityCode;
@@ -84,7 +84,8 @@ public class BeanReport {
     public String getMunicipalityCode() { return municipalityCode; }
     public void setMunicipalityCode(String municipalityCode) { this.municipalityCode = municipalityCode; }
 
-
+    public void setDate(Date date) { this.date = date; }
+    public Date getDate() { return date; }
 
 
 

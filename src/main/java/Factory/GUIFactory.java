@@ -1,11 +1,7 @@
 package Factory;
 
-import Controller.GUIReportController;
-import Controller.GUIChooseMunicipalityController;
-import Controller.GUILoginController;
-import Controller.ChooseMunicipalityController;
-import Controller.DoReportController;
-import Controller.GraphicLoginController;
+import Controller.*;
+
 
 
 public class GUIFactory extends GraphicalFactory {
@@ -26,4 +22,31 @@ public class GUIFactory extends GraphicalFactory {
     public GraphicLoginController createLoginController() {
         return new GUILoginController();
     }
+
+    @Override
+    public RegisterController createRegisterController(){
+        return new GUIRegisterController();
+    }
+
+    @Override
+    public HomeController createHomeController() {
+        return new GUIHomeController();
+    }
+
+    @Override
+    public HomeEmployeeController createHomeEmployeeController() {
+        return new GUIHomeEmployeeController();
+    }
+
+    @Override
+    public ShowReportsController createShowReportsController() {
+        return new GUIShowReportsController();
+    }
+
+    @Override
+    public ReportDetailsController createReportDetailsController() {
+        return new GUIReportDetailsController();
+    }
+
+
 }

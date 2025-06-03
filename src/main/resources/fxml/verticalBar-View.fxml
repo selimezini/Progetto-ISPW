@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="verticalBarPane" prefHeight="600.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.VerticalBarEmployeeController">
+   <children>
+      <ImageView fitHeight="281.0" fitWidth="277.0" layoutX="23.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/report-logo.png" />
+         </image>
+      </ImageView>
+      <Line endX="173.5" layoutX="139.0" layoutY="300.0" startX="-139.0" />
+      <Label layoutX="114.0" layoutY="239.0" text="Segnalazioni">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="115.0" layoutY="263.0" text="degli utenti">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="284.0" fitWidth="301.0" layoutX="13.0" layoutY="302.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/evento-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="196.0" layoutY="424.0" prefHeight="71.0" prefWidth="34.0" text="+">
+         <font>
+            <Font name="System Bold" size="47.0" />
+         </font>
+      </Label>
+      <Label layoutX="85.0" layoutY="519.0" text="Aggiungi un nuovo evento" />
+      <JFXButton fx:id="viewReportsButton" onAction="#onViewReportsClicked" prefHeight="299.0" prefWidth="313.0" text="." />
+      <JFXButton fx:id="addEventButton" layoutY="301.0" onAction="#onAddEventClicked" prefHeight="299.0" prefWidth="313.0" text="." />
+   </children>
+</AnchorPane>

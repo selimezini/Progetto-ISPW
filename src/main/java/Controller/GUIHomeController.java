@@ -1,5 +1,6 @@
 package Controller;
 
+import Factory.GraphicalFactory;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,7 +9,7 @@ import com.jfoenix.controls.JFXButton;
 
 import java.io.IOException;
 
-public class GUIHomeController {
+public class GUIHomeController extends  HomeController{
 
     @FXML
     private AnchorPane DinamicContentPane;
@@ -22,6 +23,8 @@ public class GUIHomeController {
     @FXML
     private JFXButton EventsButton;
 
+
+
     @FXML
     private JFXButton myAccButton;
 
@@ -30,22 +33,30 @@ public class GUIHomeController {
         // (opzionale) carica una home iniziale
     }
 
-    /** Collega in home-view.fxml: onAction="#onNewReport" */
+
+    @Override
     @FXML
-    private void onNewReport() {
+    public void onNewReport() {
         loadIntoContentPane("/fxml/ChooseAMunicipality-view.fxml");
     }
 
-    /** Metodo generico per caricare un FXML dentro DinamicContentPane */
+
+
     private void loadIntoContentPane(String fxmlPath) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+
+
+            if (fxmlPath.endsWith("ChooseAMunicipality-view.fxml")) {
+                GraphicalFactory factory = GraphicalFactory.getInstance();
+                ChooseMunicipalityController controller = factory.CreateMunicipalityController();
+
+                loader.setController(controller); // Imposta controller creato dalla factory
+            }
+
             Parent pane = loader.load();
 
-            // Pulisce e inserisce
             DinamicContentPane.getChildren().setAll(pane);
-
-            // Ancoraggi per riempire tutto lo spazio
             AnchorPane.setTopAnchor(pane, 0.0);
             AnchorPane.setBottomAnchor(pane, 0.0);
             AnchorPane.setLeftAnchor(pane, 0.0);
@@ -55,4 +66,12 @@ public class GUIHomeController {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void showMyAcc() {
+
+    }
+
+
+
 }

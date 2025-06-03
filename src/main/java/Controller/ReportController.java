@@ -91,6 +91,72 @@ public class ReportController {
             throw new ApplicationException(ex.getMessage());
         }
     }
+
+
+    public List<BeanReport> getReportsForCurrentMunicipality() {
+
+        System.out.println("Entrato nel controller applciativo per getReportsforCurrentMunicipality");
+        // 1) Prendo il codice del comune da SessionManager
+        String municipalityCode = SessionManager.getInstance().getMunicipalityCode();
+        if (municipalityCode == null || municipalityCode.isBlank()) {
+            return List.of(); // Codice comune non disponibile
+        }
+
+        // 2) Recupero i report dal DAO
+        List<Report> reports = FactoryDao
+                .getInstance()
+                .createReportDao()
+                .getAllReportsOfMunicipality(municipalityCode);
+
+        // 3) Mappo ogni Report in un BeanReport
+        List<BeanReport> beanList = new ArrayList<>(reports.size());
+
+        for (Report r : reports) {
+            BeanReport b = new BeanReport();
+            b.setReportId(r.getReportId());
+            b.setTitle(r.getTitle());
+            b.setDescription(r.getDescription());
+            b.setProblemType(r.getProblemType().getDescription());
+            b.setUrgencyType(r.getUrgencyType().getDescription());
+            b.setStatus(r.getStatus());
+            b.setImagePath(r.getImagePath());
+
+            if (r.getImagePath() != null && !r.getImagePath().isBlank()) {
+                try {
+                    javafx.scene.image.Image img = new javafx.scene.image.Image(r.getImagePath());
+                    b.setImage(img);
+                } catch (Exception e) {
+                    b.setImage(null);
+                }
+            }
+            b.setViaDelProblema(r.getViaDelProblema());
+            b.setAuthorUsername(r.getAuthor().getUsername());
+            b.setMunicipalityName(r.getMunicipality().getName());
+            b.setMunicipalityProvince(r.getMunicipality().getProvince());
+            b.setMunicipalityCode(r.getMunicipality().getCodice());
+            b.setDate(r.getDate());
+            beanList.add(b);
+            System.out.println(b.toString());
+        }
+
+        return beanList;
+    }
+
+
+    public void submitUpdate(BeanReport bean) {
+
+        FactoryDao factory = FactoryDao.getInstance();
+        ReportDao reportDao = factory.createReportDao();
+        reportDao.updateReport(bean.getReportId(), bean.getStatus());
+
+    }
+
+
+
+
+
+
+
 }
 
 

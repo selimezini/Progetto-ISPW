@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="contentPane" prefHeight="613.0" prefWidth="721.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GUIChooseMunicipalityController">
+<AnchorPane fx:id="contentPane" prefHeight="613.0" prefWidth="721.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <JFXListView fx:id="MunicipalitiesList" layoutX="117.0" layoutY="137.0" onMouseClicked="#onListClicked" prefHeight="433.0" prefWidth="487.0" />
       <Label layoutX="209.0" layoutY="53.0" prefHeight="17.0" prefWidth="301.0" text="Inserisci il comune dove vuoi effettuare la segnalazione" textAlignment="CENTER">
@@ -17,7 +17,7 @@
          </font>
       </Label>
       <TextField fx:id="MunicipalityNameTxt" layoutX="223.0" layoutY="87.0" prefHeight="25.0" prefWidth="170.0" promptText="nome del comune" />
-      <JFXButton fx:id="SearchMunicipalityButton" layoutX="410.0" layoutY="87.0" onAction="#onSearchClicked" prefHeight="25.0" prefWidth="62.0" text="Cerca" />
+      <JFXButton fx:id="SearchMunicipalityButton" layoutX="410.0" layoutY="87.0" onAction="#searchMunicipality" prefHeight="25.0" prefWidth="62.0" text="Cerca" />
       <Line endX="-51.0" layoutX="526.0" layoutY="112.0" startX="-113.0" />
       <Label fx:id="MsgLabel" layoutX="241.0" layoutY="582.0" prefHeight="17.0" prefWidth="215.0" textAlignment="CENTER" />
    </children>
