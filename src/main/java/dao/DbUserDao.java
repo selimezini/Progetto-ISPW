@@ -20,9 +20,10 @@ public class DbUserDao extends UserDao {
     @Override
     public void addUser(User user) {
         String sql = """
-            INSERT INTO users(username, password_hash, role, mun_name, mun_province)
-            VALUES (?, ?, ?, ?, ?)
-            """;
+        INSERT INTO users(username, password_hash, role, mun_code)
+        VALUES (?, ?, ?, ?)
+        """;
+
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, user.getUsername());
             ps.setString(2, user.getPassword());
@@ -31,11 +32,10 @@ public class DbUserDao extends UserDao {
             if (user instanceof Employee) {
                 Employee e = (Employee) user;
                 Municipality m = e.getMyMunicipality();
-                ps.setString(4, m.getName());
-                ps.setString(5, m.getProvince());
+                // salvo il codice del comune
+                ps.setString(4, m.getCodice());
             } else {
                 ps.setNull(4, Types.VARCHAR);
-                ps.setNull(5, Types.VARCHAR);
             }
 
             ps.executeUpdate();
@@ -43,6 +43,7 @@ public class DbUserDao extends UserDao {
             throw new DataAccessException("Errore JDBC in addUser", ex);
         }
     }
+
 
     @Override
     public Citizen authenticateCitizen(String username, String password) {

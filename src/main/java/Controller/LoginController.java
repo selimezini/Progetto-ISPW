@@ -52,34 +52,55 @@ public class LoginController {
         }
     }
 
-
     public void registerUser(LoginBean loginBean) {
-        FactoryDao factoryDao = FactoryDao.getInstance();
-        UserDao userDao = factoryDao.createUserDao();
-        SessionManager sessionManager = SessionManager.getInstance();
+        FactoryDao factoryDao      = FactoryDao.getInstance();
+        UserDao userDao            = factoryDao.createUserDao();
         User newUser;
 
+        try {
+            // 1) Controllo se l’username esiste già
+            if (userDao.findByUsername(loginBean.getUsername()) != null) {
+                throw new ApplicationException("Username già presente. Scegli un altro username.");
+            }
 
+            if (loginBean.getRole().equals("Citizen")) {
 
-        try{
-            if(loginBean.getRole().equals("Citizen"))  {
-                Citizen citizen = new Citizen(loginBean.getUsername(), loginBean.getPassword(), loginBean.getRole());
-                newUser = (User) citizen;
-            }else{
-                Employee employee = new Employee(loginBean.getUsername(), loginBean.getPassword(), loginBean.getRole());
+                Citizen citizen = new Citizen(
+                        loginBean.getUsername(),
+                        loginBean.getPassword(),
+                        loginBean.getRole()
+                );
+                newUser = citizen;
+
+            } else {
+                // Registrazione dipendente: verifico il codice comune
                 MunicipalityDao municipalityDao = factoryDao.createMunicipalityDao();
-                Municipality municipality = municipalityDao.getMunicipalityByCode(loginBean.getMunicipalityCode());
+                Municipality municipality = municipalityDao.getMunicipalityByCode(
+                        loginBean.getMunicipalityCode()
+                );
+
+                if (municipality == null) {
+                    throw new ApplicationException("Codice del comune non valido.");
+                }
+
+                Employee employee = new Employee(
+                        loginBean.getUsername(),
+                        loginBean.getPassword(),
+                        loginBean.getRole()
+                );
                 employee.setMyMunicipality(municipality);
-                newUser = (User) employee;
+                newUser = employee;
             }
 
             userDao.addUser(newUser);
 
-
-        }catch(DataAccessException e){
-             throw new ApplicationException("Impossibile registare l'utente nel database. Riprova piu tardi");
+        } catch (DataAccessException e) {
+            throw new ApplicationException(
+                    "Impossibile registrare l'utente nel database. Riprova più tardi."
+            );
         }
 
-        sessionManager.setCurrentUser(newUser);
+
     }
+
 }

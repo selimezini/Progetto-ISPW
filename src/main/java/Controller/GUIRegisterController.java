@@ -4,11 +4,13 @@ import Beans.LoginBean;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import exceptions.ApplicationException;
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -51,15 +53,17 @@ public class GUIRegisterController extends RegisterController implements Initial
         }
 
         // Preparo il bean per la registrazione
-        LoginBean bean = new LoginBean(user, pass, isEmp ? "employee" : "citizen", code);
+        LoginBean bean = new LoginBean(user, pass, isEmp ? "Employee" : "Citizen", code);
 
         try {
-            // Invoco il controller applicativo (supponendo esista un RegisterController non-grafico)
-            //RegisterController appCtrl = /* es. new ApplicationRegisterController() */;
-           // appCtrl.register(bean);
-
-            // Dopo il successo, torno al login
-            SceneManager.changeScene("/fxml/login-view.fxml", "CivisAlert - Login");
+           LoginController loginController = new LoginController();
+           loginController.registerUser(bean);
+            lblRegError.setText("Registrazione avvenuta con successo");
+            PauseTransition pause = new PauseTransition(Duration.seconds(1));
+            pause.setOnFinished(evt -> {
+                SceneManager.changeScene("/fxml/login-view.fxml", "CivisAlert - Login");
+            });
+            pause.play();
 
         } catch (ApplicationException e) {
             // Se fallisce, mostro l'errore
@@ -67,12 +71,6 @@ public class GUIRegisterController extends RegisterController implements Initial
         }
     }
 
-    /** Invocato da onAction="#handleRegister" */
-    @FXML
-    private void handleRegister(ActionEvent event) {
-        // Faccio il vero lavoro nel metodo astratto register()
-        register();
-    }
 
     /** Invocato da onAction="#handleBackToLogin" */
     @FXML
