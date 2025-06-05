@@ -17,13 +17,29 @@ import java.util.ResourceBundle;
 
 public class GUIRegisterController extends RegisterController implements Initializable {
 
-    @FXML private TextField regUsername;
-    @FXML private TextField regPassword;
-    @FXML private JFXCheckBox regEmployeeCheck;
-    @FXML private TextField regMunicipalCode;
-    @FXML private Label lblRegError;
-    @FXML private JFXButton confirmRegButton;
-    @FXML private JFXButton backButton;
+    @FXML
+    private TextField regUsername;
+
+    @FXML
+    private TextField regPassword;
+
+    @FXML
+    private JFXCheckBox regEmployeeCheck;
+
+    @FXML
+    private TextField regMunicipalCode;
+
+    @FXML
+    private Label lblRegError;
+
+    @FXML
+    private JFXButton confirmRegButton;
+
+    @FXML
+    private JFXButton backButton;
+
+    @FXML
+    private Label successLbl;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -58,7 +74,7 @@ public class GUIRegisterController extends RegisterController implements Initial
         try {
            LoginController loginController = new LoginController();
            loginController.registerUser(bean);
-            lblRegError.setText("Registrazione avvenuta con successo");
+           successLbl.setText("Registrazione avvenuta con successo");
             PauseTransition pause = new PauseTransition(Duration.seconds(1));
             pause.setOnFinished(evt -> {
                 SceneManager.changeScene("/fxml/login-view.fxml", "CivisAlert - Login");

@@ -63,6 +63,7 @@
       <JFXButton id="confirmRegButton" fx:id="confirmRegButton" layoutX="57.0" layoutY="476.0" onAction="#register" opacity="0.71" style="-fx-background-color: #b8aa9c;" text="Registrati" />
       <Line endX="27.0" layoutX="94.0" layoutY="501.0" startX="-35.0" />
       <Label id="lblRegError" layoutX="127.0" layoutY="480.0" prefHeight="17.0" prefWidth="292.0" />
-      <Label fx:id="lblRegError" layoutX="276.0" layoutY="529.0" prefHeight="17.0" prefWidth="199.0" text="Label" />
+      <Label fx:id="lblRegError" alignment="CENTER" layoutX="241.0" layoutY="529.0" prefHeight="17.0" prefWidth="318.0" />
+      <Label fx:id="successLbl" alignment="CENTER" layoutX="241.0" layoutY="529.0" prefHeight="17.0" prefWidth="318.0" textFill="#31bc48" />
    </children>
 </AnchorPane>

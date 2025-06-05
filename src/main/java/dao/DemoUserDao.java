@@ -111,4 +111,14 @@ public class DemoUserDao extends UserDao {
                         new UserNotFoundException("Utente non trovato: " + username)
                 );
     }
+
+    @Override
+    public void updatePassword(String username, String newPassword) {
+
+    }
+
+    @Override
+    public void updateUsername(String username,String newUsername) {
+
+    }
 }

@@ -15,4 +15,7 @@ public abstract class UserDao {
 
     public abstract User findByUsername(String username);
 
+    public abstract void updatePassword(String username,String newPassword);
+    public abstract void updateUsername(String username, String newUsername);
+
 }

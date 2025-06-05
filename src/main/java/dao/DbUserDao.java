@@ -146,4 +146,43 @@ public class DbUserDao extends UserDao {
             throw new UserNotFoundException("Errore nella query di findByUsername");
         }
     }
+
+    @Override
+    public void updatePassword( String username, String newPassword) {
+        String sql = """
+        UPDATE users
+           SET password_hash = ?
+         WHERE username = ?
+    """;
+
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, newPassword);
+            ps.setString(2, username);
+
+
+        } catch (SQLException ex) {
+            throw new DataAccessException("Errore aggiornando la password per utente: " + username, ex);
+        }
+    }
+
+    @Override
+    public void updateUsername( String username, String newUsername) {
+        String sql = """
+        UPDATE users
+           SET username = ?
+         WHERE username = ?
+    """;
+
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, newUsername);
+            ps.setString(2, username);
+
+
+        } catch (SQLException ex) {
+            throw new DataAccessException("Errore aggiornando lo username da '" + username + "' a '" + newUsername + "'", ex);
+        }
+    }
+
+
+
 }

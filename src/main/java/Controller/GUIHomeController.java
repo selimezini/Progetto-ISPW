@@ -57,6 +57,7 @@ public class GUIHomeController extends  HomeController{
     @Override
     @FXML
     public void onNewReport() {
+
         loadIntoContentPane("/fxml/ChooseAMunicipality-view.fxml");
     }
 
@@ -87,9 +88,10 @@ public class GUIHomeController extends  HomeController{
         }
     }
 
-    @Override
-    public void showMyAcc() {
 
+    @FXML
+    public void showMyAcc() {
+        loadIntoContentPane("/fxml/MyAcc-view.fxml");
     }
 
 

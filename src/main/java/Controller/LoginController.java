@@ -5,6 +5,7 @@ import Model.Municipality;
 import Model.users.Citizen;
 import Model.users.Employee;
 import Model.users.User;
+import com.mysql.cj.Session;
 import exceptions.DataAccessException;
 import dao.FactoryDao;
 import dao.MunicipalityDao;
@@ -58,7 +59,7 @@ public class LoginController {
         User newUser;
 
         try {
-            // 1) Controllo se l’username esiste già
+
             if (userDao.findByUsername(loginBean.getUsername()) != null) {
                 throw new ApplicationException("Username già presente. Scegli un altro username.");
             }
@@ -73,7 +74,6 @@ public class LoginController {
                 newUser = citizen;
 
             } else {
-                // Registrazione dipendente: verifico il codice comune
                 MunicipalityDao municipalityDao = factoryDao.createMunicipalityDao();
                 Municipality municipality = municipalityDao.getMunicipalityByCode(
                         loginBean.getMunicipalityCode()
@@ -102,5 +102,29 @@ public class LoginController {
 
 
     }
+
+        public void changePassword(LoginBean loginBean) {
+            FactoryDao factoryDao = FactoryDao.getInstance();
+            UserDao userDao = factoryDao.createUserDao();
+            userDao.updatePassword(SessionManager.getInstance().getCurrentUser().getUsername(), loginBean.getPassword());
+    }
+
+        public void changeUsername(LoginBean loginBean) {
+            FactoryDao factoryDao = FactoryDao.getInstance();
+            UserDao userDao = factoryDao.createUserDao();
+            userDao.updatePassword(SessionManager.getInstance().getCurrentUser().getUsername(), loginBean.getPassword());
+
+        }
+
+
+        public LoginBean getUserCredentials(){
+
+            SessionManager sessionManager = SessionManager.getInstance();
+            User user = sessionManager.getCurrentUser();
+            LoginBean loginBean = new LoginBean(user.getUsername(), user.getPassword(), user.getRole(), null);
+            return loginBean;
+
+        }
+
 
 }

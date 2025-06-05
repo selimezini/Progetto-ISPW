@@ -32,7 +32,7 @@
             <Image url="@../images/vecteezy_user-icon-on-transparent-background_19879186-removebg-preview.png" />
          </image>
       </ImageView>
-      <JFXButton layoutX="748.0" layoutY="4.0" prefHeight="49.0" prefWidth="50.0" text="." />
+      <JFXButton fx:id="myAccButton" layoutX="748.0" layoutY="4.0" onAction="#showMyAcc" prefHeight="49.0" prefWidth="50.0" text="." />
       <AnchorPane fx:id="optionsPanel" layoutX="-1.0" layoutY="53.0" prefHeight="613.0" prefWidth="79.0">
          <children>
             <ImageView fitHeight="76.0" fitWidth="59.0" layoutX="13.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true">
