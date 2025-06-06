@@ -21,38 +21,47 @@ public class LoginBean {
 
 
    public String getMunicipalityCode() {
-        return municipalityCode;
+
+       return municipalityCode;
     }
 
     public void setMunicipalityCode(String municipalityCode) {
-        this.municipalityCode = municipalityCode;
+
+       this.municipalityCode = municipalityCode;
     }
 
     public String getUsername() {
-        return username;
+
+       return username;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+
+       this.username = username;
     }
 
     public String getPassword() {
-        return password;
+
+       return password;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+
+       this.password = password;
     }
 
     public String getRole() {
-        return role;
+
+       return role;
     }
 
     public void setRole(String role) {
-        this.role = role;
+
+       this.role = role;
     }
 
     public String getMunicipalityName() {
+
        return MunicipalityName;
     }
 

@@ -38,6 +38,6 @@ public abstract class GraphicalFactory {
     public abstract HomeEmployeeController createHomeEmployeeController();
     public abstract ShowReportsController createShowReportsController();
     public abstract ReportDetailsController createReportDetailsController();
-
+    public abstract MyAccController createMyAccController();
 }
 

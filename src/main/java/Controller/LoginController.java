@@ -106,15 +106,24 @@ public class LoginController {
         public void changePassword(LoginBean loginBean) {
             FactoryDao factoryDao = FactoryDao.getInstance();
             UserDao userDao = factoryDao.createUserDao();
-            userDao.updatePassword(SessionManager.getInstance().getCurrentUser().getUsername(), loginBean.getPassword());
-    }
+            try {
+                userDao.updatePassword(SessionManager.getInstance().getCurrentUser().getUsername(), loginBean.getPassword());
+            }catch (DataAccessException e) {
+                throw new ApplicationException(e.getMessage());
+            }
+
+
+        }
 
         public void changeUsername(LoginBean loginBean) {
             FactoryDao factoryDao = FactoryDao.getInstance();
             UserDao userDao = factoryDao.createUserDao();
-            userDao.updatePassword(SessionManager.getInstance().getCurrentUser().getUsername(), loginBean.getPassword());
-
-        }
+            try {
+                userDao.updatePassword(SessionManager.getInstance().getCurrentUser().getUsername(), loginBean.getPassword());
+            }catch (DataAccessException e) {
+                throw new ApplicationException(e.getMessage());
+            }
+    }
 
 
         public LoginBean getUserCredentials(){

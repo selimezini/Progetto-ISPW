@@ -57,7 +57,7 @@
       <PasswordField fx:id="newPassword" disable="true" layoutX="241.0" layoutY="384.0" prefHeight="25.0" prefWidth="240.0" promptText="Nuova password" />
 
       <!-- Label di feedback -->
-      <Label fx:id="feedbackLabel" alignment="CENTER" layoutX="211.0" layoutY="528.0" prefHeight="17.0" prefWidth="300.0" textFill="#26BC4E">
+      <Label fx:id="errorLbl" alignment="CENTER" layoutX="220.0" layoutY="530.0" prefHeight="17.0" prefWidth="300.0" textFill="#26BC4E">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Label>
@@ -67,5 +67,10 @@
 
       <JFXButton fx:id="exitButton" layoutX="409.0" layoutY="468.0" onAction="#exit" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #ff5e5e;" text="Esci" />
       <TextField fx:id="passwordField" editable="false" layoutX="241.0" layoutY="308.0" prefHeight="25.0" prefWidth="240.0" />
+      <Label fx:id="successLbl" alignment="CENTER" layoutX="220.0" layoutY="530.0" prefHeight="17.0" prefWidth="300.0" textFill="#26BC4E">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

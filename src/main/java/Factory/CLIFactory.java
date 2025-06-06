@@ -52,6 +52,11 @@ public class CLIFactory extends GraphicalFactory {
         return new CLIReportDetailsController();
     }
 
+    @Override
+    public MyAccController createMyAccController() {
+        return new CLIMyAccController();
+    }
+
 
 }
 

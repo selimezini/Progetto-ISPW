@@ -22,6 +22,8 @@ public class CLIHomeController  extends HomeController{
 
     @Override
     public void showMyAcc() {
+        GraphicalFactory factory = GraphicalFactory.getInstance();
+        MyAccController acc = factory.createMyAccController();
 
     }
 

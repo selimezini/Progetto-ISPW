@@ -48,5 +48,10 @@ public class GUIFactory extends GraphicalFactory {
         return new GUIReportDetailsController();
     }
 
+    @Override
+    public MyAccController createMyAccController() {
+        return new GUIMyAccController();
+    }
+
 
 }
