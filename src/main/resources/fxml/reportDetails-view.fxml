@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="contentPane" prefHeight="543.0" prefWidth="723.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GUIReportDetailsController">
+<AnchorPane fx:id="contentPane" prefHeight="543.0" prefWidth="723.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GUIReportDetailsController">
    <children>
       <Label layoutX="34.0" layoutY="13.0" prefHeight="30.0" prefWidth="80.0" text="Titolo:">
          <font>

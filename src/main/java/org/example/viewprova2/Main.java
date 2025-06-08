@@ -1,9 +1,9 @@
 package org.example.viewprova2;
 
 
-import Controller.GraphicLoginController;
-import Controller.SceneManager;
-import Factory.GraphicalFactory;
+import controller.GraphicLoginController;
+import controller.SceneManager;
+import factory.GraphicalFactory;
 import exceptions.DataLoadException;
 import javafx.application.Application;
 import javafx.stage.Stage;

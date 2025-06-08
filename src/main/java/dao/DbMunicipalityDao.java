@@ -1,6 +1,6 @@
 package dao;
 
-import Model.Municipality;
+import model.Municipality;
 import exceptions.DataAccessException;
 
 import java.sql.Connection;

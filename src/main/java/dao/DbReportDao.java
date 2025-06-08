@@ -1,11 +1,11 @@
 package dao;
 
-import Model.Municipality;
-import Model.Report;
-import Model.ProblemType;
-import Model.UrgencyType;
-import Model.users.Citizen;
-import Model.users.User;
+import model.Municipality;
+import model.Report;
+import model.ProblemType;
+import model.UrgencyType;
+import model.users.Citizen;
+import model.users.User;
 import exceptions.DataAccessException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -85,10 +85,9 @@ public class DbReportDao extends ReportDao {
     }
 
 
-
     @Override
     public List<Report> getReportsOfUser(String username) {
-       return null;
+        return List.of();
     }
 
     @Override
@@ -141,10 +140,7 @@ public class DbReportDao extends ReportDao {
         return list;
     }
 
-    /**
-     * Mappa una riga in Report. Riceve l'istanza di Municipality già
-     * risolta in base al codice, quindi NON fa ulteriori lookup.
-     */
+
     private Report mapRowToReport(ResultSet rs, Municipality municipality)
             throws SQLException {
         Report r = new Report();
@@ -182,4 +178,11 @@ public class DbReportDao extends ReportDao {
 
         return r;
     }
+
+
+
+
+
+
+
 }

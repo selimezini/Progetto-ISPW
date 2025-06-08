@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GUIHomeEmployeeController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GUIHomeEmployeeController">
    <children>
       <Line endX="685.0" layoutX="115.0" layoutY="59.0" startX="-115.0" />
       <Label layoutX="66.0" layoutY="21.0" prefHeight="17.0" prefWidth="189.0" text="CivisAlert">
@@ -27,7 +27,7 @@
          </font>
       </Label>
       <Line endX="-56.0" endY="442.0" layoutX="134.0" layoutY="158.0" startX="-56.0" startY="-99.5" />
-      <ImageView fitHeight="30.0" fitWidth="59.0" layoutX="749.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="myAccButton" fitHeight="30.0" fitWidth="59.0" layoutX="749.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/vecteezy_user-icon-on-transparent-background_19879186-removebg-preview.png" />
          </image>

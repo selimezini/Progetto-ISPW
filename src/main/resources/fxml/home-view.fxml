@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GUIHomeController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GUIHomeController">
    <children>
       <Line endX="635.0" fill="BLACK" layoutX="165.0" layoutY="53.0" startX="-165.0" />
       <Line endX="-72.0" endY="495.0" fill="BLACK" layoutX="151.0" layoutY="170.0" startX="-72.5" startY="-117.0" />
@@ -57,7 +57,7 @@
             <Label layoutX="26.0" layoutY="459.0" text="eventi" />
             <JFXButton fx:id="EventsButton" layoutX="3.0" layoutY="408.0" prefHeight="77.0" prefWidth="78.0" text="." />
             <JFXButton fx:id="newReportButton" layoutX="2.0" layoutY="325.0" onAction="#onNewReport" prefHeight="77.0" prefWidth="78.0" text="." />
-            <JFXButton fx:id="myReportsButton" layoutX="-1.0" layoutY="240.0" prefHeight="84.0" prefWidth="80.0" text="." />
+            <JFXButton fx:id="myReportsButton" layoutX="-1.0" layoutY="240.0" onAction="#showMyReports" prefHeight="84.0" prefWidth="80.0" text="." />
             <ImageView fitHeight="67.0" fitWidth="66.0" layoutX="9.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/—Pngtree—vector%20house%20icon_4013530.png" />

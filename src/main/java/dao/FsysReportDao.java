@@ -1,7 +1,6 @@
 package dao;
 
-import Model.Municipality;
-import Model.Report;
+import model.Report;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package dao;
 
-import Model.Report;
+import model.Report;
 import exceptions.DataAccessException;
 
 import java.util.ArrayList;

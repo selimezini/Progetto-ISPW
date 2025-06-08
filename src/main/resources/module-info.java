@@ -9,6 +9,6 @@ module org.example.viewprova2 {
 
     opens org.example.viewprova2 to javafx.fxml;
     exports org.example.viewprova2;
-    exports Controller;
-    opens Controller to javafx.fxml;
+    exports controller;
+    opens controller to javafx.fxml;
 }

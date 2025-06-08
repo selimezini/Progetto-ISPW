@@ -1,9 +1,9 @@
 package org.example.viewprova2.session;
 
-import Beans.MunicipalityBean;
-import Model.Municipality;
-import Model.Report;
-import Model.users.User;
+import beans.MunicipalityBean;
+import model.Municipality;
+import model.Report;
+import model.users.User;
 
 import java.util.List;
 

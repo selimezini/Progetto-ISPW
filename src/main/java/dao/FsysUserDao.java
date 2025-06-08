@@ -1,8 +1,8 @@
 package dao;
 
-import Model.users.Citizen;
-import Model.users.Employee;
-import Model.users.User;
+import model.users.Citizen;
+import model.users.Employee;
+import model.users.User;
 
 public class FsysUserDao extends UserDao {
     @Override

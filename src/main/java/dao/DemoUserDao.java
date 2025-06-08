@@ -1,16 +1,11 @@
 package dao;
 
-import Model.Municipality;
-import Model.users.Citizen;
-import Model.users.Employee;
+import model.Municipality;
+import model.users.Citizen;
+import model.users.Employee;
 
 
-
-
-import Model.Municipality;
-import Model.users.Citizen;
-import Model.users.Employee;
-import Model.users.User;
+import model.users.User;
 import exceptions.DataAccessException;
 import exceptions.UserNotFoundException;
 
