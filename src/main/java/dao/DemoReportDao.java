@@ -1,5 +1,6 @@
 package dao;
 
+import model.Municipality;
 import model.Report;
 import exceptions.DataAccessException;
 
@@ -39,14 +40,26 @@ public class DemoReportDao extends ReportDao {
     }
 
     @Override
-    public List<Report> getAllReportsOfMunicipality(String munName,String munProvince) {
-        return null;
+    public List<Report> getAllReportsOfMunicipality(String munName, String munProvince) {
+        List<Report> result = new ArrayList<>();
+        for (Report r : reports) {
+            Municipality m = r.getMunicipality();
+            if (m != null
+                    && m.getName().equals(munName)
+                    && m.getProvince().equals(munProvince)) {
+                result.add(r);
+            }
+        }
+        return result;
     }
 
     @Override
     public void addReport(Report report) {
+        System.out.println("[DEBUG] Aggiunta report: " + report);
 
+        reports.add(report);
     }
+
 
     @Override
     public void updateReport(String id, String newStatus) {

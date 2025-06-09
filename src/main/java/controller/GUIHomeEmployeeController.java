@@ -96,7 +96,7 @@ public class GUIHomeEmployeeController extends HomeEmployeeController  {
             AnchorPane.setLeftAnchor(pane,   0.0);
             AnchorPane.setRightAnchor(pane,  0.0);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
 
 
