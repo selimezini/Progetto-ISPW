@@ -11,6 +11,10 @@ public class CLILoginController extends GraphicLoginController {
 
     private final Scanner scanner = new Scanner(System.in);
 
+public CLILoginController() {
+    login();
+}
+
 
     @Override
     public void login() {
@@ -98,7 +102,7 @@ public class CLILoginController extends GraphicLoginController {
     @Override
     public void register() {
         GraphicalFactory factory = GraphicalFactory.getInstance();
-
+        RegisterController registerController = factory.createRegisterController();
 
     }
 }

@@ -26,6 +26,8 @@ public class GUIHomeEmployeeController extends HomeEmployeeController  {
     @FXML
     private JFXButton viewReportsButton;
 
+    @FXML
+    private JFXButton myAccButton;
 
 
     @FXML
@@ -99,7 +101,16 @@ public class GUIHomeEmployeeController extends HomeEmployeeController  {
 
 
 
-
     }
+
+    @FXML
+    public void showMyAcc() {
+        loadIntoContentPane("/fxml/myAcc-view.fxml");
+    }
+
+
+
+
+
 
 }

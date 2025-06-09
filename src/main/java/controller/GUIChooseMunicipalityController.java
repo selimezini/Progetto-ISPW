@@ -42,7 +42,7 @@ public class GUIChooseMunicipalityController extends ChooseMunicipalityControlle
             return;
         }
 
-        MunicipalityBean request = new MunicipalityBean(name, null);
+        MunicipalityBean request = new MunicipalityBean(name, null,null);
         List<MunicipalityBean> beans = reportController.searchMunicipality(request);
 
         lastResults = beans;
@@ -66,7 +66,7 @@ public class GUIChooseMunicipalityController extends ChooseMunicipalityControlle
         MunicipalityBean chosen = lastResults.get(idx);
 
         SessionManager.getInstance().setCurrentMunicipalityReport(chosen);
-        System.out.println("siamo su GUICHOOSECONTROLLER: ho scritto" + chosen.getName() + chosen.getRegion());
+        System.out.println("siamo su GUICHOOSECONTROLLER: ho scritto" + chosen.getName() + chosen.getRegion() + "CODICE" + chosen.getCode());
 
         try {
             FXMLLoader loader = new FXMLLoader(

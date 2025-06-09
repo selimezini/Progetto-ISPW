@@ -32,7 +32,7 @@ public class CLIChooseMunicipalityController extends ChooseMunicipalityControlle
         }
 
         // 2) Recupera risultati dal ReportController
-        MunicipalityBean requestBean = new MunicipalityBean(munName, null);
+        MunicipalityBean requestBean = new MunicipalityBean(munName, null,null);
         ReportController reportController = new ReportController();
         lastResults = reportController.searchMunicipality(requestBean);
 

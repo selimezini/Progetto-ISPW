@@ -27,7 +27,7 @@
          </font>
       </Label>
       <Line endX="-56.0" endY="442.0" layoutX="134.0" layoutY="158.0" startX="-56.0" startY="-99.5" />
-      <ImageView fx:id="myAccButton" fitHeight="30.0" fitWidth="59.0" layoutX="749.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="30.0" fitWidth="59.0" layoutX="749.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/vecteezy_user-icon-on-transparent-background_19879186-removebg-preview.png" />
          </image>
@@ -73,5 +73,6 @@
       <JFXButton fx:id="viewReportsButton" layoutY="268.0" onAction="#showReports" prefHeight="74.0" prefWidth="79.0" text="." />
       <JFXButton fx:id="newEventButton" layoutY="338.0" prefHeight="72.0" prefWidth="76.0" text="." />
       <JFXButton fx:id="showEventsButton" layoutX="2.0" layoutY="410.0" prefHeight="68.0" prefWidth="74.0" text="." />
+      <JFXButton fx:id="myAccButton" layoutX="749.0" layoutY="13.0" onAction="#showMyAcc" prefHeight="47.0" prefWidth="50.0" text="." />
    </children>
 </AnchorPane>

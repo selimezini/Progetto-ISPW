@@ -6,7 +6,7 @@ public class LoginBean {
    private String password;
    private String role;
    private String municipalityCode;
-   private String MunicipalityName;
+   private String municipalityName;
    public LoginBean() {
 
    }
@@ -62,7 +62,7 @@ public class LoginBean {
 
     public String getMunicipalityName() {
 
-       return MunicipalityName;
+       return municipalityName;
     }
 
 

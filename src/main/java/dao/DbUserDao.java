@@ -9,10 +9,7 @@ import exceptions.UserNotFoundException;
 
 import java.sql.*;
 
-/**
- * DAO “live” per gli utenti su MySQL.
- * Non chiude mai la Connection; propaga sempre le eccezioni come DaoException.
- */
+
 public class DbUserDao extends UserDao {
 
     private final Connection conn = ConnectionFactory.getConnection();
@@ -45,63 +42,47 @@ public class DbUserDao extends UserDao {
     }
 
 
+
+
     @Override
-    public Citizen authenticateCitizen(String username, String password) {
+    public User verifyUser(String username, String password, String role) {
         String sql = """
-            SELECT 1
-              FROM users
-             WHERE username = ? 
-               AND password_hash = ? 
-               AND role = 'Citizen'
-            """;
+        SELECT 1
+          FROM users
+         WHERE username      = ?
+           AND password_hash = ?
+           AND role          = ?
+        """;
+
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, username);
             ps.setString(2, password);
+            ps.setString(3, role);
+
             try (ResultSet rs = ps.executeQuery()) {
                 if (!rs.next()) {
-                    throw new UserNotFoundException("Credenziali non valide per cittadino");
+                    throw new UserNotFoundException("Credenziali non valide per ruolo: " + role);
                 }
-                return new Citizen(username, password, "Citizen");
             }
+
+            // Costruisci il tipo corretto
+            if ("Employee".equals(role)) {
+                return new Employee(username, password, role);
+            } else {
+                return new Citizen(username, password, role);
+            }
+
         } catch (SQLException ex) {
-            throw new UserNotFoundException();
+            throw new UserNotFoundException("Credenziali non valide per ruolo: " + role);
         }
     }
 
-    @Override
-    public Employee authenticateEmployee(String username, String password, String municipalityCode) {
-        // 1) verifica username/password e ruolo
-        String sql = """
-            SELECT 1
-              FROM users
-             WHERE username = ?
-               AND password_hash = ?
-               AND role = 'Employee'
-            """;
-        try (PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, username);
-            ps.setString(2, password);
-            try (ResultSet rs = ps.executeQuery()) {
-                if (!rs.next()) {
-                    throw new UserNotFoundException("Credenziali non valide per dipendente");
-                }
-            }
-        } catch (SQLException ex) {
-            throw new UserNotFoundException();
-        }
 
-        // 2) recupera il Comune dal codice
-        Municipality m = FactoryDao.getInstance()
-                .createMunicipalityDao()
-                .getMunicipalityByCode(municipalityCode);
-        if (m == null) {
-            throw new UserNotFoundException("Codice comune non valido");
-        }
 
-        Employee emp = new Employee(username, password, "Employee");
-        emp.setMyMunicipality(m);
-        return emp;
-    }
+
+
+
+
 
     @Override
     public User findByUsername(String username) {

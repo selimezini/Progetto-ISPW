@@ -46,56 +46,6 @@ public class DemoUserDao extends UserDao {
     }
 
 
-    @Override
-    public Citizen authenticateCitizen(String username, String password) {
-        Optional<User> found = users.stream()
-                .filter(u -> u instanceof Citizen
-                        && u.getUsername().equals(username)
-                        && u.getPassword().equals(password))
-                .findFirst();
-
-        if (found.isEmpty()) {
-            throw new UserNotFoundException(
-                    "Credenziali non valide per cittadino: " + username);
-        }
-        return (Citizen) found.get();
-    }
-
-
-    @Override
-    public Employee authenticateEmployee(
-            String username,
-            String password,
-            String municipalityCode) {
-
-        // 1) trova l'utente e verifica username/password e tipo Employee
-        Optional<User> foundUser = users.stream()
-                .filter(u -> u instanceof Employee
-                        && u.getUsername().equals(username)
-                        && u.getPassword().equals(password))
-                .findFirst();
-
-        if (foundUser.isEmpty()) {
-            throw new UserNotFoundException(
-                    "Credenziali non valide per dipendente: " + username);
-        }
-        Employee emp = (Employee) foundUser.get();
-
-        // 2) cerca il Municipio in memoria per codice
-        Municipality m = FactoryDao.getInstance()
-                .createMunicipalityDao()
-                .getMunicipalityByCode(municipalityCode);
-
-        if (m == null) {
-            throw new UserNotFoundException(
-                    "Codice comune non valido: " + municipalityCode);
-        }
-
-        // 3) assegna il Comune e restituisci l'Employee
-        emp.setMyMunicipality(m);
-        return emp;
-    }
-
 
     @Override
     public User findByUsername(String username) {
@@ -115,5 +65,21 @@ public class DemoUserDao extends UserDao {
     @Override
     public void updateUsername(String username,String newUsername) {
 
+    }
+
+    @Override
+    public User verifyUser(String username, String password, String role) {
+        return users.stream()
+                .filter(u ->
+                        u.getUsername().equals(username)
+                                && u.getPassword().equals(password)
+                                && u.getRole().equals(role)
+                )
+                .findFirst()
+                .orElseThrow(() ->
+                        new UserNotFoundException(
+                                "Credenziali non valide per ruolo: " + role
+                        )
+                );
     }
 }

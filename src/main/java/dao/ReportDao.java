@@ -9,7 +9,7 @@ public abstract class ReportDao {
 
     public abstract List<Report> getReportsOfUser(String username);
 
-    public abstract List<Report> getAllReportsOfMunicipality(String code);
+    public abstract List<Report> getAllReportsOfMunicipality(String munName,  String munProvince);
 
     public abstract void addReport(Report report);
 

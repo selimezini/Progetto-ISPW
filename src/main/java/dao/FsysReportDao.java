@@ -11,7 +11,8 @@ public class FsysReportDao extends ReportDao {
     }
 
     @Override
-    public List<Report> getAllReportsOfMunicipality(String code) {
+    public List<Report> getAllReportsOfMunicipality(String munName, String munProvince) {
+
         return List.of();
     }
 

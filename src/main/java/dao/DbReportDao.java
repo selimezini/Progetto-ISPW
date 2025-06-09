@@ -91,80 +91,73 @@ public class DbReportDao extends ReportDao {
     }
 
     @Override
-    public List<Report> getAllReportsOfMunicipality(String code) {
-        System.out.println("Entrato nel db per recuperare i report");
-        // 1) Recupera la municipalità in base al codice
-        Municipality municipality = FactoryDao.getInstance()
-                .createMunicipalityDao()
-                .getMunicipalityByCode(code);
-        if (municipality == null) {
-            return Collections.emptyList();
-        }
-
-        // 2) Leggi i report per mun_name e mun_province, includendo via_problema
+    public List<Report> getAllReportsOfMunicipality(String munName, String munProvince) {
+        System.out.println("DAO: recupero report per " + munName + "/" + munProvince);
         String sql = """
-        SELECT report_id,
-               title,
-               description,
-               problem_type,
-               urgency_type,
-               image_path,
-               status,
-               created_at,
-               author_username,
-               via_problema
+        SELECT report_id, title, description,
+               problem_type, urgency_type,
+               image_path, status, created_at,
+               author_username, via_problema
           FROM reports
-         WHERE mun_name      = ?
-           AND mun_province  = ?
+         WHERE mun_name     = ?
+           AND mun_province = ?
+         ORDER BY created_at
         """;
 
         List<Report> list = new ArrayList<>();
-        try {
+        try  {
             Connection conn = ConnectionFactory.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, municipality.getName());
-            ps.setString(2, municipality.getProvince());
+            ps.setString(1, munName);
+            ps.setString(2, munProvince);
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-                    // passo l'oggetto municipality direttamente al mapper
-                    list.add(mapRowToReport(rs, municipality));
+
+                    Report r = mapRowToReport(rs);
+                    list.add(r);
+                    System.out.println("  -> aggiunto Report id=" + r.getReportId());
                 }
             }
         } catch (SQLException ex) {
             throw new DataAccessException(
-                    "Errore caricando report per comune " +
-                            municipality.getName() + " (" + code + ")", ex
-            );
+                    "Errore caricando report per comune " + munName + "/" + munProvince, ex);
         }
         return list;
     }
 
 
-    private Report mapRowToReport(ResultSet rs, Municipality municipality)
-            throws SQLException {
+
+    private Report mapRowToReport(ResultSet rs) throws SQLException {
         Report r = new Report();
+
+        // 1) reportId
         r.setReportId(rs.getString("report_id"));
+
+        // 2) Titolo e descrizione
         r.setTitle(rs.getString("title"));
         r.setDescription(rs.getString("description"));
+
+        // 3) Tipi enumerativi
         r.setProblemType(ProblemType.valueOf(rs.getString("problem_type")));
         r.setUrgencyType(UrgencyType.valueOf(rs.getString("urgency_type")));
+
+        // 4) Path immagine e stato
         r.setImagePath(rs.getString("image_path"));
         r.setStatus(rs.getString("status"));
 
-        // data di creazione
-        java.sql.Timestamp ts = rs.getTimestamp("created_at");
+        // 5) Data di creazione
+        Timestamp ts = rs.getTimestamp("created_at");
         if (ts != null) {
-            r.setDate(new java.util.Date(ts.getTime()));
+            r.setDate(new Date(ts.getTime()));
         }
 
-        // via del problema
-        String via = rs.getString("via_problema");
-        r.setViaDelProblema(via);
+        // 6) Via del problema
+        r.setViaDelProblema(rs.getString("via_problema"));
 
-        // autore
+        // 7) Autore (deve essere un Citizen)
         String authorUsername = rs.getString("author_username");
-        System.out.println("DEBUG mapRowToReport: trovato author_username = '" + authorUsername + "'");
+        System.out.println("DEBUG mapRowToReport: author_username = " + authorUsername);
         User author = FactoryDao.getInstance()
                 .createUserDao()
                 .findByUsername(authorUsername);
@@ -173,8 +166,8 @@ public class DbReportDao extends ReportDao {
         }
         r.setAuthor((Citizen) author);
 
-        // uso direttamente l'istanza già risolta
-        r.setMunicipality(municipality);
+        // 8) Municipality lasciata a null
+        // r.setMunicipality(null);  // non serve chiamarlo, di default è già null
 
         return r;
     }

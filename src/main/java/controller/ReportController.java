@@ -29,24 +29,38 @@ public class ReportController {
         MunicipalityDao municipalityDao = dao.createMunicipalityDao();
         SessionManager sessionManager = SessionManager.getInstance();
 
+        System.out.println("[DEBUG] Inizio ricerca municipio con nome: " + municipality.getName());
+
         try {
             List<Municipality> municipalities =
                     municipalityDao.getMunicipalityByName(municipality.getName());
+
+            System.out.println("[DEBUG] Numero di risultati trovati: " + municipalities.size());
+
             List<MunicipalityBean> beans = new ArrayList<>();
 
             for (Municipality m : municipalities) {
+                System.out.println("[DEBUG] Municipio trovato: nome = " + m.getName() + ", regione = " + m.getRegion() + "codice: " + m.getCodice());
 
-                MunicipalityBean bean = new MunicipalityBean(m.getName(), m.getRegion());
+                MunicipalityBean bean = new MunicipalityBean(m.getName(), m.getRegion(), m.getCodice());
                 beans.add(bean);
             }
 
             sessionManager.setMunicipalities(municipalities);
+
+            System.out.println("[DEBUG] Lista di bean ritornata: ");
+            for (MunicipalityBean b : beans) {
+                System.out.println(" - nome = " + b.getName() + ", regione = " + b.getRegion() + "codice: " + b.getCode());
+            }
+
             return beans;
 
         } catch (DataAccessException e) {
+            System.out.println("[ERRORE] Eccezione durante la ricerca: " + e.getMessage());
             throw new DataAccessException(e.getMessage(), e);
         }
     }
+
 
 
     public void submitReport(BeanReport bean) {
@@ -87,30 +101,35 @@ public class ReportController {
             System.out.println("Report submitted");
 
         } catch (DataAccessException ex) {
-            // qualunque errore (DAO, cast, null, ecc.) viene rilanciato come ApplicationException
+
             throw new ApplicationException(ex.getMessage());
         }
     }
 
 
     public List<BeanReport> getReportsForCurrentMunicipality() {
-
-        System.out.println("Entrato nel controller applciativo per getReportsforCurrentMunicipality");
-        // 1) Prendo il codice del comune da SessionManager
         String municipalityCode = SessionManager.getInstance().getMunicipalityCode();
-        if (municipalityCode == null || municipalityCode.isBlank()) {
-            return List.of(); // Codice comune non disponibile
-        }
 
-        // 2) Recupero i report dal DAO
-        List<Report> reports = FactoryDao
-                .getInstance()
+        FactoryDao factory = FactoryDao.getInstance();
+        MunicipalityDao munDao = factory.createMunicipalityDao();
+        Municipality currentMunicipality = munDao.getMunicipalityByCode(municipalityCode);
+
+        System.out.println("Entrato nel controller applicativo per getReportsForCurrentMunicipality");
+        String munName     = currentMunicipality.getName();
+        String munProvince = currentMunicipality.getProvince();
+
+        // 1) Recupera i report (municipality = null nei Report)
+        List<Report> reports = factory
                 .createReportDao()
-                .getAllReportsOfMunicipality(municipalityCode);
+                .getAllReportsOfMunicipality(munName, munProvince);
+
+        // 2) Imposta su ciascun Report la municipality che conosciamo
+        for (Report r : reports) {
+            r.setMunicipality(currentMunicipality);
+        }
 
         // 3) Mappo ogni Report in un BeanReport
         List<BeanReport> beanList = new ArrayList<>(reports.size());
-
         for (Report r : reports) {
             BeanReport b = new BeanReport();
             b.setReportId(r.getReportId());
@@ -129,14 +148,17 @@ public class ReportController {
                     b.setImage(null);
                 }
             }
+
             b.setViaDelProblema(r.getViaDelProblema());
             b.setAuthorUsername(r.getAuthor().getUsername());
+
+            // Ora municipality non è più null
             b.setMunicipalityName(r.getMunicipality().getName());
             b.setMunicipalityProvince(r.getMunicipality().getProvince());
             b.setMunicipalityCode(r.getMunicipality().getCodice());
+
             b.setDate(r.getDate());
             beanList.add(b);
-
         }
 
         return beanList;

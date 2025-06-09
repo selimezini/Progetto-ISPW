@@ -17,40 +17,43 @@ public class LoginController {
 
 
     public void authenticateUser(LoginBean loginBean) {
-
-        FactoryDao factoryDao = FactoryDao.getInstance();
-        UserDao userDao = factoryDao.createUserDao();
-        System.out.println( "RUOLO" +loginBean.getRole());
-        SessionManager sessionManager = SessionManager.getInstance();
+        FactoryDao   factoryDao    = FactoryDao.getInstance();
+        UserDao      userDao       = factoryDao.createUserDao();
+        SessionManager session     = SessionManager.getInstance();
 
         try {
-            User authenticatedUser;
-            // Confronto sul ruolo
-            if ("Employee".equals(loginBean.getRole())) {
-                System.out.println("LoginController: STO ENTRANDO NEL RAMO EMPLOYEE");
-                authenticatedUser = userDao.authenticateEmployee(
-                        loginBean.getUsername(),
-                        loginBean.getPassword(),
-                        loginBean.getMunicipalityCode()
-                );
-            } else {
-                System.out.println("LoginController: STO ENTRANDO NEL RAMO CITIZEN");
-                authenticatedUser = userDao.authenticateCitizen(
-                        loginBean.getUsername(),
-                        loginBean.getPassword()
-                );
+            // 1) Trovo l'utente generico
+            User authenticatedUser = userDao.verifyUser(
+                    loginBean.getUsername(),
+                    loginBean.getPassword(),
+                    loginBean.getRole()
+            );
+
+            // 2) Se è un Employee, verifico il codice del comune
+            if (authenticatedUser instanceof Employee) {
+                Municipality m = factoryDao
+                        .createMunicipalityDao()
+                        .getMunicipalityByCode(loginBean.getMunicipalityCode());
+
+                if (m == null) {
+                    throw new ApplicationException(
+                            "Nessun comune trovato per codice: " + loginBean.getMunicipalityCode()
+                    );
+                }
+                session.setMunicipalityCode(m.getCodice());
             }
 
+            // 3) Memorizzo l’utente in sessione
+            session.setCurrentUser(authenticatedUser);
 
-            sessionManager.setCurrentUser(authenticatedUser);
-            if(loginBean.getMunicipalityCode() != null) {
-                sessionManager.setMunicipalityCode(loginBean.getMunicipalityCode());
-            }
-            } catch (UserNotFoundException e) {
-
-            throw new ApplicationException(e.getMessage());
+        } catch (UserNotFoundException e) {
+            throw new ApplicationException("Credenziali non valide.");
+        } catch (DataAccessException dae) {
+            throw new ApplicationException("Errore durante il login: " + dae.getMessage());
         }
     }
+
+
 
     public void registerUser(LoginBean loginBean) {
         FactoryDao factoryDao      = FactoryDao.getInstance();

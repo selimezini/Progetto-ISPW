@@ -39,30 +39,13 @@ public class DemoReportDao extends ReportDao {
     }
 
     @Override
-    public List<Report> getAllReportsOfMunicipality(String code) {
-
-        try {
-            List<Report> result = new ArrayList<>();
-            for (Report r : reports) {
-                if (r.getMunicipality() != null
-                        && r.getMunicipality().getCodice().equalsIgnoreCase(code)) {
-                    result.add(r);
-                }
-            }
-            return result;
-        } catch (Exception ex) {
-            throw new DataAccessException("Errore recuperando report per comune: " + code, ex);
-        }
+    public List<Report> getAllReportsOfMunicipality(String munName,String munProvince) {
+        return null;
     }
 
     @Override
     public void addReport(Report report) {
 
-        try {
-            reports.add(report);
-        } catch (Exception ex) {
-            throw new DataAccessException("Errore inserendo nuovo report (demo)", ex);
-        }
     }
 
     @Override

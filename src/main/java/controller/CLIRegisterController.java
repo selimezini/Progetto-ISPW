@@ -8,6 +8,10 @@ import java.util.Scanner;
 
 public class CLIRegisterController extends RegisterController {
 
+    public CLIRegisterController() {
+        register();
+    }
+
     @Override
     public void register() {
         Scanner sc = new Scanner(System.in);

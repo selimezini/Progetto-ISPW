@@ -149,5 +149,7 @@ public class CLIMyAccController extends MyAccController {
     public void exit() {
         SessionManager.getInstance().setCurrentUser(null);
         System.out.println("Logout effettuato. Arrivederci!");
+        GraphicalFactory factory = GraphicalFactory.getInstance();
+        GraphicLoginController loginController = factory.createLoginController();
     }
 }

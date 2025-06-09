@@ -22,6 +22,7 @@ public class Report {
     private Date date;
 
     public void setMunicipality(Municipality municipality) {
+
         this.municipality = municipality;
     }
 
@@ -30,35 +31,43 @@ public class Report {
     }
 
     public void setReportId(String reportId) {
+
         this.reportId = reportId;
     }
 
     public void setStatus(String status) {
+
         this.status = status;
     }
 
     public void setProblemType(ProblemType problemType) {
+
         this.problemType = problemType;
     }
 
     public void setUrgencyType(UrgencyType urgencyType) {
+
         this.urgencyType = urgencyType;
     }
 
     public void setImage(Image image) {
+
         this.image = image;
     }
 
     public void setTitle(String title) {
+
         this.title = title;
     }
 
 
     public String getReportId() {
+
         return reportId;
     }
 
     public Municipality getMunicipality() {
+
         return municipality;
     }
 
@@ -93,26 +102,33 @@ public class Report {
     }
 
 
-    public String getStatus() {return status;}
+    public String getStatus() {
+        return status;}
 
-    public Citizen getAuthor() {return author;}
+    public Citizen getAuthor() {
+        return author;}
     public void setAuthor(Citizen author) {
+
         this.author = author;
     }
 
     public String getViaDelProblema() {
+
         return viaDelProblema;
     }
 
     public void setViaDelProblema(String viaDelProblema) {
+
         this.viaDelProblema = viaDelProblema;
     }
 
     public Date getDate() {
+
         return date;
     }
 
     public void setDate(Date date) {
+
         this.date = date;
     }
 

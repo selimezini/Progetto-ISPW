@@ -72,7 +72,7 @@ public class DbMunicipalityDao extends MunicipalityDao {
             return null;
 
         } catch (SQLException ex) {
-            throw new DataAccessException("Errore cercando comune per codice", ex);
+            throw new DataAccessException("Non trovato nessun comune con questo codice", ex);
         }
     }
 
