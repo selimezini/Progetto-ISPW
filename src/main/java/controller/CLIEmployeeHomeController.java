@@ -34,7 +34,7 @@ public class CLIEmployeeHomeController  extends  HomeEmployeeController{
 
                 case "2":
                     addEvent();
-
+                    break;
                 case  "3":
                     break;
 
@@ -65,6 +65,6 @@ public class CLIEmployeeHomeController  extends  HomeEmployeeController{
 
     @Override
     public void addEvent() {
-
+        // non implementato
     }
 }

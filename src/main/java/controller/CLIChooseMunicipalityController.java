@@ -19,7 +19,7 @@ public class CLIChooseMunicipalityController extends ChooseMunicipalityControlle
     public void searchMunicipality() {
         Scanner sc = new Scanner(System.in);
         List<MunicipalityBean> lastResults;
-        System.out.println("\n==== Ricerca Comune (CLI) ====");
+        System.out.println("\n==== Ricerca Comune  ====");
         System.out.print("Inserisci il nome (o parte del nome) del comune: ");
         String munName = sc.nextLine().trim();
         while (munName.isEmpty()) {

@@ -51,19 +51,22 @@ public CLILoginController() {
         System.out.print("Password: ");
         String password = scanner.nextLine().trim();
 
-        String role;
+        String role = null;
         String municipalCode = null;
-        while (true) {
+        boolean inputValido = false;
+
+        while (!inputValido) {
             System.out.print("Sei dipendente del comune? (si/no): ");
             String resp = scanner.nextLine().trim().toLowerCase();
+
             if (resp.equals("si")) {
                 role = "Employee";
                 System.out.print("Codice comune: ");
                 municipalCode = scanner.nextLine().trim();
-                break;
+                inputValido = true;
             } else if (resp.equals("no")) {
                 role = "Citizen";
-                break;
+                inputValido = true;
             } else {
                 System.out.println("Risposta non valida, inserisci 'si' o 'no'.");
             }
@@ -71,7 +74,6 @@ public CLILoginController() {
 
         return new LoginBean(username, password, role, municipalCode);
     }
-
     private void attemptLogin() {
         while (true) {
 
@@ -81,7 +83,6 @@ public CLILoginController() {
             try {
                 loginController.authenticateUser(creds);
                 System.out.println("Autenticazione avvenuta con successo. Bentornato " + creds.getUsername() + "!")  ;
-                SessionManager sessionManager = new SessionManager();
                 GraphicalFactory factory = GraphicalFactory.getInstance();
                 if(creds.getRole().equals("Citizen")) {
                     HomeController homeController = factory.createHomeController();
