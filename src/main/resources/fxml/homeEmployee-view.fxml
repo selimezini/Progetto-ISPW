@@ -34,9 +34,9 @@
       </ImageView>
       <Line endX="-94.5" fill="BLACK" layoutX="172.0" layoutY="197.0" startX="-172.0" />
       <Line endX="-94.5" fill="BLACK" layoutX="172.0" layoutY="267.0" startX="-172.0" />
-      <ImageView fitHeight="37.0" fitWidth="46.0" layoutX="20.0" layoutY="211.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="37.0" fitWidth="46.0" layoutX="22.0" layoutY="211.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/toppng.com-home-icon-free-980x898.png" />
+            <Image url="@../images/home__1_-removebg-preview.png" />
          </image>
       </ImageView>
       <Line endX="-94.5" fill="BLACK" layoutX="172.0" layoutY="342.0" startX="-172.0" />
@@ -69,10 +69,10 @@
       </ImageView>
       <Label layoutX="14.0" layoutY="446.0" text="Visualizza" />
       <Label layoutX="23.0" layoutY="457.0" text="eventi" />
-      <JFXButton fx:id="homeButton" layoutX="-1.0" layoutY="197.0" onAction="#loadHome" prefHeight="68.0" prefWidth="79.0" text="." />
       <JFXButton fx:id="viewReportsButton" layoutY="268.0" onAction="#showReports" prefHeight="74.0" prefWidth="79.0" text="." />
       <JFXButton fx:id="newEventButton" layoutY="338.0" prefHeight="72.0" prefWidth="76.0" text="." />
       <JFXButton fx:id="showEventsButton" layoutX="2.0" layoutY="410.0" prefHeight="68.0" prefWidth="74.0" text="." />
       <JFXButton fx:id="myAccButton" layoutX="749.0" layoutY="13.0" onAction="#showMyAcc" prefHeight="47.0" prefWidth="50.0" text="." />
+      <JFXButton fx:id="homeButton" layoutX="1.0" layoutY="197.0" onAction="#loadHome" prefHeight="68.0" prefWidth="79.0" text="." />
    </children>
 </AnchorPane>

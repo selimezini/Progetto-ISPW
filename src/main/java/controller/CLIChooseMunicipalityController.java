@@ -10,9 +10,6 @@ import java.util.Scanner;
 public class CLIChooseMunicipalityController extends ChooseMunicipalityController {
 
 
-
-
-
     public  CLIChooseMunicipalityController(){
         searchMunicipality();
     }
@@ -22,7 +19,6 @@ public class CLIChooseMunicipalityController extends ChooseMunicipalityControlle
     public void searchMunicipality() {
         Scanner sc = new Scanner(System.in);
         List<MunicipalityBean> lastResults;
-        // 1) Chiedi il nome del comune
         System.out.println("\n==== Ricerca Comune (CLI) ====");
         System.out.print("Inserisci il nome (o parte del nome) del comune: ");
         String munName = sc.nextLine().trim();
@@ -31,7 +27,6 @@ public class CLIChooseMunicipalityController extends ChooseMunicipalityControlle
             munName = sc.nextLine().trim();
         }
 
-        // 2) Recupera risultati dal ReportController
         MunicipalityBean requestBean = new MunicipalityBean(munName, null,null);
         ReportController reportController = new ReportController();
         lastResults = reportController.searchMunicipality(requestBean);
@@ -80,14 +75,8 @@ public class CLIChooseMunicipalityController extends ChooseMunicipalityControlle
     }
 
     @Override
-    public List<MunicipalityBean> showMunicipalityList() {
-
-        return List.of();
-    }
-
-    @Override
     public void chooseMunicipality() {
-        // Implementazione CLI della scelta (placeholder)
+
         System.out.println("Comune selezionato.");
     }
 }

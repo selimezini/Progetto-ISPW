@@ -8,8 +8,6 @@ public abstract class ChooseMunicipalityController {
 
     public abstract void searchMunicipality();
 
-    public abstract List<MunicipalityBean> showMunicipalityList();
-
     public abstract void chooseMunicipality();
 }
 

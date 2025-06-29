@@ -46,10 +46,8 @@ public class GUILoginController extends GraphicLoginController  {
 
     @FXML
     public void initialize() {
-        // Disabilita inizialmente il campo codice
         txtMunicipalCode.setDisable(true);
 
-        // Listener per abilitare/disabilitare in base alla checkbox
         txtAmIEmployee.selectedProperty().addListener((obs, wasSelected, isSelected) -> {
             txtMunicipalCode.setDisable(!isSelected);
         });
@@ -62,10 +60,8 @@ public class GUILoginController extends GraphicLoginController  {
         String municipalCode   = txtMunicipalCode.getText();
         boolean isEmployee     = txtAmIEmployee.isSelected();
 
-        // assegno sempre role, non solo in caso di dipendente
         String role = isEmployee ? "Employee" : "Citizen";
 
-        // validazione dei campi
         if (username == null || username.isEmpty() ||
                 password == null || password.isEmpty() ||
                 (isEmployee && (municipalCode == null || municipalCode.isEmpty()))) {
@@ -73,14 +69,12 @@ public class GUILoginController extends GraphicLoginController  {
             return;
         }
 
-        // creo il bean e lo passo al controller
         LoginBean loginBean = new LoginBean(username, password, role, municipalCode);
         System.out.println( "GUILOgin:" + role);
         LoginController loginController = new LoginController();
         try {
             loginController.authenticateUser(loginBean);
 
-            // se è dipendente
             if (isEmployee) {
                 SceneManager.changeScene("/fxml/homeEmployee-view.fxml", "CivisAlertStaff-Home");
             } else {

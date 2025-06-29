@@ -58,13 +58,13 @@
             <JFXButton fx:id="EventsButton" layoutX="3.0" layoutY="408.0" prefHeight="77.0" prefWidth="78.0" text="." />
             <JFXButton fx:id="newReportButton" layoutX="2.0" layoutY="325.0" onAction="#onNewReport" prefHeight="77.0" prefWidth="78.0" text="." />
             <JFXButton fx:id="myReportsButton" layoutX="-1.0" layoutY="240.0" onAction="#showMyReports" prefHeight="84.0" prefWidth="80.0" text="." />
-            <ImageView fitHeight="67.0" fitWidth="66.0" layoutX="9.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="59.0" fitWidth="42.0" layoutX="21.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/—Pngtree—vector%20house%20icon_4013530.png" />
+                  <Image url="@../images/home__1_-removebg-preview.png" />
                </image>
             </ImageView>
             <Label layoutX="25.0" layoutY="221.0" text="Home" />
-            <JFXButton fx:id="homeButton" layoutX="3.0" layoutY="155.0" onAction="#loadHome" prefHeight="84.0" prefWidth="78.0" text="`" />
+            <JFXButton fx:id="homeButton" layoutX="2.0" layoutY="156.0" onAction="#loadHome" opacity="0.0" prefHeight="84.0" prefWidth="78.0" text="`" />
          </children>
       </AnchorPane>
       <Line endX="-90.0" fill="BLACK" layoutX="168.0" layoutY="536.0" startX="-169.0" />

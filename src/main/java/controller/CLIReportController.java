@@ -82,14 +82,12 @@ public class CLIReportController extends DoReportController {
 
         UrgencyType selectedUrgency = urgencies[urgencyIndex];
 
-        // 6. Percorso immagine (opzionale)
         System.out.print("Percorso dell’immagine (facoltativo, invio per saltare): ");
         String imagePath = scanner.nextLine().trim();
         if (imagePath.isEmpty()) {
             imagePath = null;
         }
 
-        // 7. Costruisci il Bean e invia la segnalazione
         BeanReport bean = new BeanReport(
                 title,
                 description,
@@ -97,7 +95,7 @@ public class CLIReportController extends DoReportController {
                 selectedUrgency.getDescription(),
                 "APERTO",
                 imagePath,
-                null, // immagine non gestita da CLI
+                null,
                 via
         );
 

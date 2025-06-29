@@ -53,10 +53,7 @@ public class GUIChooseMunicipalityController extends ChooseMunicipalityControlle
         );
     }
 
-    @Override
-    public List<MunicipalityBean> showMunicipalityList() {
-        return lastResults;
-    }
+
 
     @Override
     public void chooseMunicipality() {

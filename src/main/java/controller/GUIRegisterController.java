@@ -42,7 +42,6 @@ public class GUIRegisterController extends RegisterController implements Initial
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Disabilita il campo codice comune finché non si seleziona checkbox
         regMunicipalCode.setDisable(true);
         regEmployeeCheck.selectedProperty().addListener((obs, oldV, newV) -> {
             regMunicipalCode.setDisable(!newV);
@@ -55,19 +54,17 @@ public class GUIRegisterController extends RegisterController implements Initial
     /** Metodo astratto ereditato da RegisterController */
     @Override
     public void register() {
-        // Estraggo valori dai campi
         String user = regUsername.getText().trim();
         String pass = regPassword.getText().trim();
         boolean isEmp = regEmployeeCheck.isSelected();
         String code = regMunicipalCode.getText().trim();
 
-        // Validazione
+
         if (user.isEmpty() || pass.isEmpty() || (isEmp && code.isEmpty())) {
             lblRegError.setText("Compila tutti i campi richiesti.");
             return;
         }
 
-        // Preparo il bean per la registrazione
         LoginBean bean = new LoginBean(user, pass, isEmp ? "Employee" : "Citizen", code);
 
         try {
@@ -81,13 +78,10 @@ public class GUIRegisterController extends RegisterController implements Initial
             pause.play();
 
         } catch (ApplicationException e) {
-            // Se fallisce, mostro l'errore
             lblRegError.setText(e.getMessage());
         }
     }
 
-
-    /** Invocato da onAction="#handleBackToLogin" */
     @FXML
     private void handleBackToLogin() {
         SceneManager.changeScene("/fxml/login-view.fxml", "CivisAlert - Login");

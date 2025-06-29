@@ -48,9 +48,7 @@ public class CLIMyAccController extends MyAccController {
         }
     }
 
-    /**
-     * Permette di modificare username e/o password dell’utente corrente
-     */
+
     @Override
     public void confirmChanges() {
         LoginBean currentBean = loginController.getUserCredentials();

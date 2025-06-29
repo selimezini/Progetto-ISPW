@@ -20,7 +20,6 @@ public class CLIReportDetailsController extends ReportDetailsController {
     public void setReport(BeanReport beanReport) {
         this.report = beanReport;
 
-        // 1) Mostra i dettagli della segnalazione
         System.out.println("\n==== DETTAGLI SEGNALAZIONE ====");
         System.out.println("Titolo       : " + report.getTitle());
         System.out.println("Data         : " + report.getDate());
@@ -37,7 +36,6 @@ public class CLIReportDetailsController extends ReportDetailsController {
 
     @Override
     public void confirmChanges() {
-        // 2) Chiede all’utente se vuole cambiare lo stato
         System.out.println("\nVuoi modificare lo stato? (s/n)");
         String answer = scanner.nextLine().trim().toLowerCase();
         if (!answer.equals("s")) {
@@ -68,7 +66,6 @@ public class CLIReportDetailsController extends ReportDetailsController {
             }
         }
 
-        // 4) Applica la modifica
         String newStatusDesc = statuses[choice].getDescription();
         report.setStatus(newStatusDesc);
 

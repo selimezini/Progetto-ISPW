@@ -21,7 +21,7 @@ public class CLIShowReportsController extends ShowReportsController {
     public void showReports() {
         System.out.println("\n==== ELENCO SEGNALAZIONI ====");
 
-        // 1) Recupera i BeanReport dal controller applicativo
+
         List<BeanReport> reports = reportController.getReportsForCurrentMunicipality();
 
         // 2) Se non ci sono segnalazioni, esci
@@ -30,7 +30,7 @@ public class CLIShowReportsController extends ShowReportsController {
             return;
         }
 
-        // 3) Stampa le anteprime numerate
+
         for (int i = 0; i < reports.size(); i++) {
             BeanReport r = reports.get(i);
             String preview = String.format(
@@ -44,16 +44,15 @@ public class CLIShowReportsController extends ShowReportsController {
             System.out.println(preview);
         }
 
-        // 4) Chiedi all’utente se vuole vedere i dettagli di una segnalazione
         System.out.println("\nInserisci il numero della segnalazione per i dettagli, o 0 per tornare indietro:");
         int choice = -1;
         while (true) {
             System.out.print("> ");
             try {
                 choice = scanner.nextInt();
-                scanner.nextLine(); // consuma newline
+                scanner.nextLine();
             } catch (InputMismatchException e) {
-                scanner.nextLine(); // consuma input errato
+                scanner.nextLine();
                 System.out.println("Per favore inserisci un numero valido.");
                 continue;
             }
