@@ -42,7 +42,7 @@ public class CLIChooseMunicipalityController extends ChooseMunicipalityControlle
         System.out.println("\nComuni trovati:");
         for (int i = 0; i < lastResults.size(); i++) {
             MunicipalityBean mb = lastResults.get(i);
-            System.out.printf("  %d) %s\n", i + 1, mb.toString());
+            System.out.println("  " + (i + 1) + ") " + mb);
         }
 
         // 5) Leggi scelta utente

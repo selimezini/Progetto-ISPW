@@ -51,7 +51,7 @@ public class GUIRegisterController extends RegisterController implements Initial
         });
     }
 
-    /** Metodo astratto ereditato da RegisterController */
+
     @Override
     public void register() {
         String user = regUsername.getText().trim();
