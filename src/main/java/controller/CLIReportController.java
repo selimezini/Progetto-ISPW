@@ -70,7 +70,8 @@ public class CLIReportController extends DoReportController {
         UrgencyType[] urgencies = UrgencyType.values();
         System.out.println("\nLivelli di urgenza disponibili:");
         for (int i = 0; i < urgencies.length; i++) {
-            System.out.printf("  %d) %s\n", i + 1, urgencies[i].getDescription());
+            System.out.println("  " + (i + 1) + ") " + urgencies[i].getDescription());
+
         }
 
         int urgencyIndex = -1;
