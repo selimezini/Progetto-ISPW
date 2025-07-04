@@ -55,64 +55,77 @@ public class CLIMyAccController extends MyAccController {
             return;
         }
 
-        boolean anyChange = false;
-
-        // Cambio username?
-        System.out.print("Vuoi cambiare username? (s/n): ");
-        String resp = sc.nextLine().trim().toLowerCase();
-        if (resp.equals("s")) {
-            System.out.print("Inserisci nuovo username: ");
-            String newUser = sc.nextLine().trim();
-            if (newUser.isEmpty()) {
-                System.out.println("Username non può essere vuoto. Operazione annullata.");
-            } else {
-                LoginBean beanForUsername = new LoginBean(
-                        newUser,
-                        currentBean.getPassword(),
-                        currentBean.getRole(),
-                        null
-                );
-                try {
-                    loginController.changeUsername(beanForUsername);
-                    System.out.println("Username aggiornato con successo a: " + newUser);
-                    SessionManager.getInstance().getCurrentUser().setUsername(newUser);
-                    anyChange = true;
-                } catch (Exception e) {
-                    System.out.println("Errore cambio username: " + e.getMessage());
-                    return;
-                }
-            }
+        boolean anyChange = changeUsername(currentBean);
+        boolean passwordChanged = changePassword(currentBean);
+        if (passwordChanged) {
+            anyChange = true;
         }
 
-        // Cambio password?
-        System.out.print("Vuoi cambiare password? (s/n): ");
-        resp = sc.nextLine().trim().toLowerCase();
-        if (resp.equals("s")) {
-            System.out.print("Inserisci nuova password: ");
-            String newPass = sc.nextLine().trim();
-            if (newPass.isEmpty()) {
-                System.out.println("Password non può essere vuota. Operazione annullata.");
-            } else {
-                LoginBean beanForPassword = new LoginBean(
-                        currentBean.getUsername(),
-                        newPass,
-                        currentBean.getRole(),
-                        null
-                );
-                try {
-                    loginController.changePassword(beanForPassword);
-                    System.out.println("Password aggiornata con successo.");
-                    SessionManager.getInstance().getCurrentUser().setPassword(newPass);
-                    anyChange = true;
-                } catch (Exception e) {
-                    System.out.println("Errore cambio password: " + e.getMessage());
-                    return;
-                }
-            }
-        }
 
         if (!anyChange) {
             System.out.println("Nessuna modifica effettuata.");
+        }
+    }
+
+    private boolean changeUsername(LoginBean currentBean) {
+        System.out.print("Vuoi cambiare username? (s/n): ");
+        if (!sc.nextLine().trim().equalsIgnoreCase("s")) {
+            return false;
+        }
+
+        System.out.print("Inserisci nuovo username: ");
+        String newUser = sc.nextLine().trim();
+        if (newUser.isEmpty()) {
+            System.out.println("Username non può essere vuoto. Operazione annullata.");
+            return false;
+        }
+
+        try {
+            loginController.changeUsername(
+                    new LoginBean(newUser,
+                            currentBean.getPassword(),
+                            currentBean.getRole(),
+                            null)
+            );
+            SessionManager.getInstance()
+                    .getCurrentUser()
+                    .setUsername(newUser);
+            System.out.println("Username aggiornato con successo a: " + newUser);
+            return true;
+        } catch (Exception e) {
+            System.out.println("Errore cambio username: " + e.getMessage());
+            return false;
+        }
+    }
+
+    private boolean changePassword(LoginBean currentBean) {
+        System.out.print("Vuoi cambiare password? (s/n): ");
+        if (!sc.nextLine().trim().equalsIgnoreCase("s")) {
+            return false;
+        }
+
+        System.out.print("Inserisci nuova password: ");
+        String newPass = sc.nextLine().trim();
+        if (newPass.isEmpty()) {
+            System.out.println("Password non può essere vuota. Operazione annullata.");
+            return false;
+        }
+
+        try {
+            loginController.changePassword(
+                    new LoginBean(currentBean.getUsername(),
+                            newPass,
+                            currentBean.getRole(),
+                            null)
+            );
+            SessionManager.getInstance()
+                    .getCurrentUser()
+                    .setPassword(newPass);
+            System.out.println("Password aggiornata con successo.");
+            return true;
+        } catch (Exception e) {
+            System.out.println("Errore cambio password: " + e.getMessage());
+            return false;
         }
     }
 

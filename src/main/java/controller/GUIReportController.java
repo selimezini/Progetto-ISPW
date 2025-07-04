@@ -1,6 +1,9 @@
 package controller;
 
 import beans.BeanReport;
+import javafx.animation.PauseTransition;
+import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 import model.ProblemType;
 import model.UrgencyType;
 import com.jfoenix.controls.JFXButton;
@@ -50,6 +53,9 @@ public class GUIReportController extends DoReportController{
     @FXML
     private Label msgLabel;
 
+    @FXML
+    private AnchorPane dynamicContentPane;
+
     private String selectedImagePath;
 
     private Image  selectedImage;
@@ -97,7 +103,6 @@ public class GUIReportController extends DoReportController{
     }
 
 
-    /** Apre un FileChooser per selezionare un’immagine */
     @FXML
     private void onInsertPhoto() {
         FileChooser chooser = new FileChooser();
@@ -123,30 +128,59 @@ public class GUIReportController extends DoReportController{
 
     @Override
     public void createReport() {
-
         String title = TitleTxt.getText();
         String description = DescriptionTxt.getText();
         String via = ViaDelProblemaTxt.getText();
         ProblemType probType = TypeOfProblem.getValue();
         UrgencyType urgType = Urgency.getValue();
-        if(title.isEmpty() || description.isEmpty() || via.isEmpty() || probType == null || urgType == null) {
+
+        if (title.isEmpty() || description.isEmpty() || via.isEmpty()
+                || probType == null || urgType == null) {
             msgLabel.setText("Perfavore inserire tutti i campi");
             return;
         }
 
-        BeanReport bean = new BeanReport(title,description,probType.getDescription(),urgType.getDescription(),"APERTO",selectedImagePath,selectedImage,via);
+        BeanReport bean = new BeanReport(
+                title,
+                description,
+                probType.getDescription(),
+                urgType.getDescription(),
+                "APERTO",
+                selectedImagePath,
+                selectedImage,
+                via
+        );
         ReportController reportController = new ReportController();
 
         try {
             reportController.submitReport(bean);
-        }catch (ApplicationException e) {
+            msgLabel.setText("Segnalazione inviata con successo!");
+            SceneManager.switchScene(
+                    dynamicContentPane,
+                    "/fxml/confirm-view.fxml",
+                    null,
+                    null
+            );
+
+            PauseTransition pause = new PauseTransition(Duration.seconds(4));
+            pause.setOnFinished(evt -> SceneManager.switchScene(
+                    dynamicContentPane,
+                    "/fxml/homeDashboard-view.fxml",
+                    null,
+                    null
+            ));
+            pause.play();
+
+        } catch (ApplicationException e) {
             msgLabel.setText(e.getMessage());
         }
+    }
 
-        }
 
     @Override
     public void deleteReport() {
+
+
 
     }
 

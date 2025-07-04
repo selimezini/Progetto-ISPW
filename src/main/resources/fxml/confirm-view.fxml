@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="613.0" prefWidth="721.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="250.0" fitWidth="257.0" layoutX="236.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/verificato-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="59.0" layoutY="443.0" prefHeight="28.0" prefWidth="603.0" text="Segnalazione avvenuta con successo. Grazie per la segnalazione!">
+         <font>
+            <Font name="System Bold Italic" size="19.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

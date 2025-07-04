@@ -4,7 +4,6 @@ import beans.MunicipalityBean;
 import factory.GraphicalFactory;
 import org.example.viewprova2.session.SessionManager;
 
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 

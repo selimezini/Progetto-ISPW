@@ -139,7 +139,7 @@ public class DbUserDao extends UserDao {
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, newPassword);
             ps.setString(2, username);
-
+            ps.executeUpdate();
 
         } catch (SQLException ex) {
             throw new DataAccessException("Errore aggiornando la password per utente: " + username, ex);
@@ -157,7 +157,7 @@ public class DbUserDao extends UserDao {
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, newUsername);
             ps.setString(2, username);
-
+            ps.executeUpdate();
 
         } catch (SQLException ex) {
             throw new DataAccessException("Errore aggiornando lo username da '" + username + "' a '" + newUsername + "'", ex);

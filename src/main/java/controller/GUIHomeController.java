@@ -40,15 +40,12 @@ public class GUIHomeController extends  HomeController{
     @FXML
     public void loadHome(){
 
-
         SceneManager.switchScene(
                 DinamicContentPane,                        // **il tuo AnchorPane di “placeholder”**
                 "/fxml/homeDashboard-view.fxml",     // il FXML da caricare dentro
                 null,                                // il controller custom
                null                             // (opzionale) metodo di init da invocare
         );
-
-
     }
 
 

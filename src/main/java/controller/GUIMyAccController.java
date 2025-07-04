@@ -59,7 +59,7 @@ public class GUIMyAccController extends MyAccController {
     private Label errorLbl;
 
     @FXML
-    private Label succcessLbl;
+    private Label successLbl;
 
 
 
@@ -192,7 +192,7 @@ public class GUIMyAccController extends MyAccController {
         }
 
 
-        succcessLbl.setText("Modifiche salvate con successo.");
+        successLbl.setText("Modifiche salvate con successo.");
 
 
         newUsername.clear();
@@ -202,9 +202,7 @@ public class GUIMyAccController extends MyAccController {
         showPassword.setSelected(false);
 
 
-        PauseTransition pause = new PauseTransition(Duration.seconds(1));
-        pause.setOnFinished(e -> exitButton.getScene().getWindow().hide());
-        pause.play();
+
     }
 
     @FXML
