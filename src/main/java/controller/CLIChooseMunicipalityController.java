@@ -46,25 +46,30 @@ public class CLIChooseMunicipalityController extends ChooseMunicipalityControlle
 
         // 5) Leggi scelta utente
         int selected = -1;
-        boolean sceltaValida = false;
+        int max = lastResults.size();
 
-        while (!sceltaValida) {
-            System.out.print("Seleziona il numero del comune (1-" + lastResults.size() + "): ");
-            try {
-                selected = sc.nextInt() - 1;
-                sc.nextLine(); // consuma newline
-
-                if (selected < 0 || selected >= lastResults.size()) {
-                    System.out.println("Numero non valido. Riprova.");
-                } else {
-                    sceltaValida = true;
-                }
-
-            } catch (InputMismatchException ime) {
+        do {
+            System.out.print("Seleziona il numero del comune (1-" + max + "): ");
+            // se non c'è un intero in input, gestiamo subito l’errore
+            if (!sc.hasNextInt()) {
                 sc.nextLine(); // consuma l’input errato
                 System.out.println("Inserisci un numero valido.");
+                continue;     // ★ un solo continue
             }
-        }
+
+            // abbiamo un intero: lo leggo
+            selected = sc.nextInt() - 1;
+            sc.nextLine();   // consuma newline
+
+            if (selected < 0 || selected >= max) {
+                System.out.println("Numero non valido. Riprova.");
+                selected = -1;  // forza la ripetizione del do‑while
+            }
+
+        } while (selected < 0);
+
+// qui 'selected' è sicuramente compreso tra 0 e max-1
+
 
         // 6) Preleva il bean scelto e aggiorna la sessione
         MunicipalityBean chosen = lastResults.get(selected);
