@@ -47,9 +47,11 @@ public class CLIReportController extends DoReportController {
 
         // 4. Tipo di problema
         ProblemType[] types = ProblemType.values();
-        System.out.println("\nTipi di problema disponibili:");
+        System.out.printf("%nTipi di problema disponibili:%n");
+
         for (int i = 0; i < types.length; i++) {
-            System.out.printf("  %d) %s\n", i + 1, types[i].getDescription());
+            System.out.println("  " + (i + 1) + ") " + types[i].getDescription());
+
         }
 
         int typeIndex = -1;
