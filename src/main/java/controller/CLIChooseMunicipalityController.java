@@ -1,6 +1,7 @@
 package controller;
 
 import beans.MunicipalityBean;
+import factory.GraphicalFactory;
 import org.example.viewprova2.session.SessionManager;
 
 import java.util.InputMismatchException;
@@ -68,8 +69,8 @@ public class CLIChooseMunicipalityController extends ChooseMunicipalityControlle
         System.out.println("Comune selezionato: " + chosen.toString());
 
         // 7) Ora “passo di scena” al controller CLI dei report:
-        CLIReportController cliReport = new CLIReportController();
-
+       DoReportController controller = GraphicalFactory.getInstance().CreateReportController();
+       controller.createReport();
     }
 
 

@@ -48,7 +48,8 @@ public class CLIRegisterController extends RegisterController {
             loginController.registerUser(bean);
             GraphicalFactory  graphicalFactory = GraphicalFactory.getInstance();
              GraphicLoginController graphicLoginController = graphicalFactory.createLoginController();
-            System.out.println("Registrazione avvenuta con successo!");
+             graphicLoginController.login();
+             System.out.println("Registrazione avvenuta con successo!");
         } catch (ApplicationException e) {
             System.out.println("Errore: " + e.getMessage());
         }

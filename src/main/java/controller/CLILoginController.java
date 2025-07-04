@@ -3,7 +3,6 @@ package controller;
 import beans.LoginBean;
 import factory.GraphicalFactory;
 import exceptions.ApplicationException;
-import org.example.viewprova2.session.SessionManager;
 
 import java.util.Scanner;
 
