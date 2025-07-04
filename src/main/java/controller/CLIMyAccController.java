@@ -135,9 +135,10 @@ public class CLIMyAccController extends MyAccController {
         GraphicalFactory factory = GraphicalFactory.getInstance();
         if ("Employee".equals(role)) {
             HomeEmployeeController  homeEmployeeController= factory.createHomeEmployeeController();
+            homeEmployeeController.loadHome();
         } else {
             HomeController cliHome = factory.createHomeController();
-
+            cliHome.loadHome();
         }
     }
 
