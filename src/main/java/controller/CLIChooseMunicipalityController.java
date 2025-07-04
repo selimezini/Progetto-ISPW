@@ -46,20 +46,23 @@ public class CLIChooseMunicipalityController extends ChooseMunicipalityControlle
 
         // 5) Leggi scelta utente
         int selected = -1;
-        while (true) {
+        boolean sceltaValida = false;
+
+        while (!sceltaValida) {
             System.out.print("Seleziona il numero del comune (1-" + lastResults.size() + "): ");
             try {
                 selected = sc.nextInt() - 1;
                 sc.nextLine(); // consuma newline
+
+                if (selected < 0 || selected >= lastResults.size()) {
+                    System.out.println("Numero non valido. Riprova.");
+                } else {
+                    sceltaValida = true;
+                }
+
             } catch (InputMismatchException ime) {
                 sc.nextLine(); // consuma l’input errato
                 System.out.println("Inserisci un numero valido.");
-                continue;
-            }
-            if (selected < 0 || selected >= lastResults.size()) {
-                System.out.println("Numero non valido. Riprova.");
-            } else {
-                break;
             }
         }
 
