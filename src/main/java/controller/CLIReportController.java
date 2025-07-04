@@ -1,6 +1,7 @@
 package controller;
 
 import beans.BeanReport;
+import factory.GraphicalFactory;
 import model.ProblemType;
 import model.UrgencyType;
 import exceptions.ApplicationException;
@@ -103,7 +104,9 @@ public class CLIReportController extends DoReportController {
         try {
             controller.submitReport(bean);
             System.out.println("Segnalazione inviata con successo!");
-            LoginController loginController = new LoginController();
+            GraphicLoginController loginC = GraphicalFactory.getInstance().createLoginController();
+            loginC.login();
+
         } catch (ApplicationException e) {
             System.out.println("Errore durante l’invio della segnalazione: " + e.getMessage());
         }
