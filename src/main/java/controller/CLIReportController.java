@@ -111,11 +111,8 @@ public class CLIReportController extends DoReportController {
 
     @Override
     public void deleteReport() {
-        System.out.println("deleteReport() non supportato in modalità CLI.");
+
+        System.out.println("non implementato.");
     }
 
-    @Override
-    public void updateReport() {
-        System.out.println("updateReport() non supportato in modalità CLI.");
-    }
 }

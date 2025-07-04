@@ -4,17 +4,20 @@ import beans.LoginBean;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import exceptions.ApplicationException;
+import factory.GraphicalFactory;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class GUIRegisterController extends RegisterController implements Initializable {
+public class GUIRegisterController extends RegisterController  {
 
     @FXML
     private TextField regUsername;
@@ -40,8 +43,12 @@ public class GUIRegisterController extends RegisterController implements Initial
     @FXML
     private Label successLbl;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+
+    @FXML
+    private AnchorPane registerPane;
+
+    @FXML
+    public void startRegister(){
         regMunicipalCode.setDisable(true);
         regEmployeeCheck.selectedProperty().addListener((obs, oldV, newV) -> {
             regMunicipalCode.setDisable(!newV);
@@ -73,7 +80,7 @@ public class GUIRegisterController extends RegisterController implements Initial
            successLbl.setText("Registrazione avvenuta con successo");
             PauseTransition pause = new PauseTransition(Duration.seconds(1));
             pause.setOnFinished(evt -> {
-                SceneManager.changeScene("/fxml/login-view.fxml", "CivisAlert - Login");
+                //SceneManager.changeScene("/fxml/login-view.fxml", "CivisAlert - Login");
             });
             pause.play();
 
@@ -84,6 +91,14 @@ public class GUIRegisterController extends RegisterController implements Initial
 
     @FXML
     private void handleBackToLogin() {
-        SceneManager.changeScene("/fxml/login-view.fxml", "CivisAlert - Login");
+        //SceneManager.changeScene("/fxml/login-view.fxml", "CivisAlert - Login");
+        GraphicLoginController loginController = GraphicalFactory.getInstance().createLoginController();
+        SceneManager.switchScene(
+                registerPane,
+                "/fxml/login-view.fxml",
+                null,
+               null         // metodo di GUIHomeController che inizializza la vista
+        );
+
     }
 }

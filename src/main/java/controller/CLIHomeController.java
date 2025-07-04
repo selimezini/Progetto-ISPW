@@ -8,26 +8,25 @@ public class CLIHomeController  extends HomeController{
 
     private final Scanner sc = new Scanner(System.in);
 
-    public CLIHomeController() {
-        startMenu();
-    }
+
 
 
     @Override
     public void onNewReport(){
         GraphicalFactory factory = GraphicalFactory.getInstance();
         ChooseMunicipalityController controller = factory.CreateMunicipalityController();
-
+        controller.searchMunicipality();
     }
 
     @Override
     public void showMyAcc() {
         GraphicalFactory factory = GraphicalFactory.getInstance();
         MyAccController acc = factory.createMyAccController();
-
+        acc.startMyAcc();
     }
 
-    public void startMenu(){
+    @Override
+    public void loadHome(){
         while(true) {
             System.out.println("*************************");
             System.out.println("**     CivisAlert      **");

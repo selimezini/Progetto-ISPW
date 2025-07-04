@@ -150,8 +150,5 @@ public class GUIReportController extends DoReportController{
 
     }
 
-    @Override
-    public void updateReport() {
 
-    }
 }

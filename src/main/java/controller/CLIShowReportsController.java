@@ -12,9 +12,6 @@ public class CLIShowReportsController extends ShowReportsController {
     private final ReportController reportController = new ReportController();
     private final Scanner scanner = new Scanner(System.in);
 
-    public CLIShowReportsController() {
-        showReports();
-    }
 
 
     @Override

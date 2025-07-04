@@ -8,6 +8,6 @@ public abstract class ChooseMunicipalityController {
 
     public abstract void searchMunicipality();
 
-    public abstract void chooseMunicipality();
+
 }
 

@@ -10,9 +10,7 @@ import java.util.Scanner;
 public class CLIChooseMunicipalityController extends ChooseMunicipalityController {
 
 
-    public  CLIChooseMunicipalityController(){
-        searchMunicipality();
-    }
+
 
 
     @Override
@@ -74,9 +72,5 @@ public class CLIChooseMunicipalityController extends ChooseMunicipalityControlle
 
     }
 
-    @Override
-    public void chooseMunicipality() {
 
-        System.out.println("Comune selezionato.");
-    }
 }

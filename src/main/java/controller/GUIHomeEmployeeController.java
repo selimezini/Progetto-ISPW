@@ -30,17 +30,6 @@ public class GUIHomeEmployeeController extends HomeEmployeeController  {
     private JFXButton myAccButton;
 
 
-    @FXML
-    public void initialize(){
-        loadHome();
-    }
-
-    @FXML
-    public void showHome() {
-        loadHome();
-    }
-
-
 
 
 
@@ -49,7 +38,15 @@ public class GUIHomeEmployeeController extends HomeEmployeeController  {
     @FXML
     public void showReports() {
 
-        loadIntoContentPane("/fxml/reportsMunicipality-view.fxml");
+        //loadIntoContentPane("/fxml/reportsMunicipality-view.fxml");
+        ShowReportsController controller = GraphicalFactory.getInstance().createShowReportsController();
+        SceneManager.switchScene(
+                dynamicAnchorPane,                        // **il tuo AnchorPane di “placeholder”**
+                "/fxml/reportsMunicipality-view.fxml",     // il FXML da caricare dentro
+                controller,                                // il controller custom
+                null                             // (opzionale) metodo di init da invocare
+        );
+
 
     }
 
@@ -60,30 +57,7 @@ public class GUIHomeEmployeeController extends HomeEmployeeController  {
     }
 
 
-    private void loadIntoContentPane(String fxmlPath) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
 
-            // Se il controller da caricare è ChooseAMunicipality-view.fxml
-            if (fxmlPath.endsWith("reportsMunicipality-view.fxml")) {
-                GraphicalFactory factory = GraphicalFactory.getInstance();
-                 ShowReportsController  controller = factory.createShowReportsController();
-
-                loader.setController(controller); // Imposta controller creato dalla factory
-            }
-
-            Parent pane = loader.load();
-
-            dynamicAnchorPane.getChildren().setAll(pane);
-            AnchorPane.setTopAnchor(pane, 0.0);
-            AnchorPane.setBottomAnchor(pane, 0.0);
-            AnchorPane.setLeftAnchor(pane, 0.0);
-            AnchorPane.setRightAnchor(pane, 0.0);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     @FXML
     public void loadHome(){
@@ -105,7 +79,16 @@ public class GUIHomeEmployeeController extends HomeEmployeeController  {
 
     @FXML
     public void showMyAcc() {
-        loadIntoContentPane("/fxml/myAcc-view.fxml");
+
+        //loadIntoContentPane("/fxml/myAcc-view.fxml");
+        MyAccController controller = GraphicalFactory.getInstance().createMyAccController();
+        SceneManager.switchScene(
+                dynamicAnchorPane,
+                "/fxml/MyAcc-view.fxml",
+                controller,
+                "startMyAcc"          // metodo di GUIHomeController che inizializza la vista
+        );
+
     }
 
 

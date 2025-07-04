@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GUIHomeController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Line endX="635.0" fill="BLACK" layoutX="165.0" layoutY="53.0" startX="-165.0" />
       <Line endX="-72.0" endY="495.0" fill="BLACK" layoutX="151.0" layoutY="170.0" startX="-72.5" startY="-117.0" />

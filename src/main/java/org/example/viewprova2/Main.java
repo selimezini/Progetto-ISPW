@@ -6,6 +6,9 @@ import controller.SceneManager;
 import factory.GraphicalFactory;
 import exceptions.DataLoadException;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -79,16 +82,22 @@ public class Main extends Application {
         return executionMode;
     }
 
-    // ---------------------------------------------------
-    // Questo è il metodo che JavaFX chiama dopo launch():
-    // ---------------------------------------------------
     @Override
     public void start(Stage primaryStage) {
-        // 1) Registra lo stage principale in SceneManager
+
         SceneManager.setStage(primaryStage);
 
-        // 2) Carica la scena di login usando SceneManager
-        SceneManager.changeScene("/fxml/login-view.fxml", "CivisAlert – Login");
+        // 2) carico il login-view come scena completa (usa fx:controller in FXML)
+        try {
+            Parent loginRoot = FXMLLoader.load(
+                    getClass().getResource("/fxml/login-view.fxml")
+            );
+            primaryStage.setScene(new Scene(loginRoot));
+            primaryStage.setTitle("CivisAlert – Login");
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

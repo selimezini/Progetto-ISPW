@@ -21,10 +21,10 @@ public class GUIUserShowReportsController extends ShowReportsController {
     @FXML
     private AnchorPane contentPane;
 
-    // controller applicativo
+
     private final ReportController reportController = new ReportController();
 
-    // lista interna di BeanReport
+
     private final List<BeanReport> reports = new ArrayList<>();
 
     @FXML

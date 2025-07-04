@@ -11,9 +11,7 @@ public class CLILoginController extends GraphicLoginController {
 
     private final Scanner scanner = new Scanner(System.in);
 
-public CLILoginController() {
-    login();
-}
+
 
 
     @Override
@@ -86,9 +84,10 @@ public CLILoginController() {
                 GraphicalFactory factory = GraphicalFactory.getInstance();
                 if(creds.getRole().equals("Citizen")) {
                     HomeController homeController = factory.createHomeController();
+                    homeController.loadHome();
                 }else{
                     HomeEmployeeController homeEmployeeController = factory.createHomeEmployeeController();
-
+                    homeEmployeeController.loadHome();
                 }
 
             }catch(ApplicationException e) {
@@ -104,7 +103,7 @@ public CLILoginController() {
     public void register() {
         GraphicalFactory factory = GraphicalFactory.getInstance();
         RegisterController registerController = factory.createRegisterController();
-
+        registerController.register();
     }
 }
 

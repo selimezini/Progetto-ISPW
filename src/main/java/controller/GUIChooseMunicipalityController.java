@@ -29,7 +29,9 @@ public class GUIChooseMunicipalityController extends ChooseMunicipalityControlle
     private List<MunicipalityBean> lastResults = new ArrayList<>();
     private final ReportController reportController = new ReportController();
 
-
+    public void startSearch(){
+        System.out.println("startSearch");
+    }
 
     @FXML
     @Override
@@ -55,7 +57,6 @@ public class GUIChooseMunicipalityController extends ChooseMunicipalityControlle
 
 
 
-    @Override
     public void chooseMunicipality() {
         int idx = MunicipalitiesList.getSelectionModel().getSelectedIndex();
         if (idx < 0 || idx >= lastResults.size()) return;

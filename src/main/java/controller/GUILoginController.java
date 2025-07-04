@@ -4,11 +4,16 @@ import beans.LoginBean;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import exceptions.ApplicationException;
+import factory.GraphicalFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class GUILoginController extends GraphicLoginController  {
 
@@ -32,6 +37,9 @@ public class GUILoginController extends GraphicLoginController  {
 
     @FXML
     private Label lblError;
+
+    @FXML
+    private AnchorPane loginPane;
 
     private ReportController reportController;
 
@@ -76,9 +84,23 @@ public class GUILoginController extends GraphicLoginController  {
             loginController.authenticateUser(loginBean);
 
             if (isEmployee) {
-                SceneManager.changeScene("/fxml/homeEmployee-view.fxml", "CivisAlertStaff-Home");
+                Stage stage = (Stage) loginPane.getScene().getWindow();
+                HomeEmployeeController homeController = GraphicalFactory.getInstance().createHomeEmployeeController();
+                SceneManager.switchScene(
+                        loginPane,
+                        "/fxml/homeEmployee-view.fxml",
+                        homeController,
+                        "loadHome"          // metodo di GUIHomeController che inizializza la vista
+                );
             } else {
-                SceneManager.changeScene("/fxml/home-view.fxml", "CivisAlert-Home");
+                Stage stage = (Stage) loginPane.getScene().getWindow();
+                HomeController homeController = GraphicalFactory.getInstance().createHomeController();
+                SceneManager.switchScene(
+                        loginPane,
+                        "/fxml/home-view.fxml",
+                        homeController,
+                        "loadHome"          // metodo di GUIHomeController che inizializza la vista
+                );
             }
 
         } catch (ApplicationException e) {
@@ -90,8 +112,14 @@ public class GUILoginController extends GraphicLoginController  {
 
     @Override
     public void  register() {
-
-        SceneManager.changeScene("/fxml/register-view.fxml","CivisAlert-Register");
+        Stage stage = (Stage) loginPane.getScene().getWindow();
+        RegisterController controller = GraphicalFactory.getInstance().createRegisterController();
+        SceneManager.switchScene(
+                loginPane,
+                "/fxml/register-view.fxml",
+                controller,
+                "startRegister"          // metodo di GUIHomeController che inizializza la vista
+        );
 
     }
 }

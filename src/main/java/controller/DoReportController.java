@@ -8,6 +8,6 @@ public  abstract class DoReportController {
 
     public abstract void deleteReport();
 
-    public abstract void updateReport();
+
 
 }

@@ -5,13 +5,20 @@ import exceptions.ApplicationException;
 import javafx.animation.PauseTransition;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import org.example.viewprova2.session.SessionManager;
+
+import java.io.IOException;
 
 
 public class GUIMyAccController extends MyAccController {
@@ -45,7 +52,8 @@ public class GUIMyAccController extends MyAccController {
     @FXML
     private JFXButton     exitButton;
 
-
+    @FXML
+    private AnchorPane dynamicContentPane;
 
     @FXML
     private Label errorLbl;
@@ -58,7 +66,8 @@ public class GUIMyAccController extends MyAccController {
     private final LoginController loginController = new LoginController();
 
     @FXML
-    public void initialize() {
+    @Override
+    public void startMyAcc() {
 
         LoginBean currentBean = loginController.getUserCredentials();
         String currentUser = (currentBean != null ? currentBean.getUsername() : "");
@@ -202,8 +211,18 @@ public class GUIMyAccController extends MyAccController {
     public void exit() {
         SessionManager sessionManager  = SessionManager.getInstance();
         sessionManager.setCurrentUser(null);
-        SceneManager.changeScene("/fxml/login-view.fxml", "Login - CivisAlert");
+        Stage primaryStage = SceneManager.primaryStage;
 
+        try {
+            Parent loginRoot = FXMLLoader.load(
+                    getClass().getResource("/fxml/login-view.fxml")
+            );
+            primaryStage.setScene(new Scene(loginRoot));
+            primaryStage.setTitle("CivisAlert – Login");
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }

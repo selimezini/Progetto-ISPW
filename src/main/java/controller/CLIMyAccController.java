@@ -12,11 +12,9 @@ public class CLIMyAccController extends MyAccController {
     private final LoginController loginController = new LoginController();
     private final Scanner sc = new Scanner(System.in);
 
-    public CLIMyAccController() {
-        menu();
-    }
 
-    public void menu() {
+
+    public void startMyAcc() {
         while (true) {
             System.out.println("*************************");
             System.out.println("**     CivisAlert      **");
@@ -149,5 +147,6 @@ public class CLIMyAccController extends MyAccController {
         System.out.println("Logout effettuato. Arrivederci!");
         GraphicalFactory factory = GraphicalFactory.getInstance();
         GraphicLoginController loginController = factory.createLoginController();
+        loginController.login();
     }
 }
