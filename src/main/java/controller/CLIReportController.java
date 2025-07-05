@@ -92,16 +92,17 @@ public class CLIReportController extends DoReportController {
             imagePath = null;
         }
 
-        BeanReport bean = new BeanReport(
-                title,
-                description,
-                selectedType.getDescription(),
-                selectedUrgency.getDescription(),
-                "APERTO",
-                imagePath,
-                null,
-                via
-        );
+        BeanReport bean = new BeanReport();
+
+        bean.setTitle(title);
+        bean.setDescription(description);
+        bean.setProblemType(selectedType.getDescription());
+        bean.setUrgencyType(selectedUrgency.getDescription());
+        bean.setStatus("APERTO");
+        bean.setImagePath(imagePath);
+        bean.setImage(null);
+        bean.setViaDelProblema(via);
+
 
         ReportController controller = new ReportController();
         try {

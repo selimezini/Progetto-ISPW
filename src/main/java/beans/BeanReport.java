@@ -23,26 +23,6 @@ public class BeanReport {
     private Date date;
     public  BeanReport() { }
 
-    public BeanReport(
-            String title,
-            String description,
-            String problemType,
-            String urgencyType,
-            String status,
-            String imagePath,
-            Image image,
-            String viaDelProblema
-    ) {
-        this.title = title;
-        this.description = description;
-        this.problemType = problemType;
-        this.urgencyType = urgencyType;
-        this.status = status;
-        this.imagePath = imagePath;
-        this.image = image;
-        this.viaDelProblema = viaDelProblema;
-    }
-
 
 
     public String getReportId() { return reportId; }

@@ -193,26 +193,24 @@ public class ReportController {
         // 3) Mappa ogni Report in un BeanReport
         List<BeanReport> beans = new ArrayList<>(modelReports.size());
         for (Report r : modelReports) {
-            BeanReport b = new BeanReport(
-                    r.getTitle(),
-                    r.getDescription(),
-                    r.getProblemType().getDescription(),
-                    r.getUrgencyType().getDescription(),
-                    r.getStatus(),
-                    r.getImagePath(),
-                    null,                    // immagine JavaFX la settiamo dopo
-                    r.getViaDelProblema()
-            );
+            BeanReport b = new BeanReport();
+
+            b.setTitle(r.getTitle());
+            b.setDescription(r.getDescription());
+            b.setProblemType(r.getProblemType().getDescription());
+            b.setUrgencyType(r.getUrgencyType().getDescription());
+            b.setStatus(r.getStatus());
+            b.setImagePath(r.getImagePath());
+            b.setImage(null);
+            b.setViaDelProblema(r.getViaDelProblema());
 
             // 4) Imposto gli altri campi con i setter
             b.setReportId(r.getReportId());
-            b.setDate(r.getDate());                     // se usi getFormattedDate(): b.setDate(r.getFormattedDate());
+            b.setDate(r.getDate());
             b.setAuthorUsername(r.getAuthor().getUsername());
             b.setMunicipalityCode(r.getMunicipality().getCodice());
             b.setMunicipalityName(r.getMunicipality().getName());
             b.setMunicipalityProvince(r.getMunicipality().getProvince());
-
-            // 5) Provo a caricare l'immagine solo se il path non è vuoto
             String imgPath = r.getImagePath();
             if (imgPath != null && !imgPath.isBlank()) {
                 try {
@@ -231,7 +229,6 @@ public class ReportController {
         System.out.println("Totale BeanReport restituiti: " + beans.size());
         return beans;
     }
-
 }
 
 

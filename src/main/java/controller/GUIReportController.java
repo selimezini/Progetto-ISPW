@@ -140,16 +140,17 @@ public class GUIReportController extends DoReportController{
             return;
         }
 
-        BeanReport bean = new BeanReport(
-                title,
-                description,
-                probType.getDescription(),
-                urgType.getDescription(),
-                "APERTO",
-                selectedImagePath,
-                selectedImage,
-                via
-        );
+        BeanReport bean = new BeanReport();
+
+        bean.setTitle(title);
+        bean.setDescription(description);
+        bean.setProblemType(probType.getDescription());
+        bean.setUrgencyType(urgType.getDescription());
+        bean.setStatus("APERTO");
+        bean.setImagePath(selectedImagePath);
+        bean.setImage(selectedImage);
+        bean.setViaDelProblema(via);
+
         ReportController reportController = new ReportController();
 
         try {

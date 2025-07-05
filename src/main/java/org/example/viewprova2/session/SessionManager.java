@@ -44,7 +44,7 @@ public class SessionManager {
         for (Report report : reports) {
             if (report.getReportId().equals(reportId)) {
                 report.setStatus(status);
-                break; // Se l'ID è univoco, puoi uscire dal ciclo
+                break;
             }
         }
     }
