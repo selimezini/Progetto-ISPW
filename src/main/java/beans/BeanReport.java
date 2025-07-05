@@ -21,51 +21,119 @@ public class BeanReport {
     private String municipalityProvince;
     private String municipalityCode;
     private Date date;
-    public  BeanReport() { }
+    public  BeanReport() {
+        //costruttore vuoto
+    }
 
 
 
-    public String getReportId() { return reportId; }
-    public void setReportId(String reportId) { this.reportId = reportId; }
+    public String getReportId() {
+        return reportId; }
+    public void setReportId(String reportId) {
+        this.reportId = reportId; }
 
-    public String getTitle() { return title; }
-    public void setTitle(String title) { this.title = title; }
+    public String getTitle() {
+        return title; }
 
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-    public String getProblemType() { return problemType; }
-    public void setProblemType(String problemType) { this.problemType = problemType; }
+    public String getDescription() {
+        return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-    public String getUrgencyType() { return urgencyType; }
-    public void setUrgencyType(String urgencyType) { this.urgencyType = urgencyType; }
+    public String getProblemType() {
+        return problemType;
+    }
 
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
+    public void setProblemType(String problemType) {
+        this.problemType = problemType;
+    }
 
-    public String getImagePath() { return imagePath; }
-    public void setImagePath(String imagePath) { this.imagePath = imagePath; }
+    public String getUrgencyType() {
+        return urgencyType;
+    }
 
-    public Image getImage() { return image; }
-    public void setImage(Image image) { this.image = image; }
+    public void setUrgencyType(String urgencyType) {
+        this.urgencyType = urgencyType;
+    }
 
-    public String getViaDelProblema() { return viaDelProblema; }
-    public void setViaDelProblema(String viaDelProblema) { this.viaDelProblema = viaDelProblema; }
+    public String getStatus() {
+        return status;
+    }
 
-    public String getAuthorUsername() { return authorUsername; }
-    public void setAuthorUsername(String authorUsername) { this.authorUsername = authorUsername; }
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-    public String getMunicipalityName() { return municipalityName; }
-    public void setMunicipalityName(String municipalityName) { this.municipalityName = municipalityName; }
+    public String getImagePath() {
+        return imagePath;
+    }
 
-    public String getMunicipalityProvince() { return municipalityProvince; }
-    public void setMunicipalityProvince(String municipalityProvince) { this.municipalityProvince = municipalityProvince; }
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
 
-    public String getMunicipalityCode() { return municipalityCode; }
-    public void setMunicipalityCode(String municipalityCode) { this.municipalityCode = municipalityCode; }
+    public Image getImage() {
+        return image;
+    }
 
-    public void setDate(Date date) { this.date = date; }
-    public Date getDate() { return date; }
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+
+    public String getViaDelProblema() {
+        return viaDelProblema;
+    }
+
+    public void setViaDelProblema(String viaDelProblema) {
+        this.viaDelProblema = viaDelProblema;
+    }
+
+    public String getAuthorUsername() {
+        return authorUsername;
+    }
+
+    public void setAuthorUsername(String authorUsername) {
+        this.authorUsername = authorUsername;
+    }
+
+    public String getMunicipalityName() { return municipalityName;
+    }
+
+    public void setMunicipalityName(String municipalityName) {
+        this.municipalityName = municipalityName;
+    }
+
+    public String getMunicipalityProvince() {
+        return municipalityProvince;
+    }
+
+
+    public void setMunicipalityProvince(String municipalityProvince) {
+        this.municipalityProvince = municipalityProvince;
+    }
+
+    public String getMunicipalityCode() {
+        return municipalityCode;
+    }
+
+    public void setMunicipalityCode(String municipalityCode) {
+        this.municipalityCode = municipalityCode;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Date getDate() {
+        return date;
+    }
 
 
 
