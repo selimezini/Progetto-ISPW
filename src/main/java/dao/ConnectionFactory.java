@@ -18,7 +18,6 @@ public class ConnectionFactory {
     private static Connection connection;
 
     static {
-        // Carica il file da src/main/resources/config/db.properties
         try (InputStream input = ConnectionFactory.class
                 .getClassLoader()
                 .getResourceAsStream("config/db.properties")) {
@@ -34,14 +33,14 @@ public class ConnectionFactory {
             String pass          = properties.getProperty("LOGIN_PASS");
 
             connection = DriverManager.getConnection(connectionUrl, user, pass);
-
+        //commento questa riga ESEMPIO
         } catch (IOException | SQLException e) {
             e.printStackTrace();
             throw new DataAccessException("Errore nella connessione al database.", e);
         }
     }
 
-    /** Restituisce la Connection singleton. */
+
     public static Connection getConnection() {
         return connection;
     }
