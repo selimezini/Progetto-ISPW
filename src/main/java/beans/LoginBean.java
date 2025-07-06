@@ -75,12 +75,9 @@ public class LoginBean {
             throw new ValidationException("Username non può superare 20 caratteri.");
         }
 
-        boolean isEmployee = "Employee".equals(role);
-        if (isEmployee) {
-            if (municipalityCode == null || municipalityCode.trim().isEmpty()) {
-                throw new ValidationException("Per il ruolo Employee il codice municipale è obbligatorio.");
-            }
-
+        if ("Employee".equals(role)
+                && (municipalityCode == null || municipalityCode.trim().isEmpty())) {
+            throw new ValidationException("Per il ruolo Employee il codice municipale è obbligatorio.");
         }
     }
 

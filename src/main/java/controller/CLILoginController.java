@@ -1,6 +1,7 @@
 package controller;
 
 import beans.LoginBean;
+import exceptions.ValidationException;
 import factory.GraphicalFactory;
 import exceptions.ApplicationException;
 
@@ -72,30 +73,40 @@ public class CLILoginController extends GraphicLoginController {
         return new LoginBean(username, password, role, municipalCode);
     }
     private void attemptLogin() {
-        while (true) {
+        LoginController loginController = new LoginController();
+        GraphicalFactory factory = GraphicalFactory.getInstance();
 
+        while (true) {
             LoginBean creds = raccogliCredenziali();
-            LoginController loginController = new LoginController();
 
             try {
+                creds.validate();
                 loginController.authenticateUser(creds);
-                System.out.println("Autenticazione avvenuta con successo. Bentornato " + creds.getUsername() + "!")  ;
-                GraphicalFactory factory = GraphicalFactory.getInstance();
-                if(creds.getRole().equals("Citizen")) {
-                    HomeController homeController = factory.createHomeController();
+
+                System.out.println("Autenticazione avvenuta con successo. Bentornato "
+                        + creds.getUsername() + "!");
+                GraphicalFactory graphicalFactory = GraphicalFactory.getInstance();
+                if ("Citizen".equals(creds.getRole())) {
+                   HomeController homeController = graphicalFactory.createHomeController();
                     homeController.loadHome();
-                }else{
-                    HomeEmployeeController homeEmployeeController = factory.createHomeEmployeeController();
+                } else {
+                    HomeEmployeeController homeEmployeeController = graphicalFactory.createHomeEmployeeController();
                     homeEmployeeController.loadHome();
                 }
 
-            }catch(ApplicationException e) {
-                System.out.println(e.getMessage());
+                break;
+
+            } catch (ValidationException ve) {
+                // input non validi: ripeti il ciclo
+                System.out.println("Errore di input: " + ve.getMessage());
+                System.out.println("Riprova.\n");
+
+            } catch (ApplicationException ae) {
+
+                System.out.println("Login fallito: " + ae.getMessage());
+                System.out.println("Riprova.\n");
             }
-
-
         }
-
     }
 
     @Override

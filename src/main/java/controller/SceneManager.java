@@ -36,7 +36,7 @@ public class SceneManager {
             AnchorPane.setRightAnchor(content, 0.0);
 
         } catch (IOException | ReflectiveOperationException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 }

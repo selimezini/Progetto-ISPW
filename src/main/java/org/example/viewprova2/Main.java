@@ -87,7 +87,7 @@ public class Main extends Application {
 
         SceneManager.setStage(primaryStage);
 
-        // 2) carico il login-view come scena completa (usa fx:controller in FXML)
+
         try {
             Parent loginRoot = FXMLLoader.load(
                     getClass().getResource("/fxml/login-view.fxml")
@@ -96,7 +96,7 @@ public class Main extends Application {
             primaryStage.setTitle("CivisAlert – Login");
             primaryStage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+           System.out.println(e.getMessage());
         }
     }
 

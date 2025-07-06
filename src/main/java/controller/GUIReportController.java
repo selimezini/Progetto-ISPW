@@ -118,7 +118,7 @@ public class GUIReportController extends DoReportController{
                 selectedImagePath = file.toURI().toString();
                 PreviewImage.setImage(selectedImage);
             } catch (Exception e) {
-                e.printStackTrace();
+              System.out.println(e.getMessage());
             }
         }
     }
