@@ -41,10 +41,10 @@ public class GUIHomeEmployeeController extends HomeEmployeeController  {
         //loadIntoContentPane("/fxml/reportsMunicipality-view.fxml");
         ShowReportsController controller = GraphicalFactory.getInstance().createShowReportsController();
         SceneManager.switchScene(
-                dynamicAnchorPane,                        // **il tuo AnchorPane di “placeholder”**
-                "/fxml/reportsMunicipality-view.fxml",     // il FXML da caricare dentro
-                controller,                                // il controller custom
-                null                             // (opzionale) metodo di init da invocare
+                dynamicAnchorPane,                        
+                "/fxml/reportsMunicipality-view.fxml",
+                controller,
+                null
         );
 
 
@@ -86,7 +86,7 @@ public class GUIHomeEmployeeController extends HomeEmployeeController  {
                 dynamicAnchorPane,
                 "/fxml/MyAcc-view.fxml",
                 controller,
-                "startMyAcc"          // metodo di GUIHomeController che inizializza la vista
+                "startMyAcc"
         );
 
     }

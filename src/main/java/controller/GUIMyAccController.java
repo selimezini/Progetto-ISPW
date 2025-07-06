@@ -207,10 +207,8 @@ public class GUIMyAccController extends MyAccController {
 
     @FXML
     public void exit() {
-        SessionManager sessionManager  = SessionManager.getInstance();
-        sessionManager.setCurrentUser(null);
+        loginController.logout();
         Stage primaryStage = SceneManager.primaryStage;
-
         try {
             Parent loginRoot = FXMLLoader.load(
                     getClass().getResource("/fxml/login-view.fxml")

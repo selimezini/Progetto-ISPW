@@ -103,7 +103,6 @@ public class GUILoginController extends GraphicLoginController  {
 
     @Override
     public void  register() {
-        Stage stage = (Stage) loginPane.getScene().getWindow();
         RegisterController controller = GraphicalFactory.getInstance().createRegisterController();
         SceneManager.switchScene(
                 loginPane,

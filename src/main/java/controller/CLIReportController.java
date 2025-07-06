@@ -20,7 +20,7 @@ public class CLIReportController extends DoReportController {
         ReportController controller = new ReportController();
 
         while (true) {
-            System.out.println("\n==== Creazione Nuova Segnalazione (CLI) ====");
+            System.out.println("\n==== Creazione Nuova Segnalazione ====");
 
             System.out.print("Titolo del problema: ");
             String title = scanner.nextLine().trim();

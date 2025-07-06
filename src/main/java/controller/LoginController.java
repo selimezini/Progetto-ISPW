@@ -137,5 +137,10 @@ public class LoginController {
 
         }
 
+        public void logout() {
+            SessionManager sessionManager  = SessionManager.getInstance();
+            sessionManager.setCurrentUser(null);
+        }
+
 
 }
