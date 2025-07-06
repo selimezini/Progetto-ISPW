@@ -19,7 +19,7 @@
          </font>
       </Label>
       <JFXCheckBox fx:id="txtAmIEmployee" layoutX="301.0" layoutY="373.0" prefHeight="18.0" prefWidth="182.0" text="Sono un dipendente del comune" />
-      <JFXButton fx:id="loginButton" layoutX="301.0" layoutY="476.0" onAction="#handleLogin" style="-fx-background-color: #b8aa9c;" text="Log in" />
+      <JFXButton fx:id="loginButton" layoutX="301.0" layoutY="476.0" onAction="#login" style="-fx-background-color: #b8aa9c;" text="Log in" />
       <JFXButton fx:id="regButton" layoutX="432.0" layoutY="475.0" onAction="#register" style="-fx-background-color: #b8aa9c;" text="Registrati" />
       <Label layoutX="371.0" layoutY="226.0" text="Login" textFill="#807871">
          <font>
@@ -46,7 +46,7 @@
       </ImageView>
       <ImageView fitHeight="59.0" fitWidth="55.0" layoutX="253.0" layoutY="386.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/ChatGPT%20Image%2011%20giu%202025,%2016_14_49.png" />
+            <Image url="@../images/Image%2011%20giu%202025,%2016_14_49.png" />
          </image>
       </ImageView>
    </children>

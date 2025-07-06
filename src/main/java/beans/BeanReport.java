@@ -1,5 +1,6 @@
 package beans;
 
+import exceptions.ValidationException;
 import model.ProblemType;
 import model.UrgencyType;
 import javafx.scene.image.Image;
@@ -136,7 +137,18 @@ public class BeanReport {
     }
 
 
-
+    public void validate() {
+        if (title == null || title.trim().isEmpty() ||
+                description == null || description.trim().isEmpty() ||
+                problemType == null || problemType.trim().isEmpty() ||
+                urgencyType == null || urgencyType.trim().isEmpty() ||
+                viaDelProblema == null || viaDelProblema.trim().isEmpty()) {
+            throw new ValidationException("Perfavore inserire tutti i campi richiesti.");
+        }
+        if (title.length() > 20) {
+            throw new ValidationException("Il titolo non può superare 20 caratteri.");
+        }
+    }
 
 
     @Override

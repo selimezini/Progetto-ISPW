@@ -1,5 +1,7 @@
 package beans;
 
+import exceptions.ValidationException;
+
 public class LoginBean {
 
    private String username;
@@ -7,9 +9,8 @@ public class LoginBean {
    private String role;
    private String municipalityCode;
    private String municipalityName;
-   public LoginBean() {
 
-   }
+
 
    public LoginBean(String username, String password, String role, String municipalityCode) {
          this.username = username;
@@ -63,6 +64,24 @@ public class LoginBean {
     public String getMunicipalityName() {
 
        return municipalityName;
+    }
+
+    public void validate() {
+        if (username == null || username.trim().isEmpty() ||
+                password == null || password.trim().isEmpty()) {
+            throw new ValidationException("Username e password non possono essere vuoti.");
+        }
+        if (username.length() > 20) {
+            throw new ValidationException("Username non può superare 20 caratteri.");
+        }
+
+        boolean isEmployee = "Employee".equals(role);
+        if (isEmployee) {
+            if (municipalityCode == null || municipalityCode.trim().isEmpty()) {
+                throw new ValidationException("Per il ruolo Employee il codice municipale è obbligatorio.");
+            }
+
+        }
     }
 
 

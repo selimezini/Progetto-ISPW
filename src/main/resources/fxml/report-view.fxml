@@ -26,7 +26,7 @@
       <ComboBox fx:id="TypeOfProblem" layoutX="246.0" layoutY="264.0" prefHeight="25.0" prefWidth="229.0" promptText="Tipo di problema" />
       <ComboBox fx:id="Urgency" layoutX="243.0" layoutY="317.0" prefHeight="25.0" prefWidth="229.0" promptText="Urgenza" />
       <ImageView fx:id="PreviewImage" fitHeight="73.0" fitWidth="88.0" layoutX="313.0" layoutY="395.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="msgLabel" alignment="CENTER" layoutX="248.0" layoutY="526.0" prefHeight="17.0" prefWidth="229.0" textAlignment="CENTER" textFill="#57d746">
+      <Label fx:id="msgLabel" alignment="CENTER" layoutX="156.0" layoutY="523.0" prefHeight="20.0" prefWidth="403.0" textAlignment="CENTER" textFill="#b9140b">
          <font>
             <Font size="14.0" />
          </font></Label>

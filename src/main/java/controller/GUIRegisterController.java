@@ -4,6 +4,7 @@ import beans.LoginBean;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import exceptions.ApplicationException;
+import exceptions.ValidationException;
 import factory.GraphicalFactory;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
@@ -61,43 +62,59 @@ public class GUIRegisterController extends RegisterController  {
 
     @Override
     public void register() {
+        // 1) costruisco il bean
         String user = regUsername.getText().trim();
         String pass = regPassword.getText().trim();
         boolean isEmp = regEmployeeCheck.isSelected();
         String code = regMunicipalCode.getText().trim();
 
-
-        if (user.isEmpty() || pass.isEmpty() || (isEmp && code.isEmpty())) {
-            lblRegError.setText("Compila tutti i campi richiesti.");
-            return;
-        }
-
-        LoginBean bean = new LoginBean(user, pass, isEmp ? "Employee" : "Citizen", code);
+        LoginBean bean = new LoginBean(
+                user,
+                pass,
+                isEmp ? "Employee" : "Citizen",
+                code
+        );
 
         try {
-           LoginController loginController = new LoginController();
-           loginController.registerUser(bean);
-           successLbl.setText("Registrazione avvenuta con successo");
+
+            bean.validate();
+
+            // 3) registra l’utente
+            new LoginController().registerUser(bean);
+
+            // 4) notifico successo
+            successLbl.setText("Registrazione avvenuta con successo");
+
+            // 5) dopo 1 sec pulisco i campi
             PauseTransition pause = new PauseTransition(Duration.seconds(1));
             pause.setOnFinished(evt -> {
-                //SceneManager.changeScene("/fxml/login-view.fxml", "CivisAlert - Login");
+                regUsername.clear();
+                regPassword.clear();
+                regMunicipalCode.clear();
+                regEmployeeCheck.setSelected(false);
+                regMunicipalCode.setDisable(true);
+
+                lblRegError.setText("");
+                successLbl.setText("");
             });
             pause.play();
 
-        } catch (ApplicationException e) {
-            lblRegError.setText(e.getMessage());
+        } catch (ValidationException ve) {
+            // mostra l’errore di validazione
+            lblRegError.setText(ve.getMessage());
+        } catch (ApplicationException ae) {
+            lblRegError.setText(ae.getMessage());
         }
     }
 
     @FXML
     private void handleBackToLogin() {
-        //SceneManager.changeScene("/fxml/login-view.fxml", "CivisAlert - Login");
         GraphicLoginController loginController = GraphicalFactory.getInstance().createLoginController();
         SceneManager.switchScene(
                 registerPane,
                 "/fxml/login-view.fxml",
                 null,
-               null         // metodo di GUIHomeController che inizializza la vista
+               null
         );
 
     }

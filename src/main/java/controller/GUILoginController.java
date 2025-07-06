@@ -4,6 +4,7 @@ import beans.LoginBean;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import exceptions.ApplicationException;
+import exceptions.ValidationException;
 import factory.GraphicalFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -44,13 +45,6 @@ public class GUILoginController extends GraphicLoginController  {
     private ReportController reportController;
 
 
-    @FXML
-    void handleLogin(ActionEvent event) {
-
-        login();
-
-
-    }
 
     @FXML
     public void initialize() {
@@ -62,52 +56,49 @@ public class GUILoginController extends GraphicLoginController  {
     }
 
     @Override
+    @FXML
     public void login() {
-        String username        = txtUsername.getText();
-        String password        = txtPassword.getText();
-        String municipalCode   = txtMunicipalCode.getText();
-        boolean isEmployee     = txtAmIEmployee.isSelected();
-
-        String role = isEmployee ? "Employee" : "Citizen";
-
-        if (username == null || username.isEmpty() ||
-                password == null || password.isEmpty() ||
-                (isEmployee && (municipalCode == null || municipalCode.isEmpty()))) {
-            lblError.setText("Non ci possono essere campi vuoti. Per favore riprova.");
-            return;
-        }
-
-        LoginBean loginBean = new LoginBean(username, password, role, municipalCode);
-        System.out.println( "GUILOgin:" + role);
-        LoginController loginController = new LoginController();
         try {
-            loginController.authenticateUser(loginBean);
+            // 1) costruisce il bean con i valori della GUI
+            LoginBean loginBean = new LoginBean(
+                    txtUsername.getText(),
+                    txtPassword.getText(),
+                    txtAmIEmployee.isSelected() ? "Employee" : "Citizen",
+                    txtMunicipalCode.getText()
+            );
 
-            if (isEmployee) {
-                Stage stage = (Stage) loginPane.getScene().getWindow();
-                HomeEmployeeController homeController = GraphicalFactory.getInstance().createHomeEmployeeController();
+            // 2) delega la validazione al bean
+            loginBean.validate();
+
+            // 3) tenta l’autenticazione
+            new LoginController().authenticateUser(loginBean);
+
+            // 4) switch di scena in base al ruolo
+            if (txtAmIEmployee.isSelected()) {
                 SceneManager.switchScene(
                         loginPane,
                         "/fxml/homeEmployee-view.fxml",
-                        homeController,
-                        "loadHome"          // metodo di GUIHomeController che inizializza la vista
+                        GraphicalFactory.getInstance().createHomeEmployeeController(),
+                        "loadHome"
                 );
             } else {
-                Stage stage = (Stage) loginPane.getScene().getWindow();
-                HomeController homeController = GraphicalFactory.getInstance().createHomeController();
                 SceneManager.switchScene(
                         loginPane,
                         "/fxml/home-view.fxml",
-                        homeController,
-                        "loadHome"          // metodo di GUIHomeController che inizializza la vista
+                        GraphicalFactory.getInstance().createHomeController(),
+                        "loadHome"
                 );
             }
 
-        } catch (ApplicationException e) {
-            lblError.setText(e.getMessage());
+        } catch (ValidationException ve) {
+            // dati non validi
+            lblError.setText(ve.getMessage());
+
+        } catch (ApplicationException ae) {
+            // errore lato service / login fallito
+            lblError.setText(ae.getMessage());
         }
     }
-
 
 
     @Override
@@ -118,7 +109,7 @@ public class GUILoginController extends GraphicLoginController  {
                 loginPane,
                 "/fxml/register-view.fxml",
                 controller,
-                "startRegister"          // metodo di GUIHomeController che inizializza la vista
+                "startRegister"
         );
 
     }

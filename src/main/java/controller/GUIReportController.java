@@ -1,6 +1,7 @@
 package controller;
 
 import beans.BeanReport;
+import exceptions.ValidationException;
 import javafx.animation.PauseTransition;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
@@ -128,33 +129,30 @@ public class GUIReportController extends DoReportController{
 
     @Override
     public void createReport() {
-        String title = TitleTxt.getText();
+        String title       = TitleTxt.getText();
         String description = DescriptionTxt.getText();
-        String via = ViaDelProblemaTxt.getText();
-        ProblemType probType = TypeOfProblem.getValue();
-        UrgencyType urgType = Urgency.getValue();
+        String via         = ViaDelProblemaTxt.getText();
 
-        if (title.isEmpty() || description.isEmpty() || via.isEmpty()
-                || probType == null || urgType == null) {
-            msgLabel.setText("Perfavore inserire tutti i campi");
-            return;
-        }
+        ProblemType    selProb = TypeOfProblem.getValue();
+        UrgencyType    selUrg  = Urgency.getValue();
+        String problemDesc = (selProb == null) ? null : selProb.getDescription();
+        String urgencyDesc = (selUrg  == null) ? null : selUrg.getDescription();
 
         BeanReport bean = new BeanReport();
-
         bean.setTitle(title);
         bean.setDescription(description);
-        bean.setProblemType(probType.getDescription());
-        bean.setUrgencyType(urgType.getDescription());
+        bean.setViaDelProblema(via);
+        bean.setProblemType(problemDesc);
+        bean.setUrgencyType(urgencyDesc);
         bean.setStatus("APERTO");
         bean.setImagePath(selectedImagePath);
         bean.setImage(selectedImage);
-        bean.setViaDelProblema(via);
-
-        ReportController reportController = new ReportController();
 
         try {
-            reportController.submitReport(bean);
+            bean.validate();
+
+            new ReportController().submitReport(bean);
+
             msgLabel.setText("Segnalazione inviata con successo!");
             SceneManager.switchScene(
                     dynamicContentPane,
@@ -164,16 +162,21 @@ public class GUIReportController extends DoReportController{
             );
 
             PauseTransition pause = new PauseTransition(Duration.seconds(4));
-            pause.setOnFinished(evt -> SceneManager.switchScene(
-                    dynamicContentPane,
-                    "/fxml/homeDashboard-view.fxml",
-                    null,
-                    null
-            ));
+            pause.setOnFinished(evt ->
+                    SceneManager.switchScene(
+                            dynamicContentPane,
+                            "/fxml/homeDashboard-view.fxml",
+                            null,
+                            null
+                    )
+            );
             pause.play();
 
-        } catch (ApplicationException e) {
-            msgLabel.setText(e.getMessage());
+        } catch (ValidationException ve) {
+            msgLabel.setText(ve.getMessage());
+
+        } catch (ApplicationException ae) {
+            msgLabel.setText(ae.getMessage());
         }
     }
 
