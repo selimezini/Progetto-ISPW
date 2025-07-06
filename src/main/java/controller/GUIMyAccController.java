@@ -219,7 +219,7 @@ public class GUIMyAccController extends MyAccController {
             primaryStage.setTitle("CivisAlert – Login");
             primaryStage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
 
     }
