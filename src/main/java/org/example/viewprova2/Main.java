@@ -2,7 +2,7 @@ package org.example.viewprova2;
 
 
 import controller.GraphicLoginController;
-import controller.SceneManager;
+
 import factory.GraphicalFactory;
 import exceptions.DataLoadException;
 import javafx.application.Application;
@@ -25,7 +25,6 @@ public class Main extends Application {
         try {
             loadConfig();
         } catch (DataLoadException ex) {
-            // ← qui dentro ci finisci solo se loadConfig() ha thrown new DataLoadException(...)
             System.err.println(" Config persistenza: " + ex.getMessage());
             System.err.println("Uso modalità di default: " + storageMode);
         }
@@ -72,9 +71,7 @@ public class Main extends Application {
         }
     }
 
-    /**
-     * Restituisce la modalità scelta dall'utente.
-     */
+
     public static String getExecutionMode() {
         if (executionMode == null) {
             throw new IllegalStateException("Modalità di esecuzione non inizializzata.");
@@ -84,19 +81,20 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-
-        SceneManager.setStage(primaryStage);
-
-
         try {
-            Parent loginRoot = FXMLLoader.load(
-                    getClass().getResource("/fxml/login-view.fxml")
-            );
-            primaryStage.setScene(new Scene(loginRoot));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login-view.fxml"));
+
+            GraphicalFactory factory = GraphicalFactory.getInstance();
+            GraphicLoginController loginController = factory.createLoginController();
+            loader.setController(loginController);
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
             primaryStage.setTitle("CivisAlert – Login");
             primaryStage.show();
+
         } catch (IOException e) {
-           System.out.println(e.getMessage());
+            System.err.println("Errore nel caricamento della schermata di login: " + e.getMessage());
         }
     }
 
@@ -109,10 +107,8 @@ public class Main extends Application {
                 throw new DataLoadException("File di configurazione non trovato nel classpath");
             }
 
-            // 1) carica tutte le coppie chiave=valore dal file in un oggetto Properties
             props.load(in);
 
-            // 2) legge la proprietà "mode"
             String m = props.getProperty("mode");
             if (m == null) {
                 throw new DataLoadException("Manca la proprietà `mode`");

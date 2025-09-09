@@ -2,6 +2,7 @@ package controller;
 
 import beans.LoginBean;
 import exceptions.ApplicationException;
+import factory.GraphicalFactory;
 import javafx.animation.PauseTransition;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
@@ -209,15 +210,21 @@ public class GUIMyAccController extends MyAccController {
     public void exit() {
         loginController.logout();
         Stage primaryStage = SceneManager.primaryStage;
+
         try {
-            Parent loginRoot = FXMLLoader.load(
-                    getClass().getResource("/fxml/login-view.fxml")
-            );
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login-view.fxml"));
+
+            GraphicalFactory factory = GraphicalFactory.getInstance();
+            GraphicLoginController loginController = factory.createLoginController();
+            loader.setController(loginController);
+
+            Parent loginRoot = loader.load();
             primaryStage.setScene(new Scene(loginRoot));
             primaryStage.setTitle("CivisAlert – Login");
             primaryStage.show();
+
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            System.err.println("Errore durante il caricamento della schermata di login: " + e.getMessage());
         }
 
     }

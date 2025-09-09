@@ -41,10 +41,10 @@ public class GUIHomeController extends  HomeController{
     public void loadHome(){
 
         SceneManager.switchScene(
-                DinamicContentPane,                        // **il tuo AnchorPane di “placeholder”**
-                "/fxml/homeDashboard-view.fxml",     // il FXML da caricare dentro
-                null,                                // il controller custom
-               null                             // (opzionale) metodo di init da invocare
+                DinamicContentPane,
+                "/fxml/homeDashboard-view.fxml",
+                null,
+               null
         );
     }
 
@@ -55,14 +55,13 @@ public class GUIHomeController extends  HomeController{
     @FXML
     public void onNewReport() {
 
-       // loadIntoContentPane("/fxml/ChooseAMunicipality-view.fxml");
         ChooseMunicipalityController controller =
                 GraphicalFactory.getInstance().CreateMunicipalityController();
         SceneManager.switchScene(
-                DinamicContentPane,                        // **il tuo AnchorPane di “placeholder”**
-                "/fxml/ChooseAMunicipality-view.fxml",     // il FXML da caricare dentro
-                controller,                                // il controller custom
-                "startSearch"                              // (opzionale) metodo di init da invocare
+                DinamicContentPane,
+                "/fxml/ChooseAMunicipality-view.fxml",
+                controller,
+                "startSearch"
         );
 
     }
@@ -73,27 +72,25 @@ public class GUIHomeController extends  HomeController{
 
     @FXML
     public void showMyAcc() {
-        //loadIntoContentPane("/fxml/MyAcc-view.fxml");
-       // loadIntoContentPane("/fxml/MyAcc-view.fxml");
+
         MyAccController controller = GraphicalFactory.getInstance().createMyAccController();
         SceneManager.switchScene(
                 DinamicContentPane,
                 "/fxml/MyAcc-view.fxml",
                 controller,
-                "startMyAcc"          // metodo di GUIHomeController che inizializza la vista
+                "startMyAcc"
         );
 
     }
 
     @FXML
     public void showMyReports() {
-       // loadIntoContentPane("/fxml/reportsMunicipality-view.fxml");
         MyAccController controller = GraphicalFactory.getInstance().createMyAccController();
         SceneManager.switchScene(
                 DinamicContentPane,
                 "/fxml/reportsMunicipality-view.fxml",
                 controller,
-                "startRegister"          // metodo di GUIHomeController che inizializza la vista
+                "startRegister"
         );
 
 

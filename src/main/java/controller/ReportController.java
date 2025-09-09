@@ -29,18 +29,14 @@ public class ReportController {
         MunicipalityDao municipalityDao = dao.createMunicipalityDao();
         SessionManager sessionManager = SessionManager.getInstance();
 
-        System.out.println("[DEBUG] Inizio ricerca municipio con nome: " + municipality.getName());
 
         try {
             List<Municipality> municipalities =
                     municipalityDao.getMunicipalityByName(municipality.getName());
 
-            System.out.println("[DEBUG] Numero di risultati trovati: " + municipalities.size());
-
             List<MunicipalityBean> beans = new ArrayList<>();
 
             for (Municipality m : municipalities) {
-                System.out.println("[DEBUG] Municipio trovato: nome = " + m.getName() + ", regione = " + m.getRegion() + "codice: " + m.getCodice());
 
                 MunicipalityBean bean = new MunicipalityBean(m.getName(), m.getRegion(), m.getCodice());
                 beans.add(bean);
@@ -48,15 +44,9 @@ public class ReportController {
 
             sessionManager.setMunicipalities(municipalities);
 
-            System.out.println("[DEBUG] Lista di bean ritornata: ");
-            for (MunicipalityBean b : beans) {
-                System.out.println(" - nome = " + b.getName() + ", regione = " + b.getRegion() + "codice: " + b.getCode());
-            }
-
             return beans;
 
         } catch (DataAccessException e) {
-            System.out.println("[ERRORE] Eccezione durante la ricerca: " + e.getMessage());
             throw new DataAccessException(e.getMessage(), e);
         }
     }
@@ -118,12 +108,10 @@ public class ReportController {
         String munName     = currentMunicipality.getName();
         String munProvince = currentMunicipality.getProvince();
 
-        // 1) Recupera i report (municipality = null nei Report)
         List<Report> reports = factory
                 .createReportDao()
                 .getAllReportsOfMunicipality(munName, munProvince);
 
-        // 2) Imposta su ciascun Report la municipality che conosciamo
         for (Report r : reports) {
             r.setMunicipality(currentMunicipality);
         }
@@ -152,7 +140,6 @@ public class ReportController {
             b.setViaDelProblema(r.getViaDelProblema());
             b.setAuthorUsername(r.getAuthor().getUsername());
 
-            // Ora municipality non è più null
             b.setMunicipalityName(r.getMunicipality().getName());
             b.setMunicipalityProvince(r.getMunicipality().getProvince());
             b.setMunicipalityCode(r.getMunicipality().getCodice());

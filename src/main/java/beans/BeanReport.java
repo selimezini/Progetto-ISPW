@@ -171,9 +171,7 @@ public class BeanReport {
 
 
 
-    /**
-     * Converte la descrizione in ProblemType
-     */
+
     public ProblemType getProblemTypeEnum() {
         for (ProblemType pt : ProblemType.values()) {
             if (pt.getDescription().equals(this.problemType)) {
@@ -183,9 +181,7 @@ public class BeanReport {
         return null;
     }
 
-    /**
-     * Converte la descrizione in UrgencyType
-     */
+
     public UrgencyType getUrgencyTypeEnum() {
         for (UrgencyType ut : UrgencyType.values()) {
             if (ut.getDescription().equals(this.urgencyType)) {
