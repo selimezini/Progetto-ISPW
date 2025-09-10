@@ -10,11 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * DAO per i Municipi su MySQL, che NON chiude mai
- * né PreparedStatement né ResultSet.
- * Si affida al garbage collector per il rilascio delle risorse.
- */
+
 public class DbMunicipalityDao extends MunicipalityDao {
 
     private final Connection conn = ConnectionFactory.getConnection();

@@ -38,7 +38,7 @@ public class GUIHomeEmployeeController extends HomeEmployeeController  {
     @FXML
     public void showReports() {
 
-        //loadIntoContentPane("/fxml/reportsMunicipality-view.fxml");
+
         ShowReportsController controller = GraphicalFactory.getInstance().createShowReportsController();
         SceneManager.switchScene(
                 dynamicAnchorPane,                        
@@ -80,7 +80,7 @@ public class GUIHomeEmployeeController extends HomeEmployeeController  {
     @FXML
     public void showMyAcc() {
 
-        //loadIntoContentPane("/fxml/myAcc-view.fxml");
+
         MyAccController controller = GraphicalFactory.getInstance().createMyAccController();
         SceneManager.switchScene(
                 dynamicAnchorPane,

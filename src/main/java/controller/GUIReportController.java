@@ -64,7 +64,7 @@ public class GUIReportController extends DoReportController{
 
     @FXML
     public void initialize() {
-        // Popola il ComboBox TypeOfProblem
+
         TypeOfProblem.getItems().addAll(ProblemType.values());
 
         TypeOfProblem.setCellFactory(comboBox -> new javafx.scene.control.ListCell<>() {

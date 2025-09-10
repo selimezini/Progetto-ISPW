@@ -8,13 +8,17 @@ import exceptions.ValidationException;
 import factory.GraphicalFactory;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -79,13 +83,13 @@ public class GUIRegisterController extends RegisterController  {
 
             bean.validate();
 
-            // 3) registra l’utente
+
             new LoginController().registerUser(bean);
 
-            // 4) notifico successo
+
             successLbl.setText("Registrazione avvenuta con successo");
 
-            // 5) dopo 1 sec pulisco i campi
+
             PauseTransition pause = new PauseTransition(Duration.seconds(1));
             pause.setOnFinished(evt -> {
                 regUsername.clear();
@@ -100,7 +104,7 @@ public class GUIRegisterController extends RegisterController  {
             pause.play();
 
         } catch (ValidationException ve) {
-            // mostra l’errore di validazione
+
             lblRegError.setText(ve.getMessage());
         } catch (ApplicationException ae) {
             lblRegError.setText(ae.getMessage());
@@ -109,13 +113,26 @@ public class GUIRegisterController extends RegisterController  {
 
     @FXML
     private void handleBackToLogin() {
-        GraphicLoginController loginController = GraphicalFactory.getInstance().createLoginController();
-        SceneManager.switchScene(
-                registerPane,
-                "/fxml/login-view.fxml",
-                null,
-               null
-        );
+        Stage stage = (Stage) registerPane.getScene().getWindow();
 
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login-view.fxml"));
+
+            GraphicalFactory factory = GraphicalFactory.getInstance();
+            GraphicLoginController loginController = factory.createLoginController();
+            loader.setController(loginController);
+
+            Parent loginRoot = loader.load();
+            stage.setScene(new Scene(loginRoot));
+            stage.setTitle("CivisAlert – Login");
+            stage.show();
+
+
+
+        } catch (IOException e) {
+            System.err.println("Errore durante il caricamento della schermata di login: " + e.getMessage());
+
+        }
     }
+
 }

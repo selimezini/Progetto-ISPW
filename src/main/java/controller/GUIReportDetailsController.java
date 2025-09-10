@@ -49,16 +49,16 @@ public class GUIReportDetailsController extends  ReportDetailsController {
             }
         }
 
-        // 1) Costruisco una lista di descrizioni a partire da ReportStatus.values()
+
         List<String> descrizioni = new ArrayList<>();
         for (ReportStatus rs : ReportStatus.values()) {
             descrizioni.add(rs.getDescription());
         }
 
-        // 2) Popolo il ComboBox<String> con quelle descrizioni
+
         stateBox.getItems().setAll(descrizioni);
 
-        String savedDesc = report.getStatus(); // es. “In corso”
+        String savedDesc = report.getStatus();
         String currentDesc = null;
         for (ReportStatus rs : ReportStatus.values()) {
             if (rs.getDescription().equals(savedDesc)) {
@@ -66,7 +66,7 @@ public class GUIReportDetailsController extends  ReportDetailsController {
                 break;
             }
         }
-        // Se non trovato, currentDesc resterà null, altrimenti è la descrizione corretta
+
         stateBox.setValue(currentDesc);
 
 
@@ -76,7 +76,7 @@ public class GUIReportDetailsController extends  ReportDetailsController {
     @Override
     @FXML
     public void confirmChanges() {
-        // 1) Leggo la descrizione selezionata
+
         String selectedDesc = stateBox.getValue();
         BeanReport newReport = report;
         newReport.setStatus(selectedDesc);

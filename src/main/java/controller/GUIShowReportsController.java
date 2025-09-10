@@ -47,10 +47,10 @@ public class GUIShowReportsController extends ShowReportsController {
             }
         });
 
-        // 4) Listener sul doppio click
+
         listReports.setOnMouseClicked(this::onReportClicked);
 
-        // 5) Carica subito i report appena la GUI viene inizializzata
+
         showReports();
     }
 

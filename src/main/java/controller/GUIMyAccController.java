@@ -209,7 +209,7 @@ public class GUIMyAccController extends MyAccController {
     @FXML
     public void exit() {
         loginController.logout();
-        Stage primaryStage = SceneManager.primaryStage;
+        Stage stage = (Stage) exitButton.getScene().getWindow();
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login-view.fxml"));
@@ -219,13 +219,12 @@ public class GUIMyAccController extends MyAccController {
             loader.setController(loginController);
 
             Parent loginRoot = loader.load();
-            primaryStage.setScene(new Scene(loginRoot));
-            primaryStage.setTitle("CivisAlert – Login");
-            primaryStage.show();
+            stage.setScene(new Scene(loginRoot));
+            stage.setTitle("CivisAlert – Login");
+            stage.show();
 
         } catch (IOException e) {
             System.err.println("Errore durante il caricamento della schermata di login: " + e.getMessage());
         }
-
     }
 }

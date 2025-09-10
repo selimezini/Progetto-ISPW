@@ -66,7 +66,7 @@ public class ReportController {
             MunicipalityBean munBean = session.getCurrentMunicipalityReport();
             Municipality municipality = muniDao.getMunicipalityByNameAndRegion(munBean.getName(),munBean.getRegion() );
 
-            // 3) Costruisce il Report
+
             Report report = new Report();
             String randomId = UUID.randomUUID().toString();
             report.setReportId(randomId);
@@ -81,12 +81,12 @@ public class ReportController {
             report.setAuthor(author);
             report.setMunicipality(municipality);
 
-            // 4) Assegna tipi ed data corrente
+
             report.setProblemType(bean.getProblemTypeEnum());
             report.setUrgencyType(bean.getUrgencyTypeEnum());
             report.setDate(new Date());
-            System.out.println("Stampo il path dell'immagine: " + report.getImagePath());
-            // 5) Salva
+
+           //salvo
             reportDao.addReport(report);
             System.out.println("Report submitted");
 
@@ -104,7 +104,7 @@ public class ReportController {
         MunicipalityDao munDao = factory.createMunicipalityDao();
         Municipality currentMunicipality = munDao.getMunicipalityByCode(municipalityCode);
 
-        System.out.println("Entrato nel controller applicativo per getReportsForCurrentMunicipality");
+
         String munName     = currentMunicipality.getName();
         String munProvince = currentMunicipality.getProvince();
 
@@ -116,7 +116,7 @@ public class ReportController {
             r.setMunicipality(currentMunicipality);
         }
 
-        // 3) Mappo ogni Report in un BeanReport
+
         List<BeanReport> beanList = new ArrayList<>(reports.size());
         for (Report r : reports) {
             BeanReport b = new BeanReport();
@@ -162,22 +162,20 @@ public class ReportController {
 
 
     public List<BeanReport> getUserReports() {
-        System.out.println("Entrato nel controller applicativo per getUserReports");
 
-        // 1) Username corrente
+
         String username = SessionManager.getInstance()
                 .getCurrentUser()
                 .getUsername();
-        System.out.println("Username recuperato: " + username);
 
-        // 2) Recupero la lista di Report dal DAO
+
+
         List<Report> modelReports = FactoryDao
                 .getInstance()
                 .createReportDao()
                 .getReportsOfUser(username);
-        System.out.println("Numero di Report dal DAO: " + modelReports.size());
 
-        // 3) Mappa ogni Report in un BeanReport
+
         List<BeanReport> beans = new ArrayList<>(modelReports.size());
         for (Report r : modelReports) {
             BeanReport b = new BeanReport();
@@ -191,7 +189,7 @@ public class ReportController {
             b.setImage(null);
             b.setViaDelProblema(r.getViaDelProblema());
 
-            // 4) Imposto gli altri campi con i setter
+
             b.setReportId(r.getReportId());
             b.setDate(r.getDate());
             b.setAuthorUsername(r.getAuthor().getUsername());
@@ -209,11 +207,10 @@ public class ReportController {
                 }
             }
 
-            System.out.println("HO PRESO IL REPORT DI USER: " + b);
             beans.add(b);
         }
 
-        System.out.println("Totale BeanReport restituiti: " + beans.size());
+
         return beans;
     }
 }

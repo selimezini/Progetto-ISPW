@@ -22,14 +22,14 @@ public class LoginController {
         SessionManager session     = SessionManager.getInstance();
 
         try {
-            // 1) Trovo l'utente generico
+
             User authenticatedUser = userDao.verifyUser(
                     loginBean.getUsername(),
                     loginBean.getPassword(),
                     loginBean.getRole()
             );
 
-            // 2) Se è un Employee, verifico il codice del comune
+
             if (authenticatedUser instanceof Employee) {
                 Municipality m = factoryDao
                         .createMunicipalityDao()
@@ -43,7 +43,7 @@ public class LoginController {
                 session.setMunicipalityCode(m.getCodice());
             }
 
-            // 3) Memorizzo l’utente in sessione
+
             session.setCurrentUser(authenticatedUser);
 
         } catch (UserNotFoundException e) {

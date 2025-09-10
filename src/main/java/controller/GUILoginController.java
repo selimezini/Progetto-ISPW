@@ -59,7 +59,7 @@ public class GUILoginController extends GraphicLoginController  {
     @FXML
     public void login() {
         try {
-            // 1) costruisce il bean con i valori della GUI
+
             LoginBean loginBean = new LoginBean(
                     txtUsername.getText(),
                     txtPassword.getText(),
@@ -67,13 +67,13 @@ public class GUILoginController extends GraphicLoginController  {
                     txtMunicipalCode.getText()
             );
 
-            // 2) delega la validazione al bean
+
             loginBean.validate();
 
-            // 3) tenta l’autenticazione
+
             new LoginController().authenticateUser(loginBean);
 
-            // 4) switch di scena in base al ruolo
+
             if (txtAmIEmployee.isSelected()) {
                 SceneManager.switchScene(
                         loginPane,
@@ -91,11 +91,11 @@ public class GUILoginController extends GraphicLoginController  {
             }
 
         } catch (ValidationException ve) {
-            // dati non validi
+
             lblError.setText(ve.getMessage());
 
         } catch (ApplicationException ae) {
-            // errore lato service / login fallito
+
             lblError.setText(ae.getMessage());
         }
     }

@@ -6,20 +6,13 @@ import exceptions.DataAccessException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * DAO “demo” che si comporta come DbMunicipalityDao, ma
- * legge/scrive solo in memoria (RAM). Non esegue query SQL
- * e non chiude connessioni, PreparedStatement, né ResultSet.
- */
+
 public class DemoMunicipalityDao extends MunicipalityDao {
 
     private final List<Municipality> municipalities = new ArrayList<>();
     private static DemoMunicipalityDao instance;
 
-    /**
-     * Restituisce l’istanza singleton di DemoMunicipalityDao,
-     * inizializzandola al primo accesso con dati fittizi.
-     */
+
     public static DemoMunicipalityDao getInstance() {
         if (instance == null) {
             instance = new DemoMunicipalityDao();
@@ -27,9 +20,7 @@ public class DemoMunicipalityDao extends MunicipalityDao {
         return instance;
     }
 
-    /**
-     * Costruttore privato: popola la “tabella” in RAM con alcuni dati di esempio.
-     */
+
     private DemoMunicipalityDao() {
         municipalities.add(new Municipality("Milano",    "Milano", "MI001", "Lombardia"));
         municipalities.add(new Municipality("Grottaferrata","Roma",  "GR001","Lazio"));
@@ -37,10 +28,7 @@ public class DemoMunicipalityDao extends MunicipalityDao {
         // Aggiungi altri se necessario…
     }
 
-    /**
-     * Cerca tutti i comuni il cui nome contiene (case‐insensitive) la stringa passata.
-     * Se il parametro è null, restituisce lista vuota.
-     */
+
     @Override
     public List<Municipality> getMunicipalityByName(String nameFragment) {
         try {
@@ -60,10 +48,7 @@ public class DemoMunicipalityDao extends MunicipalityDao {
         }
     }
 
-    /**
-     * Restituisce il Comune il cui codice corrisponde esattamente (case‐insensitive)
-     * a quello passato, oppure null se non trovato.
-     */
+
     @Override
     public Municipality getMunicipalityByCode(String code) {
         try {
@@ -82,10 +67,7 @@ public class DemoMunicipalityDao extends MunicipalityDao {
         }
     }
 
-    /**
-     * Restituisce il Comune il cui nome **esatto** (case‐insensitive) e la cui regione
-     * (case‐insensitive) corrispondono ai parametri, oppure null se non trovato.
-     */
+
     @Override
     public Municipality getMunicipalityByNameAndRegion(String name, String region) {
         try {

@@ -21,7 +21,7 @@ public class CLIShowReportsController extends ShowReportsController {
 
         List<BeanReport> reports = reportController.getReportsForCurrentMunicipality();
 
-        // 2) Se non ci sono segnalazioni, esci
+
         if (reports.isEmpty()) {
             System.out.println("Nessuna segnalazione per il comune selezionato.");
             return;

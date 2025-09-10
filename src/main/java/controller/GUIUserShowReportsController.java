@@ -44,10 +44,10 @@ public class GUIUserShowReportsController extends ShowReportsController {
             }
         });
 
-        // doppio click
+
         listReports.setOnMouseClicked(this::onReportClicked);
 
-        // carico subito i report dell'utente
+
         showReports();
     }
 

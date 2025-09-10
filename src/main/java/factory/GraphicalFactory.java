@@ -29,7 +29,7 @@ public abstract class GraphicalFactory {
     }
 
 
-    // === Abstract factory methods ===
+
     public abstract DoReportController CreateReportController();
     public abstract ChooseMunicipalityController CreateMunicipalityController();
     public abstract GraphicLoginController createLoginController();
