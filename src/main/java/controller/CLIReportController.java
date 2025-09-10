@@ -19,7 +19,9 @@ public class CLIReportController extends DoReportController {
         Scanner scanner = new Scanner(System.in);
         ReportController controller = new ReportController();
 
-        while (true) {
+        boolean done = false;
+
+        while (!done) {
             System.out.println("\n==== Creazione Nuova Segnalazione ====");
 
             System.out.print("Titolo del problema: ");
@@ -37,17 +39,16 @@ public class CLIReportController extends DoReportController {
                 System.out.printf("  %d) %s%n", i + 1, types[i].getDescription());
             }
             System.out.print("Seleziona il tipo di problema (1-" + types.length + "): ");
-            int typeIndex = Integer.parseInt(scanner.nextLine()) - 1;
+            int typeIndex = Integer.parseInt(scanner.nextLine().trim()) - 1;
             ProblemType selectedType = types[typeIndex];
 
-            // 5. Urgenza
             UrgencyType[] urgencies = UrgencyType.values();
             System.out.println("\nLivelli di urgenza disponibili:");
             for (int i = 0; i < urgencies.length; i++) {
                 System.out.printf("  %d) %s%n", i + 1, urgencies[i].getDescription());
             }
             System.out.print("Seleziona l’urgenza (1-" + urgencies.length + "): ");
-            int urgencyIndex = Integer.parseInt(scanner.nextLine()) - 1;
+            int urgencyIndex = Integer.parseInt(scanner.nextLine().trim()) - 1;
             UrgencyType selectedUrgency = urgencies[urgencyIndex];
 
             System.out.print("Percorso dell’immagine (facoltativo, invio per saltare): ");
@@ -71,17 +72,16 @@ public class CLIReportController extends DoReportController {
                 controller.submitReport(bean);
 
                 System.out.println("Segnalazione inviata con successo!");
-                break;
+                done = true; // usciamo dal ciclo impostando il flag
 
             } catch (ValidationException ve) {
-
                 System.out.println("Errore di input: " + ve.getMessage());
                 System.out.println("Riprova da capo.\n");
+                // done rimane false -> il ciclo ricomincia
 
             } catch (ApplicationException ae) {
-                System.out.println("Errore durante l’invio della segnalazione: "
-                        + ae.getMessage());
-                break;
+                System.out.println("Errore durante l’invio della segnalazione: " + ae.getMessage());
+                done = true; // usciamo dal ciclo anche in caso di errore applicativo
             }
         }
     }
