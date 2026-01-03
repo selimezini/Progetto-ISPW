@@ -14,6 +14,8 @@ import java.util.List;
 public class DbMunicipalityDao extends MunicipalityDao {
 
     private static final String COL_PROVINCE = "province";
+    private static final String COL_CODICE = "codice";
+    private static final String COL_REGION = "region";
 
     private final Connection conn = ConnectionFactory.getConnection();
 
@@ -34,9 +36,9 @@ public class DbMunicipalityDao extends MunicipalityDao {
             while (rs.next()) {
                 list.add(new Municipality(
                         rs.getString("name"),
-                        rs.getString(COL_PROVINCE),   // ← Usata costante
-                        rs.getString("codice"),
-                        rs.getString("region")
+                        rs.getString(COL_PROVINCE),
+                        rs.getString(COL_CODICE),
+                        rs.getString(COL_REGION)
                 ));
             }
             return list;
@@ -45,6 +47,7 @@ public class DbMunicipalityDao extends MunicipalityDao {
             throw new DataAccessException("Errore cercando comuni per nome", ex);
         }
     }
+
 
     @Override
     public Municipality getMunicipalityByCode(String code) {
@@ -62,9 +65,9 @@ public class DbMunicipalityDao extends MunicipalityDao {
             if (rs.next()) {
                 return new Municipality(
                         rs.getString("name"),
-                        rs.getString(COL_PROVINCE),   // ← Usata costante
-                        rs.getString("codice"),
-                        rs.getString("region")
+                        rs.getString(COL_PROVINCE),
+                        rs.getString(COL_CODICE),
+                        rs.getString(COL_REGION)
                 );
             }
             return null;
@@ -74,6 +77,7 @@ public class DbMunicipalityDao extends MunicipalityDao {
         }
     }
 
+
     @Override
     public Municipality getMunicipalityByNameAndRegion(String name, String region) {
         String sql = """
@@ -81,6 +85,7 @@ public class DbMunicipalityDao extends MunicipalityDao {
           FROM municipalities
          WHERE name = ? AND region = ?
         """;
+
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, name);
@@ -90,12 +95,13 @@ public class DbMunicipalityDao extends MunicipalityDao {
             if (rs.next()) {
                 return new Municipality(
                         rs.getString("name"),
-                        rs.getString(COL_PROVINCE),   // ← Usata costante
-                        rs.getString("codice"),
-                        rs.getString("region")
+                        rs.getString(COL_PROVINCE),
+                        rs.getString(COL_CODICE),
+                        rs.getString(COL_REGION)
                 );
             }
             return null;
+
         } catch (SQLException ex) {
             throw new DataAccessException("Errore cercando comune per nome e regione", ex);
         }

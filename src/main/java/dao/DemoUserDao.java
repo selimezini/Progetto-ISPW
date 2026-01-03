@@ -61,12 +61,12 @@ public class DemoUserDao extends UserDao {
 
     @Override
     public void updatePassword(String username, String newPassword) {
-
+        //non implementato
     }
 
     @Override
     public void updateUsername(String username,String newUsername) {
-
+        //non implementato
     }
 
     @Override
