@@ -13,6 +13,8 @@ import java.util.List;
 
 public class DbMunicipalityDao extends MunicipalityDao {
 
+    private static final String COL_PROVINCE = "province";
+
     private final Connection conn = ConnectionFactory.getConnection();
 
     @Override
@@ -32,7 +34,7 @@ public class DbMunicipalityDao extends MunicipalityDao {
             while (rs.next()) {
                 list.add(new Municipality(
                         rs.getString("name"),
-                        rs.getString("province"),
+                        rs.getString(COL_PROVINCE),   // ← Usata costante
                         rs.getString("codice"),
                         rs.getString("region")
                 ));
@@ -60,7 +62,7 @@ public class DbMunicipalityDao extends MunicipalityDao {
             if (rs.next()) {
                 return new Municipality(
                         rs.getString("name"),
-                        rs.getString("province"),
+                        rs.getString(COL_PROVINCE),   // ← Usata costante
                         rs.getString("codice"),
                         rs.getString("region")
                 );
@@ -88,7 +90,7 @@ public class DbMunicipalityDao extends MunicipalityDao {
             if (rs.next()) {
                 return new Municipality(
                         rs.getString("name"),
-                        rs.getString("province"),
+                        rs.getString(COL_PROVINCE),   // ← Usata costante
                         rs.getString("codice"),
                         rs.getString("region")
                 );
@@ -97,7 +99,5 @@ public class DbMunicipalityDao extends MunicipalityDao {
         } catch (SQLException ex) {
             throw new DataAccessException("Errore cercando comune per nome e regione", ex);
         }
-
     }
-
-    }
+}
