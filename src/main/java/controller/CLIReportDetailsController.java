@@ -55,7 +55,8 @@ public class CLIReportDetailsController extends ReportDetailsController {
         System.out.println("\nSeleziona il nuovo stato:");
         for (int i = 0; i < statuses.length; i++) {
 
-            System.out.printf("  %d) %s\n", i + 1, statuses[i].getDescription());
+            System.out.printf("  %d) %s%n", i + 1, statuses[i].getDescription());
+
         }
 
         int choice = -1;
