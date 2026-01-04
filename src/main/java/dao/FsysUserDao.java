@@ -1,7 +1,5 @@
 package dao;
 
-import model.users.Citizen;
-import model.users.Employee;
 import model.users.User;
 
 public class FsysUserDao extends UserDao {
