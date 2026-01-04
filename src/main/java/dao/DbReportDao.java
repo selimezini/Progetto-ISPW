@@ -1,6 +1,6 @@
 package dao;
 
-import model.Municipality;
+
 import model.Report;
 import model.ProblemType;
 import model.UrgencyType;
@@ -9,7 +9,6 @@ import model.users.User;
 import exceptions.DataAccessException;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 
