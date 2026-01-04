@@ -1,6 +1,6 @@
 package dao;
 
-import model.Municipality;
+
 import model.users.Citizen;
 import model.users.Employee;
 
@@ -12,7 +12,7 @@ import exceptions.UserNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 
 public class DemoUserDao extends UserDao {
