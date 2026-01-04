@@ -18,10 +18,10 @@ import java.util.stream.Collectors;
 
 public class GUIChooseMunicipalityController extends ChooseMunicipalityController {
 
-    @FXML private Label msgLabel;
-    @FXML private JFXListView<String> municipalitiesList;
-    @FXML private JFXButton searchMunicipalityButton;
-    @FXML private TextField municipalityNameTxt;
+    @FXML private Label MsgLabel;
+    @FXML private JFXListView<String> MunicipalitiesList;
+    @FXML private JFXButton SearchMunicipalityButton;
+    @FXML private TextField MunicipalityNameTxt;
 
 
     @FXML private AnchorPane contentPane;
@@ -36,10 +36,10 @@ public class GUIChooseMunicipalityController extends ChooseMunicipalityControlle
     @FXML
     @Override
     public void searchMunicipality() {
-        String name = municipalityNameTxt.getText().trim();
+        String name = MunicipalityNameTxt.getText().trim();
 
         if (name.isEmpty()) {
-            municipalitiesList.getItems().clear();
+            MunicipalitiesList.getItems().clear();
             lastResults.clear();
             return;
         }
@@ -48,7 +48,7 @@ public class GUIChooseMunicipalityController extends ChooseMunicipalityControlle
         List<MunicipalityBean> beans = reportController.searchMunicipality(request);
 
         lastResults = beans;
-        municipalitiesList.getItems().setAll(
+        MunicipalitiesList.getItems().setAll(
                 beans.stream()
                         .map(MunicipalityBean::toString)
                         .collect(Collectors.toList())
@@ -58,7 +58,7 @@ public class GUIChooseMunicipalityController extends ChooseMunicipalityControlle
 
 
     public void chooseMunicipality() {
-        int idx = municipalitiesList.getSelectionModel().getSelectedIndex();
+        int idx = MunicipalitiesList.getSelectionModel().getSelectedIndex();
         if (idx < 0 || idx >= lastResults.size()) return;
 
         MunicipalityBean chosen = lastResults.get(idx);
@@ -79,7 +79,7 @@ public class GUIChooseMunicipalityController extends ChooseMunicipalityControlle
             AnchorPane.setRightAnchor(reportForm,  0.0);
 
         } catch (IOException e) {
-            msgLabel.setText("Errore nel caricamento del form di segnalazione.");
+            MsgLabel.setText("Errore nel caricamento del form di segnalazione.");
 
         }
     }

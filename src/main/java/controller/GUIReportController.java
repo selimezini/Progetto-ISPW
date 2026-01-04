@@ -24,32 +24,32 @@ import java.io.InputStream;
 public class GUIReportController extends DoReportController{
 
     @FXML
-    private JFXButton CancelReportButton;
+    private JFXButton cancelReportButton;
 
     @FXML
-    private JFXButton ConfirmReportButton;
+    private JFXButton confirmReportButton;
 
     @FXML
-    private TextField DescriptionTxt;
+    private TextField descriptionTxt;
 
     @FXML
-    private JFXButton InsertPhotoButton;
+    private JFXButton insertPhotoButton;
 
     @FXML
-    private TextField TitleTxt;
+    private TextField titleTxt;
 
     @FXML
-    private ComboBox<ProblemType> TypeOfProblem;
+    private ComboBox<ProblemType> typeOfProblem;
 
     @FXML
-    private ComboBox<UrgencyType> Urgency;
+    private ComboBox<UrgencyType> urgency;
 
     @FXML
-    private TextField ViaDelProblemaTxt;
+    private TextField viaDelProblemaTxt;
 
 
     @FXML
-    private ImageView PreviewImage;
+    private ImageView previewImage;
 
     @FXML
     private Label msgLabel;
@@ -65,9 +65,9 @@ public class GUIReportController extends DoReportController{
     @FXML
     public void initialize() {
 
-        TypeOfProblem.getItems().addAll(ProblemType.values());
+        typeOfProblem.getItems().addAll(ProblemType.values());
 
-        TypeOfProblem.setCellFactory(comboBox -> new javafx.scene.control.ListCell<>() {
+        typeOfProblem.setCellFactory(comboBox -> new javafx.scene.control.ListCell<>() {
             @Override
             protected void updateItem(ProblemType item, boolean empty) {
                 super.updateItem(item, empty);
@@ -75,7 +75,7 @@ public class GUIReportController extends DoReportController{
             }
         });
 
-        TypeOfProblem.setButtonCell(new javafx.scene.control.ListCell<>() {
+        typeOfProblem.setButtonCell(new javafx.scene.control.ListCell<>() {
             @Override
             protected void updateItem(ProblemType item, boolean empty) {
                 super.updateItem(item, empty);
@@ -84,9 +84,9 @@ public class GUIReportController extends DoReportController{
         });
 
 
-        Urgency.getItems().addAll(UrgencyType.values());
+        urgency.getItems().addAll(UrgencyType.values());
 
-        Urgency.setCellFactory(comboBox -> new javafx.scene.control.ListCell<>() {
+        urgency.setCellFactory(comboBox -> new javafx.scene.control.ListCell<>() {
             @Override
             protected void updateItem(UrgencyType item, boolean empty) {
                 super.updateItem(item, empty);
@@ -94,7 +94,7 @@ public class GUIReportController extends DoReportController{
             }
         });
 
-        Urgency.setButtonCell(new javafx.scene.control.ListCell<>() {
+        urgency.setButtonCell(new javafx.scene.control.ListCell<>() {
             @Override
             protected void updateItem(UrgencyType item, boolean empty) {
                 super.updateItem(item, empty);
@@ -111,12 +111,12 @@ public class GUIReportController extends DoReportController{
         chooser.getExtensionFilters().add(
                 new FileChooser.ExtensionFilter("Immagini", "*.png","*.jpg","*.jpeg")
         );
-        File file = chooser.showOpenDialog(InsertPhotoButton.getScene().getWindow());
+        File file = chooser.showOpenDialog(insertPhotoButton.getScene().getWindow());
         if (file != null) {
             try (InputStream in = new FileInputStream(file)) {
                 selectedImage     = new Image(in);
                 selectedImagePath = file.toURI().toString();
-                PreviewImage.setImage(selectedImage);
+                previewImage.setImage(selectedImage);
             } catch (Exception e) {
               System.out.println(e.getMessage());
             }
@@ -129,12 +129,12 @@ public class GUIReportController extends DoReportController{
 
     @Override
     public void createReport() {
-        String title       = TitleTxt.getText();
-        String description = DescriptionTxt.getText();
-        String via         = ViaDelProblemaTxt.getText();
+        String title       = titleTxt.getText();
+        String description = descriptionTxt.getText();
+        String via         = viaDelProblemaTxt.getText();
 
-        ProblemType    selProb = TypeOfProblem.getValue();
-        UrgencyType    selUrg  = Urgency.getValue();
+        ProblemType    selProb = typeOfProblem.getValue();
+        UrgencyType    selUrg  = urgency.getValue();
         String problemDesc = (selProb == null) ? null : selProb.getDescription();
         String urgencyDesc = (selUrg  == null) ? null : selUrg.getDescription();
 

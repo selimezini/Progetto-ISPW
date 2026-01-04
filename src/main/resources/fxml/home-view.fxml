@@ -26,7 +26,7 @@
       <Line endX="-91.0" fill="BLACK" layoutX="169.0" layoutY="374.0" startX="-169.0" />
       <Line endX="-91.0" fill="BLACK" layoutX="169.0" layoutY="211.0" startX="-169.0" />
       <Line endX="-90.0" fill="BLACK" layoutX="168.0" layoutY="456.0" startX="-169.0" />
-      <AnchorPane fx:id="DinamicContentPane" layoutX="79.0" layoutY="52.0" prefHeight="613.0" prefWidth="721.0" />
+      <AnchorPane fx:id="dinamicContentPane" layoutX="79.0" layoutY="52.0" prefHeight="613.0" prefWidth="721.0" />
       <ImageView fitHeight="30.0" fitWidth="59.0" layoutX="749.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/vecteezy_user-icon-on-transparent-background_19879186-removebg-preview.png" />

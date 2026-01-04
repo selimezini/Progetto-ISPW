@@ -14,7 +14,7 @@ import java.io.IOException;
 public class GUIHomeController extends  HomeController{
 
     @FXML
-    private AnchorPane DinamicContentPane;
+    private AnchorPane dinamicContentPane;
 
     @FXML
     private JFXButton newReportButton;
@@ -41,7 +41,7 @@ public class GUIHomeController extends  HomeController{
     public void loadHome(){
 
         SceneManager.switchScene(
-                DinamicContentPane,
+                dinamicContentPane,
                 "/fxml/homeDashboard-view.fxml",
                 null,
                null
@@ -58,7 +58,7 @@ public class GUIHomeController extends  HomeController{
         ChooseMunicipalityController controller =
                 GraphicalFactory.getInstance().CreateMunicipalityController();
         SceneManager.switchScene(
-                DinamicContentPane,
+                dinamicContentPane,
                 "/fxml/ChooseAMunicipality-view.fxml",
                 controller,
                 "startSearch"
@@ -75,7 +75,7 @@ public class GUIHomeController extends  HomeController{
 
         MyAccController controller = GraphicalFactory.getInstance().createMyAccController();
         SceneManager.switchScene(
-                DinamicContentPane,
+                dinamicContentPane,
                 "/fxml/MyAcc-view.fxml",
                 controller,
                 "startMyAcc"
@@ -87,7 +87,7 @@ public class GUIHomeController extends  HomeController{
     public void showMyReports() {
         MyAccController controller = GraphicalFactory.getInstance().createMyAccController();
         SceneManager.switchScene(
-                DinamicContentPane,
+                dinamicContentPane,
                 "/fxml/reportsMunicipality-view.fxml",
                 controller,
                 "startRegister"
