@@ -3,7 +3,6 @@ package controller;
 import beans.BeanReport;
 import factory.GraphicalFactory;
 
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 

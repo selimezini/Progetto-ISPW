@@ -51,25 +51,24 @@ public class Main extends Application {
 
     private static void askExecutionMode() {
         Scanner sc = new Scanner(System.in);
-        String input;
-        while (true) {
+
+        while (executionMode == null) {
             System.out.println("Seleziona la modalità di esecuzione:");
             System.out.println("1) GUI");
             System.out.println("2) CLI");
             System.out.print("> ");
-            input = sc.nextLine().trim();
+            String input = sc.nextLine().trim();
 
             if ("1".equals(input) || "GUI".equalsIgnoreCase(input)) {
                 executionMode = "GUI";
-                break;
             } else if ("2".equals(input) || "CLI".equalsIgnoreCase(input)) {
                 executionMode = "CLI";
-                break;
             } else {
                 System.out.println("Input non valido. Digita '1' o 'GUI' per GUI, '2' o 'CLI' per CLI.\n");
             }
         }
     }
+
 
 
     public static String getExecutionMode() {
