@@ -7,7 +7,7 @@ import model.users.User;
 public class FsysUserDao extends UserDao {
     @Override
     public void addUser(User user) {
-    // non implementato
+    // non implementato.
     }
 
     @Override
