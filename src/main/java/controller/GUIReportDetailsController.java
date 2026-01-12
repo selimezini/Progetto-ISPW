@@ -29,32 +29,31 @@ public class GUIReportDetailsController extends  ReportDetailsController {
     public void setReport(BeanReport report) {
         System.out.println("tipo di urgenza:" + report.getProblemType());
         this.report = report;
+
         titleLbl.setText(report.getTitle());
         dateLbl.setText(report.getDate().toString());
         urgencyLbl.setText(report.getUrgencyType());
         problemLbl.setText(report.getProblemType());
         descrLbl.setText(report.getDescription());
-        imageOfProblem.setImage(new Image(report.getImagePath()));
         viaLbl.setText(report.getViaDelProblema());
-
-
 
         // Carica immagine solo se il path non è nullo/empty
         String imgPath = report.getImagePath();
+
         if (imgPath != null && !imgPath.isBlank()) {
             try {
                 imageOfProblem.setImage(new Image(imgPath));
             } catch (Exception e) {
                 imageOfProblem.setImage(null);
             }
+        } else {
+            imageOfProblem.setImage(null);
         }
-
 
         List<String> descrizioni = new ArrayList<>();
         for (ReportStatus rs : ReportStatus.values()) {
             descrizioni.add(rs.getDescription());
         }
-
 
         stateBox.getItems().setAll(descrizioni);
 
@@ -68,9 +67,6 @@ public class GUIReportDetailsController extends  ReportDetailsController {
         }
 
         stateBox.setValue(currentDesc);
-
-
-
     }
 
     @Override
