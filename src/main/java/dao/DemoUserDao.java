@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
+@SuppressWarnings("java:S6548")
 public class DemoUserDao extends UserDao {
 
     private final List<User> users = new ArrayList<>();

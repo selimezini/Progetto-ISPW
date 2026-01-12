@@ -6,7 +6,7 @@ import exceptions.DataAccessException;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@SuppressWarnings("java:S6548")
 public class DemoReportDao extends ReportDao {
 
     private static DemoReportDao instance;
