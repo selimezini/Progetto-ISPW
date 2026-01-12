@@ -26,10 +26,9 @@ public class DbUserDao extends UserDao {
             ps.setString(2, user.getPassword());
             ps.setString(3, user.getRole());
 
-            if (user instanceof Employee) {
-                Employee e = (Employee) user;
+            // Pattern matching per instanceof
+            if (user instanceof Employee e) {
                 Municipality m = e.getMyMunicipality();
-                // salvo il codice del comune
                 ps.setString(4, m.getCodice());
             } else {
                 ps.setNull(4, Types.VARCHAR);
@@ -40,6 +39,7 @@ public class DbUserDao extends UserDao {
             throw new DataAccessException("Errore JDBC in addUser", ex);
         }
     }
+
 
 
 
