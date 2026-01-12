@@ -26,7 +26,6 @@ public class DbUserDao extends UserDao {
             ps.setString(2, user.getPassword());
             ps.setString(3, user.getRole());
 
-            // Pattern matching per instanceof
             if (user instanceof Employee e) {
                 Municipality m = e.getMyMunicipality();
                 ps.setString(4, m.getCodice());
