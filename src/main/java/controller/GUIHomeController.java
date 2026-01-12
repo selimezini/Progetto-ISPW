@@ -23,7 +23,7 @@ public class GUIHomeController extends  HomeController{
     private JFXButton myReportsButton;
 
     @FXML
-    private JFXButton EventsButton;
+    private JFXButton eventsButton;
 
 
     @FXML

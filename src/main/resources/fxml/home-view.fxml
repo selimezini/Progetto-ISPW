@@ -55,7 +55,7 @@
                </image>
             </ImageView>
             <Label layoutX="26.0" layoutY="459.0" text="eventi" />
-            <JFXButton fx:id="EventsButton" layoutX="3.0" layoutY="408.0" prefHeight="77.0" prefWidth="78.0" text="." />
+            <JFXButton fx:id="eventsButton" layoutX="3.0" layoutY="408.0" prefHeight="77.0" prefWidth="78.0" text="." />
             <JFXButton fx:id="newReportButton" layoutX="2.0" layoutY="325.0" onAction="#onNewReport" prefHeight="77.0" prefWidth="78.0" text="." />
             <JFXButton fx:id="myReportsButton" layoutX="-1.0" layoutY="240.0" onAction="#showMyReports" prefHeight="84.0" prefWidth="80.0" text="." />
             <ImageView fitHeight="59.0" fitWidth="42.0" layoutX="21.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true">
