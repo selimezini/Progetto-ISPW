@@ -3,19 +3,13 @@ package controller;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
 
 public class SceneManager {
 
-    public static Stage primaryStage;
 
-    public static void setStage(Stage stage) {
-        primaryStage = stage;
-    }
 
 
     public static void switchScene(AnchorPane targetPane, String fxmlPath, Object controller, String methodToCall) {
