@@ -18,10 +18,10 @@ import java.util.stream.Collectors;
 
 public class GUIChooseMunicipalityController extends ChooseMunicipalityController {
 
-    @FXML private Label MsgLabel;
-    @FXML private JFXListView<String> MunicipalitiesList;
-    @FXML private JFXButton SearchMunicipalityButton;
-    @FXML private TextField MunicipalityNameTxt;
+    @FXML private Label msgLabel;
+    @FXML private JFXListView<String> municipalitiesList;
+    @FXML private JFXButton searchMunicipalityButton;
+    @FXML private TextField municipalityNameTxt;
 
 
     @FXML private AnchorPane contentPane;
@@ -36,10 +36,10 @@ public class GUIChooseMunicipalityController extends ChooseMunicipalityControlle
     @FXML
     @Override
     public void searchMunicipality() {
-        String name = MunicipalityNameTxt.getText().trim();
+        String name = municipalityNameTxt.getText().trim();
 
         if (name.isEmpty()) {
-            MunicipalitiesList.getItems().clear();
+            municipalitiesList.getItems().clear();
             lastResults.clear();
             return;
         }
@@ -47,8 +47,7 @@ public class GUIChooseMunicipalityController extends ChooseMunicipalityControlle
         MunicipalityBean request = new MunicipalityBean(name, null,null);
         List<MunicipalityBean> beans = reportController.searchMunicipality(request);
 
-        lastResults = beans;
-        MunicipalitiesList.getItems().setAll(
+        lastResults = beans;municipalitiesList.getItems().setAll(
                 beans.stream()
                         .map(MunicipalityBean::toString)
                         .collect(Collectors.toList())
@@ -58,7 +57,7 @@ public class GUIChooseMunicipalityController extends ChooseMunicipalityControlle
 
 
     public void chooseMunicipality() {
-        int idx = MunicipalitiesList.getSelectionModel().getSelectedIndex();
+        int idx = municipalitiesList.getSelectionModel().getSelectedIndex();
         if (idx < 0 || idx >= lastResults.size()) return;
 
         MunicipalityBean chosen = lastResults.get(idx);
@@ -79,7 +78,7 @@ public class GUIChooseMunicipalityController extends ChooseMunicipalityControlle
             AnchorPane.setRightAnchor(reportForm,  0.0);
 
         } catch (IOException e) {
-            MsgLabel.setText("Errore nel caricamento del form di segnalazione.");
+            msgLabel.setText("Errore nel caricamento del form di segnalazione.");
 
         }
     }
