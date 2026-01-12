@@ -47,7 +47,7 @@ public class ReportController {
             return beans;
 
         } catch (DataAccessException e) {
-            throw new DataAccessException(e.getMessage(), e);
+            throw new ApplicationException(e.getMessage());
         }
     }
 

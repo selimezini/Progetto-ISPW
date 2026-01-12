@@ -61,7 +61,7 @@ public class GUIHomeController extends  HomeController{
                 dinamicContentPane,
                 "/fxml/ChooseAMunicipality-view.fxml",
                 controller,
-                "startSearch"
+                null
         );
 
     }
