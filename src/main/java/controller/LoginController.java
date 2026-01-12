@@ -128,16 +128,14 @@ public class LoginController {
     }
 
 
-        public LoginBean getUserCredentials(){
+    public LoginBean getUserCredentials() {
+        SessionManager sessionManager = SessionManager.getInstance();
+        User user = sessionManager.getCurrentUser();
+        return new LoginBean(user.getUsername(), user.getPassword(), user.getRole(), null);
+    }
 
-            SessionManager sessionManager = SessionManager.getInstance();
-            User user = sessionManager.getCurrentUser();
-            LoginBean loginBean = new LoginBean(user.getUsername(), user.getPassword(), user.getRole(), null);
-            return loginBean;
 
-        }
-
-        public void logout() {
+    public void logout() {
             SessionManager sessionManager  = SessionManager.getInstance();
             sessionManager.setCurrentUser(null);
         }
