@@ -6,7 +6,7 @@ import model.Report;
 import model.users.User;
 
 import java.util.List;
-
+@SuppressWarnings("java:S6548")
 public class SessionManager {
 
     private static SessionManager instance = new SessionManager();
