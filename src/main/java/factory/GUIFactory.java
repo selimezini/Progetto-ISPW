@@ -9,12 +9,12 @@ public class GUIFactory extends GraphicalFactory {
 
 
     @Override
-    public DoReportController CreateReportController() {
+    public DoReportController createReportController() {
         return new GUIReportController();
     }
 
     @Override
-    public ChooseMunicipalityController CreateMunicipalityController() {
+    public ChooseMunicipalityController createMunicipalityController() {
         return new GUIChooseMunicipalityController();
     }
 

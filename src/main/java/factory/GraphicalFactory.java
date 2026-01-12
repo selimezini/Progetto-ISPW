@@ -30,8 +30,8 @@ public abstract class GraphicalFactory {
 
 
 
-    public abstract DoReportController CreateReportController();
-    public abstract ChooseMunicipalityController CreateMunicipalityController();
+    public abstract DoReportController createReportController();
+    public abstract ChooseMunicipalityController createMunicipalityController();
     public abstract GraphicLoginController createLoginController();
     public abstract RegisterController createRegisterController();
     public abstract HomeController createHomeController();

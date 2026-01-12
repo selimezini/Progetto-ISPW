@@ -56,7 +56,7 @@ public class GUIHomeController extends  HomeController{
     public void onNewReport() {
 
         ChooseMunicipalityController controller =
-                GraphicalFactory.getInstance().CreateMunicipalityController();
+                GraphicalFactory.getInstance().createMunicipalityController();
         SceneManager.switchScene(
                 dinamicContentPane,
                 "/fxml/ChooseAMunicipality-view.fxml",

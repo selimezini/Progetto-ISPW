@@ -14,7 +14,7 @@ public class CLIHomeController  extends HomeController{
     @Override
     public void onNewReport(){
         GraphicalFactory factory = GraphicalFactory.getInstance();
-        ChooseMunicipalityController controller = factory.CreateMunicipalityController();
+        ChooseMunicipalityController controller = factory.createMunicipalityController();
         controller.searchMunicipality();
     }
 

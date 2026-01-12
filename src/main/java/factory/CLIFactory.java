@@ -7,13 +7,13 @@ public class CLIFactory extends GraphicalFactory {
 
 
     @Override
-    public DoReportController CreateReportController() {
+    public DoReportController createReportController() {
 
         return new CLIReportController();
     }
 
     @Override
-    public ChooseMunicipalityController CreateMunicipalityController() {
+    public ChooseMunicipalityController createMunicipalityController() {
 
         return new CLIChooseMunicipalityController();
     }

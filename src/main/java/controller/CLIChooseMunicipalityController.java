@@ -76,7 +76,7 @@ public class CLIChooseMunicipalityController extends ChooseMunicipalityControlle
         System.out.println("Comune selezionato: " + chosen.toString());
 
 
-       DoReportController controller = GraphicalFactory.getInstance().CreateReportController();
+       DoReportController controller = GraphicalFactory.getInstance().createReportController();
        controller.createReport();
     }
 
