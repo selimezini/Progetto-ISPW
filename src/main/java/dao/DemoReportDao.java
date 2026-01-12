@@ -63,21 +63,28 @@ public class DemoReportDao extends ReportDao {
 
     @Override
     public void updateReport(String id, String newStatus) {
-
         try {
-            boolean found = false;
+            boolean updated = false;
+
             for (Report r : reports) {
                 if (r.getReportId().equals(id)) {
                     r.setStatus(newStatus);
-                    found = true;
+                    updated = true;
                     break;
                 }
             }
 
-        } catch (DataAccessException dae) {
-            throw dae; // rilancia se non trovato
+            if (!updated) {
+                throw new DataAccessException("Report con ID " + id + " non trovato");
+            }
+
         } catch (Exception ex) {
-            throw new DataAccessException("Errore aggiornando lo stato del report con ID: " + id, ex);
+            if (ex instanceof DataAccessException) {
+                throw (DataAccessException) ex;
+            } else {
+                throw new DataAccessException("Errore aggiornando lo stato del report con ID: " + id, ex);
+            }
         }
     }
+
 }
