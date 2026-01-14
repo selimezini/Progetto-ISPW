@@ -31,7 +31,6 @@ public class DemoUserDao extends UserDao {
         //  utenti di esempio
         users.add(new Citizen("Seli", "CivisAlert", "Citizen"));
         users.add(new Employee("SeliEmployee", "password", "Employee"));
-       // Employee employee = new Employee("balotelli", "password", "Employee");
 
     }
 

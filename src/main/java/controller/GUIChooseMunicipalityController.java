@@ -42,16 +42,17 @@ public class GUIChooseMunicipalityController extends ChooseMunicipalityControlle
             return;
         }
 
-        MunicipalityBean request = new MunicipalityBean(name, null,null);
+        MunicipalityBean request = new MunicipalityBean(name, null, null);
         List<MunicipalityBean> beans = reportController.searchMunicipality(request);
 
-        lastResults = beans;municipalitiesList.getItems().setAll(
+        lastResults = beans;
+
+        municipalitiesList.getItems().setAll(
                 beans.stream()
                         .map(MunicipalityBean::toString)
-                        .collect(Collectors.toList())
+                        .toList()
         );
     }
-
 
 
     public void chooseMunicipality() {
