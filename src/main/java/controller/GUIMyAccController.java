@@ -215,8 +215,8 @@ public class GUIMyAccController extends MyAccController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login-view.fxml"));
 
             GraphicalFactory factory = GraphicalFactory.getInstance();
-            GraphicLoginController loginController = factory.createLoginController();
-            loader.setController(loginController);
+            GraphicLoginController gLoginController = factory.createLoginController();
+            loader.setController(gLoginController);
 
             Parent loginRoot = loader.load();
             stage.setScene(new Scene(loginRoot));
