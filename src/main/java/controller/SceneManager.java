@@ -9,7 +9,7 @@ import java.lang.reflect.Method;
 
 public class SceneManager {
 
-
+    private SceneManager() {}
 
 
     public static void switchScene(AnchorPane targetPane, String fxmlPath, Object controller, String methodToCall) {
