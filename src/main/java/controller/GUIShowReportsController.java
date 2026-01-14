@@ -58,28 +58,22 @@ public class GUIShowReportsController extends ShowReportsController {
     @FXML
     public void showReports() {
         List<BeanReport> fetched = reportController.getReportsForCurrentMunicipality();
-
-
         loadReports(fetched);
     }
 
-
     private void loadReports(List<BeanReport> reportList) {
-
         reports.clear();
         reports.addAll(reportList);
 
-
         List<String> previews = reportList.stream()
                 .map(r -> String.format(
-                        "Titolo: %s | Data: %s |  %s | Stato: %s",
+                        "Titolo: %s | Data: %s | %s | Stato: %s",
                         r.getTitle(),
                         r.getDate().toString(),
-                        r.getUrgencyType(),   // o r.getUrgency() se usi un getter diverso
+                        r.getUrgencyType(),
                         r.getStatus()
                 ))
-                .collect(Collectors.toList());
-
+                .toList();  // lista immutabile, va benissimo perché non la modifichi
 
         listReports.getItems().setAll(previews);
     }
