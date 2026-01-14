@@ -13,6 +13,8 @@ import java.util.Properties;
 
 public class ConnectionFactory {
 
+    private ConnectionFactory() {}
+
     private static Connection connection;
 
     static {
