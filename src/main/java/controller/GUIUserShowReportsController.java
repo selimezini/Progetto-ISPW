@@ -72,10 +72,11 @@ public class GUIUserShowReportsController extends ShowReportsController {
                         r.getUrgencyType(),
                         r.getStatus()
                 ))
-                .collect(Collectors.toList());
+                .toList();
 
         listReports.getItems().setAll(previews);
     }
+
 
 
     private void onReportClicked(MouseEvent event) {
