@@ -27,7 +27,6 @@ public class GUIReportDetailsController extends  ReportDetailsController {
     private BeanReport report;
 
     public void setReport(BeanReport report) {
-        System.out.println("tipo di urgenza:" + report.getProblemType());
         this.report = report;
 
         titleLbl.setText(report.getTitle());

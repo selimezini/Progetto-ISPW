@@ -4,6 +4,7 @@ import beans.LoginBean;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import exceptions.ApplicationException;
+import exceptions.DataLoadException;
 import exceptions.ValidationException;
 import factory.GraphicalFactory;
 import javafx.animation.PauseTransition;
@@ -130,7 +131,7 @@ public class GUIRegisterController extends RegisterController  {
 
 
         } catch (IOException e) {
-            System.err.println("Errore durante il caricamento della schermata di login: " + e.getMessage());
+            throw new DataLoadException("Impossibile caricare homeEmployeeDashboard-view.fxml", e);
 
         }
     }

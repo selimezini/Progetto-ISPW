@@ -1,5 +1,6 @@
 package controller;
 
+import exceptions.DataLoadException;
 import factory.GraphicalFactory;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
@@ -70,7 +71,7 @@ public class GUIHomeEmployeeController extends HomeEmployeeController  {
             AnchorPane.setLeftAnchor(pane,   0.0);
             AnchorPane.setRightAnchor(pane,  0.0);
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            throw new DataLoadException("Impossibile caricare homeEmployeeDashboard-view.fxml", e);
         }
 
 

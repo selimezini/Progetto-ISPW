@@ -2,6 +2,7 @@ package controller;
 
 import beans.LoginBean;
 import exceptions.ApplicationException;
+import exceptions.DataLoadException;
 import factory.GraphicalFactory;
 import javafx.animation.PauseTransition;
 import javafx.beans.binding.Bindings;
@@ -224,7 +225,7 @@ public class GUIMyAccController extends MyAccController {
             stage.show();
 
         } catch (IOException e) {
-            System.err.println("Errore durante il caricamento della schermata di login: " + e.getMessage());
+            throw new DataLoadException("Impossibile caricare la schermata di login", e);
         }
     }
 }
