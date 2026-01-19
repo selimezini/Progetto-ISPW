@@ -2,6 +2,7 @@ package controller;
 
 import beans.BeanReport;
 import com.jfoenix.controls.JFXListView;
+import exceptions.DataLoadException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
@@ -29,7 +30,6 @@ public class GUIUserShowReportsController extends ShowReportsController {
 
     @FXML
     public void initialize() {
-        System.out.println("Sono entrato su GUIUSER");
         listReports.setCellFactory(lv -> new ListCell<>() {
             @Override
             protected void updateItem(String item, boolean empty) {
@@ -106,7 +106,7 @@ public class GUIUserShowReportsController extends ShowReportsController {
             AnchorPane.setRightAnchor(pane,  0.0);
 
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            throw new DataLoadException("Impossibile caricare la schermata", e);
         }
     }
 }

@@ -1,5 +1,6 @@
 package controller;
 
+import exceptions.DataLoadException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
@@ -30,7 +31,7 @@ public class SceneManager {
             AnchorPane.setRightAnchor(content, 0.0);
 
         } catch (IOException | ReflectiveOperationException e) {
-            System.out.println(e.getMessage());
+            throw new DataLoadException("Impossibile caricare la schermata", e);
         }
     }
 }

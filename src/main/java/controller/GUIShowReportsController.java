@@ -2,6 +2,7 @@ package controller;
 
 import beans.BeanReport;
 import com.jfoenix.controls.JFXListView;
+import exceptions.DataLoadException;
 import javafx.fxml.FXML;
 
 
@@ -73,7 +74,7 @@ public class GUIShowReportsController extends ShowReportsController {
                         r.getUrgencyType(),
                         r.getStatus()
                 ))
-                .toList();  // lista immutabile, va benissimo perché non la modifichi
+                .toList();  // lista immutabile
 
         listReports.getItems().setAll(previews);
     }
@@ -104,7 +105,7 @@ public class GUIShowReportsController extends ShowReportsController {
             AnchorPane.setRightAnchor(detailsPane,  0.0);
 
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            throw new DataLoadException("Errore nel caricamento della schermata", e);
         }
     }
 }
