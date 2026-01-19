@@ -55,7 +55,6 @@ public class DemoReportDao extends ReportDao {
 
     @Override
     public void addReport(Report report) {
-        System.out.println("[DEBUG] Aggiunta report: " + report);
 
         reports.add(report);
     }

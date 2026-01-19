@@ -78,7 +78,6 @@ public class DbReportDao extends ReportDao {
             ps.setString(2, id);
             ps.executeUpdate();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
             throw new DataAccessException("Errore aggiornando lo stato del report con ID: " + id, ex);
         }
     }

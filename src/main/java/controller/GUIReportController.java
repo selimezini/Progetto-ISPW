@@ -118,7 +118,7 @@ public class GUIReportController extends DoReportController{
                 selectedImagePath = file.toURI().toString();
                 previewImage.setImage(selectedImage);
             } catch (Exception e) {
-              System.out.println(e.getMessage());
+                msgLabel.setText("errore nell'inserimento della foto");
             }
         }
     }

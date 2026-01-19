@@ -25,7 +25,7 @@ public class DemoMunicipalityDao extends MunicipalityDao {
         municipalities.add(new Municipality("Milano",    "Milano", "MI001", "Lombardia"));
         municipalities.add(new Municipality("Grottaferrata","Roma",  "GR001","Lazio"));
         municipalities.add(new Municipality("Frascati",   "Roma",   "FR001","Lazio"));
-        // Aggiungi altri se necessario…
+        // eventualmente altri
     }
 
 

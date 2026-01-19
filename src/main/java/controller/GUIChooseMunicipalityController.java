@@ -62,7 +62,6 @@ public class GUIChooseMunicipalityController extends ChooseMunicipalityControlle
         MunicipalityBean chosen = lastResults.get(idx);
 
         SessionManager.getInstance().setCurrentMunicipalityReport(chosen);
-        System.out.println("siamo su GUICHOOSECONTROLLER: ho scritto" + chosen.getName() + chosen.getRegion() + "CODICE" + chosen.getCode());
 
         try {
             FXMLLoader loader = new FXMLLoader(

@@ -25,8 +25,8 @@ public class Main extends Application {
         try {
             loadConfig();
         } catch (DataLoadException ex) {
-            System.err.println(" Config persistenza: " + ex.getMessage());
-            System.err.println("Uso modalità di default: " + storageMode);
+            System.out.println("Config persistenza: " + ex.getMessage());
+            System.out.println("Uso modalità di default: " + storageMode);
         }
 
         System.out.println("Benvenuti in CivisAlert!");
@@ -93,7 +93,8 @@ public class Main extends Application {
             primaryStage.show();
 
         } catch (IOException e) {
-            System.err.println("Errore nel caricamento della schermata di login: " + e.getMessage());
+            throw new DataLoadException("Impossibile caricare il file login-view.fxml", e);
+
         }
     }
 
