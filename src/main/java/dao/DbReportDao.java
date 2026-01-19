@@ -58,7 +58,6 @@ public class DbReportDao extends ReportDao {
 
             ps.executeUpdate();
         } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
             throw new DataAccessException("Errore inserendo nuovo report", ex);
         }
     }

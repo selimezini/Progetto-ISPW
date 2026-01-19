@@ -35,7 +35,6 @@ public class ConnectionFactory {
             connection = DriverManager.getConnection(connectionUrl, user, pass);
 
         } catch (IOException | SQLException e) {
-            System.out.println(e.getMessage());
             throw new DataAccessException("Errore nella connessione al database.", e);
         }
     }
