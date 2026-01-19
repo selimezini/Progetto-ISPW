@@ -88,7 +88,6 @@ public class ReportController {
 
            //salvo
             reportDao.addReport(report);
-            System.out.println("Report submitted");
 
         } catch (DataAccessException ex) {
 
@@ -202,7 +201,6 @@ public class ReportController {
                     javafx.scene.image.Image img = new javafx.scene.image.Image(imgPath);
                     b.setImage(img);
                 } catch (Exception ex) {
-                    System.out.println("Impossibile caricare immagine da: " + imgPath);
                     b.setImage(null);
                 }
             }
